@@ -798,7 +798,24 @@ const DEFAULT_DATA = {
 // ═══════════════════════════════════════════════════════════
 const APP_VERSION = '1.4.0'; // bump this to force-refresh cached data
 
-let data = JSON.parse(localStorage.getItem('sobytie_data') || 'null') || JSON.parse(JSON.stringify(DEFAULT_DATA));
+// Use project-specific storage key so multiple projects don't overwrite each other
+const STORAGE_KEY = (function(){
+  // Try to detect project name from embedded data or existing localStorage
+  try {
+    const stored = localStorage.getItem('sobytie_data');
+    if(stored){
+      const d = JSON.parse(stored);
+      if(d && d.project && d.project.name) return 'dizmomap_' + d.project.name.toLowerCase().replace(/\s+/g,'_');
+    }
+  } catch(e){}
+  return 'dizmomap_default';
+})();
+
+let data = JSON.parse(localStorage.getItem(STORAGE_KEY) || localStorage.getItem('sobytie_data') || 'null') || JSON.parse(JSON.stringify(DEFAULT_DATA));
+// Migrate old key to new key
+if(localStorage.getItem('sobytie_data') && !localStorage.getItem(STORAGE_KEY)){
+  localStorage.setItem(STORAGE_KEY, localStorage.getItem('sobytie_data'));
+}
 _timelineInitialized = false; // always reinit from loaded data
 
 // ── MIGRATIONS ──
@@ -838,36 +855,35 @@ const statusColors = {plan:'var(--mu2)',active:'var(--acc)',done:'var(--g)',dela
 function exportFile(){
   const html = document.documentElement.outerHTML;
   const dataJson = JSON.stringify(data);
-  // Use a unique key per project so different projects don't share localStorage
-  const projectKey = 'sobytie_data_' + (data.project.name||'project').toLowerCase().replace(/\s+/g,'_');
+  const pName = (data.project.name||'project').toLowerCase().replace(/\s+/g,'_');
+  const pKey  = 'dizmomap_' + pName;
 
-  // Replace data loading line:
-  // On load: try localStorage first, fall back to embedded data
-  const exportHtml = html.replace(
-    /let data = JSON\.parse\(localStorage\.getItem\('sobytie_data'\) \|\| 'null'\) \|\| JSON\.parse\(JSON\.stringify\(DEFAULT_DATA\)\);/,
-    `const _EMBEDDED = ${dataJson};
-const _STORED = localStorage.getItem('${projectKey}') || localStorage.getItem('sobytie_data');
-let data = _STORED ? JSON.parse(_STORED) : JSON.parse(JSON.stringify(_EMBEDDED));
-// If stored data is older version of this project, use embedded
-if(!data.project || data.project.name !== _EMBEDDED.project.name){
-  data = JSON.parse(JSON.stringify(_EMBEDDED));
-  localStorage.removeItem('sobytie_data');
-}
-localStorage.setItem('${projectKey}', JSON.stringify(data));`
-  );
+  // Patch: embedded data + STORAGE_KEY set to project key
+  // On load: localStorage takes priority over embedded data
+  const patched = html
+    .replace(
+      /const STORAGE_KEY = \(function\(\)\{[\s\S]*?\}\)\(\);/,
+      `const STORAGE_KEY = '${pKey}';`
+    )
+    .replace(
+      /let data = JSON\.parse\(localStorage\.getItem\(STORAGE_KEY\)[\s\S]*?DEFAULT_DATA\)\);/,
+      `const _EMBEDDED = ${dataJson};
+let data = (function(){
+  try{
+    const s = localStorage.getItem('${pKey}');
+    if(s){ const d=JSON.parse(s); if(d&&d.project&&d.project.name===_EMBEDDED.project.name) return d; }
+  }catch(e){}
+  const d = JSON.parse(JSON.stringify(_EMBEDDED));
+  localStorage.setItem('${pKey}', JSON.stringify(d));
+  return d;
+})();`
+    );
 
-  // Also patch saveData to use project-specific key
-  const finalHtml = exportHtml.replace(
-    "localStorage.setItem('sobytie_data', JSON.stringify(data));",
-    `localStorage.setItem('${projectKey}', JSON.stringify(data));`
-  );
-
-  const blob = new Blob([finalHtml], {type:'text/html;charset=utf-8'});
+  const blob = new Blob([patched], {type:'text/html;charset=utf-8'});
   const url  = URL.createObjectURL(blob);
   const a    = document.createElement('a');
-  const projectName = (data.project.name||'project').toLowerCase().replace(/\s+/g,'-');
   a.href = url;
-  a.download = `${projectName}-map.html`;
+  a.download = pName.replace(/_/g,'-') + '-map.html';
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
@@ -877,7 +893,7 @@ localStorage.setItem('${projectKey}', JSON.stringify(data));`
 
 function saveData(){
   if(!isEditor){ showToast('🔒 НУЖЕН ПАРОЛЬ'); return; }
-  localStorage.setItem('sobytie_data', JSON.stringify(data));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   const ts = new Date().toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'});
   document.getElementById('lastSaved').textContent = 'Сохранено '+ts;
   showToast('✅ СОХРАНЕНО');
@@ -2739,7 +2755,7 @@ renderAll();
 updateEditorUI();
 syncDeliveriesBtn();
 
-const saved = localStorage.getItem('sobytie_data');
+const saved = localStorage.getItem(STORAGE_KEY) || localStorage.getItem('sobytie_data');
 if(saved){ document.getElementById('lastSaved').textContent = 'Загружено из памяти'; }
 </script>
 </body>

@@ -5,7 +5,7 @@
 <meta name="color-scheme" content="dark">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>DIZMO STROY MAP · 1</title>
+<title>DIZMO STROY MAP · СОБЫТИЕ</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=JetBrains+Mono:wght@400;600&amp;family=Manrope:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
 <style>
 :root{
@@ -416,7 +416,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
     <div style="font-family:var(--disp);font-size:18px;letter-spacing:2px;white-space:nowrap">
       <span style="color:var(--acc)">DIZMO</span>&nbsp;<span style="color:var(--mu2)">STROY</span>&nbsp;<span style="color:var(--txt)">MAP</span>
     </div>
-    <div style="font-family:var(--mono);font-size:8px;letter-spacing:2px;color:var(--mu);text-transform:uppercase;margin-top:1px" id="navLogo">1</div>
+    <div style="font-family:var(--mono);font-size:8px;letter-spacing:2px;color:var(--mu);text-transform:uppercase;margin-top:1px" id="navLogo">СОБЫТИЕ</div>
   <div id="versionBadge" style="font-family: var(--mono); font-size: 8px; letter-spacing: 1px; color: var(--mu); padding: 2px 0px; pointer-events: none; display: block; margin-top: 1px;">v1.4.0</div></div>
 
   <!-- DESKTOP NAV LINKS -->
@@ -430,7 +430,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
   <div class="nav-spacer"></div>
 
   <!-- LOCK BUTTON -->
-  <button class="save-badge" id="lockBtn" onclick="lockAction()">🔒</button>
+  <button class="save-badge editing" id="lockBtn" onclick="lockAction()">🔓 Редактор</button>
   <button onclick="exportFile()" title="Скачать файл со всеми данными для GitHub" style="background: rgba(78, 156, 242, 0.2); border: 1px solid rgba(78, 156, 242, 0.25); color: var(--b); padding: 5px 10px; border-radius: 6px; font-family: var(--mono); font-size: 9px; letter-spacing: 1px; cursor: pointer; white-space: nowrap; margin-left: 6px; transition: 0.2s; flex-shrink: 0;" onmouseover="this.style.background='rgba(78,156,242,.2)'" onmouseout="this.style.background='rgba(78,156,242,.1)'">⬇</button>
 
   <!-- MOBILE BURGER -->
@@ -446,7 +446,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
   <button class="mob-nav-btn" onclick="navGoMobile('stats-sec')">📊 Статус этапов</button>
   <button class="mob-nav-btn" onclick="navGoMobile('team-sec')">👷 Команда</button>
   <div style="border-top:1px solid var(--bd);margin:6px 0"></div>
-  <button class="mob-nav-btn" onclick="lockAction();toggleMobileMenu()" id="mobLockBtn">🔒 Режим просмотра</button>
+  <button class="mob-nav-btn" onclick="lockAction();toggleMobileMenu()" id="mobLockBtn">🔓 Заблокировать</button>
 </div>
 
 <!-- PASSWORD MODAL -->
@@ -497,7 +497,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
     
   </div>
     </div>
-    <button id="btnEditProject" onclick="openProjectModal()" style="display: none; margin-top: 6px; background: rgba(245, 200, 66, 0.1); border: 1px solid rgba(245, 200, 66, 0.3); color: var(--acc); padding: 6px 14px; border-radius: 6px; font-family: var(--mono); font-size: 9px; letter-spacing: 2px; cursor: pointer; white-space: nowrap; transition: 0.2s;" onmouseover="this.style.background='rgba(245,200,66,.2)'" onmouseout="this.style.background='rgba(245,200,66,.1)'">
+    <button id="btnEditProject" onclick="openProjectModal()" style="display: inline-flex; margin-top: 6px; background: rgba(245, 200, 66, 0.1); border: 1px solid rgba(245, 200, 66, 0.3); color: var(--acc); padding: 6px 14px; border-radius: 6px; font-family: var(--mono); font-size: 9px; letter-spacing: 2px; cursor: pointer; white-space: nowrap; transition: 0.2s;" onmouseover="this.style.background='rgba(245,200,66,.2)'" onmouseout="this.style.background='rgba(245,200,66,.1)'">
       ✏ ПРОЕКТ
     </button>
   </div>
@@ -537,12 +537,12 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 <div class="sec" id="gantt-sec">
   <div class="sec-hdr">
     Диаграмма Ганта — план / факт · зависимости · доставки
-    <span id="editModeTag" style="display: none; background: rgba(245, 200, 66, 0.15); color: var(--acc); font-family: var(--mono); font-size: 8px; letter-spacing: 2px; padding: 2px 8px; border-radius: 3px; border: 1px solid rgba(245, 200, 66, 0.3);">
+    <span id="editModeTag" style="display: inline-flex; background: rgba(245, 200, 66, 0.15); color: var(--acc); font-family: var(--mono); font-size: 8px; letter-spacing: 2px; padding: 2px 8px; border-radius: 3px; border: 1px solid rgba(245, 200, 66, 0.3);">
       ✏ РЕЖИМ РЕДАКТИРОВАНИЯ
     </span>
-    <button class="tb-btn" id="btnAddDel" style="margin-left: auto; display: none;" onclick="addDeliveryModal()">＋ Доставка</button>
-    <button class="tb-btn" id="btnAddStage" style="display: none;" onclick="addStageModal()">＋ Этап</button>
-    <button class="tb-btn" id="btnChangePw" style="display: none; position: absolute; left: -9999px;" onclick="changePasswordModal()">⚙ Пароль</button>
+    <button class="tb-btn" id="btnAddDel" style="margin-left: auto; display: flex;" onclick="addDeliveryModal()">＋ Доставка</button>
+    <button class="tb-btn" id="btnAddStage" style="display: flex;" onclick="addStageModal()">＋ Этап</button>
+    <button class="tb-btn" id="btnChangePw" style="display: flex; position: absolute; left: -9999px;" onclick="changePasswordModal()">⚙ Пароль</button>
   </div>
   <div class="gantt-container">
     <div class="toolbar">
@@ -555,7 +555,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
       <button class="tb-btn" onclick="collapseDeliveries()" id="btnDeliveries">📦 Доставки</button>
       <button class="tb-btn" onclick="collapseAll()">↕ Свернуть</button>
       <div class="tb-sep"></div>
-      <span style="font-family:var(--mono);font-size:9px;color:var(--mu);letter-spacing:1px" id="lastSaved">☁ 21:02</span>
+      <span style="font-family:var(--mono);font-size:9px;color:var(--mu);letter-spacing:1px" id="lastSaved">☁ 21:10</span>
     </div>
     <div class="gantt-scroll">
       <table class="gtable">
@@ -741,13 +741,13 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
         <div class="bar-week-line" style="left:93.75%"></div>
         <div class="bar-single" data-sid="1" data-action="move" style="left:0.83%;width:11.57%;background:#e8a838;color:#111">
                       ▶  14д
-                      
+                      <span class="bar-resize" data-sid="1" data-action="resize"></span>
                     </div>
         
       </div>
     </td>
     <td class="td-edit">
-      <button class="edit-btn" onclick="openEditStage(1)" title="Только просмотр — войдите" style="opacity:0.35">✏</button>
+      <button class="edit-btn" onclick="openEditStage(1)" title="Редактировать" style="opacity:1">✏</button>
     </td>
   </tr><tr class="g-row" id="row-2">
     <td class="td-drag">⠿</td>
@@ -802,13 +802,13 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
         <div class="bar-week-line" style="left:93.75%"></div>
         <div class="bar-single" data-sid="2" data-action="move" style="left:12.40%;width:17.36%;background:var(--b);color:rgba(200,210,230,.7)">
                        21д
-                      
+                      <span class="bar-resize" data-sid="2" data-action="resize"></span>
                     </div>
         
       </div>
     </td>
     <td class="td-edit">
-      <button class="edit-btn" onclick="openEditStage(2)" title="Только просмотр — войдите" style="opacity:0.35">✏</button>
+      <button class="edit-btn" onclick="openEditStage(2)" title="Редактировать" style="opacity:1">✏</button>
     </td>
   </tr><tr class="g-row" id="row-3">
     <td class="td-drag">⠿</td>
@@ -863,13 +863,13 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
         <div class="bar-week-line" style="left:93.75%"></div>
         <div class="bar-single" data-sid="3" data-action="move" style="left:12.40%;width:14.88%;background:var(--b);color:rgba(200,210,230,.7)">
                        18д
-                      
+                      <span class="bar-resize" data-sid="3" data-action="resize"></span>
                     </div>
         
       </div>
     </td>
     <td class="td-edit">
-      <button class="edit-btn" onclick="openEditStage(3)" title="Только просмотр — войдите" style="opacity:0.35">✏</button>
+      <button class="edit-btn" onclick="openEditStage(3)" title="Редактировать" style="opacity:1">✏</button>
     </td>
   </tr><tr class="g-row" id="row-4">
     <td class="td-drag">⠿</td>
@@ -924,13 +924,13 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
         <div class="bar-week-line" style="left:93.75%"></div>
         <div class="bar-single" data-sid="4" data-action="move" style="left:12.40%;width:11.57%;background:var(--b);color:rgba(200,210,230,.7)">
                        14д
-                      
+                      <span class="bar-resize" data-sid="4" data-action="resize"></span>
                     </div>
         
       </div>
     </td>
     <td class="td-edit">
-      <button class="edit-btn" onclick="openEditStage(4)" title="Только просмотр — войдите" style="opacity:0.35">✏</button>
+      <button class="edit-btn" onclick="openEditStage(4)" title="Редактировать" style="opacity:1">✏</button>
     </td>
   </tr><tr class="g-row" id="row-5">
     <td class="td-drag">⠿</td>
@@ -985,13 +985,13 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
         <div class="bar-week-line" style="left:93.75%"></div>
         <div class="bar-single" data-sid="5" data-action="move" style="left:12.40%;width:17.36%;background:var(--b);color:rgba(200,210,230,.7)">
                        21д
-                      
+                      <span class="bar-resize" data-sid="5" data-action="resize"></span>
                     </div>
         
       </div>
     </td>
     <td class="td-edit">
-      <button class="edit-btn" onclick="openEditStage(5)" title="Только просмотр — войдите" style="opacity:0.35">✏</button>
+      <button class="edit-btn" onclick="openEditStage(5)" title="Редактировать" style="opacity:1">✏</button>
     </td>
   </tr><tr class="g-row" id="row-6">
     <td class="td-drag">⠿</td>
@@ -1046,13 +1046,13 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
         <div class="bar-week-line" style="left:93.75%"></div>
         <div class="bar-single" data-sid="6" data-action="move" style="left:12.40%;width:23.14%;background:var(--b);color:rgba(200,210,230,.7)">
                        28д
-                      
+                      <span class="bar-resize" data-sid="6" data-action="resize"></span>
                     </div>
         
       </div>
     </td>
     <td class="td-edit">
-      <button class="edit-btn" onclick="openEditStage(6)" title="Только просмотр — войдите" style="opacity:0.35">✏</button>
+      <button class="edit-btn" onclick="openEditStage(6)" title="Редактировать" style="opacity:1">✏</button>
     </td>
   </tr><tr class="g-row" id="row-7">
     <td class="td-drag">⠿</td>
@@ -1107,13 +1107,13 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
         <div class="bar-week-line" style="left:93.75%"></div>
         <div class="bar-single" data-sid="7" data-action="move" style="left:35.54%;width:17.36%;background:var(--b);color:rgba(200,210,230,.7)">
                        21д
-                      
+                      <span class="bar-resize" data-sid="7" data-action="resize"></span>
                     </div>
         
       </div>
     </td>
     <td class="td-edit">
-      <button class="edit-btn" onclick="openEditStage(7)" title="Только просмотр — войдите" style="opacity:0.35">✏</button>
+      <button class="edit-btn" onclick="openEditStage(7)" title="Редактировать" style="opacity:1">✏</button>
     </td>
   </tr><tr class="g-row" id="row-8">
     <td class="td-drag">⠿</td>
@@ -1168,13 +1168,13 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
         <div class="bar-week-line" style="left:93.75%"></div>
         <div class="bar-single" data-sid="8" data-action="move" style="left:52.89%;width:23.14%;background:var(--b);color:rgba(200,210,230,.7)">
                        28д
-                      
+                      <span class="bar-resize" data-sid="8" data-action="resize"></span>
                     </div>
         
       </div>
     </td>
     <td class="td-edit">
-      <button class="edit-btn" onclick="openEditStage(8)" title="Только просмотр — войдите" style="opacity:0.35">✏</button>
+      <button class="edit-btn" onclick="openEditStage(8)" title="Редактировать" style="opacity:1">✏</button>
     </td>
   </tr><tr class="g-row" id="row-9">
     <td class="td-drag">⠿</td>
@@ -1229,13 +1229,13 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
         <div class="bar-week-line" style="left:93.75%"></div>
         <div class="bar-single" data-sid="9" data-action="move" style="left:64.46%;width:23.14%;background:var(--b);color:rgba(200,210,230,.7)">
                        28д
-                      
+                      <span class="bar-resize" data-sid="9" data-action="resize"></span>
                     </div>
         
       </div>
     </td>
     <td class="td-edit">
-      <button class="edit-btn" onclick="openEditStage(9)" title="Только просмотр — войдите" style="opacity:0.35">✏</button>
+      <button class="edit-btn" onclick="openEditStage(9)" title="Редактировать" style="opacity:1">✏</button>
     </td>
   </tr><tr class="g-row" id="row-10">
     <td class="td-drag">⠿</td>
@@ -1290,13 +1290,13 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
         <div class="bar-week-line" style="left:93.75%"></div>
         <div class="bar-single" data-sid="10" data-action="move" style="left:81.82%;width:8.26%;background:var(--b);color:rgba(200,210,230,.7)">
                        10д
-                      
+                      <span class="bar-resize" data-sid="10" data-action="resize"></span>
                     </div>
         
       </div>
     </td>
     <td class="td-edit">
-      <button class="edit-btn" onclick="openEditStage(10)" title="Только просмотр — войдите" style="opacity:0.35">✏</button>
+      <button class="edit-btn" onclick="openEditStage(10)" title="Редактировать" style="opacity:1">✏</button>
     </td>
   </tr><tr class="g-row" id="row-11">
     <td class="td-drag">⠿</td>
@@ -1351,13 +1351,13 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
         <div class="bar-week-line" style="left:93.75%"></div>
         <div class="bar-single" data-sid="11" data-action="move" style="left:76.03%;width:11.57%;background:var(--b);color:rgba(200,210,230,.7)">
                        14д
-                      
+                      <span class="bar-resize" data-sid="11" data-action="resize"></span>
                     </div>
         
       </div>
     </td>
     <td class="td-edit">
-      <button class="edit-btn" onclick="openEditStage(11)" title="Только просмотр — войдите" style="opacity:0.35">✏</button>
+      <button class="edit-btn" onclick="openEditStage(11)" title="Редактировать" style="opacity:1">✏</button>
     </td>
   </tr><tr class="g-row" id="row-12">
     <td class="td-drag">⠿</td>
@@ -1412,20 +1412,20 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
         <div class="bar-week-line" style="left:93.75%"></div>
         <div class="bar-single" data-sid="12" data-action="move" style="left:81.82%;width:8.26%;background:var(--b);color:rgba(200,210,230,.7)">
                        10д
-                      
+                      <span class="bar-resize" data-sid="12" data-action="resize"></span>
                     </div>
         
       </div>
     </td>
     <td class="td-edit">
-      <button class="edit-btn" onclick="openEditStage(12)" title="Только просмотр — войдите" style="opacity:0.35">✏</button>
+      <button class="edit-btn" onclick="openEditStage(12)" title="Редактировать" style="opacity:1">✏</button>
     </td>
   </tr></tbody>
       </table>
     </div>
     <div class="m-cards" id="mCards"><div class="mob-timeline-wrap">
     <div class="mob-timeline-title">
-      <span>TIMELINE · 1</span>
+      <span>TIMELINE · СОБЫТИЕ</span>
       <span style="color:var(--mu)">02 июн. – 01 окт.</span>
     </div>
     <div class="mob-timeline-track">
@@ -1489,8 +1489,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
           </div>
       </div>
       <div class="vtl-actions">
-        
-        
+        <button class="vtl-action-btn" style="color:var(--acc);border-color:rgba(245,200,66,.25)" onclick="openEditStage(1)">✏ Изменить</button>
+        <button class="vtl-action-btn" onclick="cycleStatus(1)">↻ Статус</button>
         
       </div>
     </div></div><div class="vtl-item"><div class="vtl-left">
@@ -1543,8 +1543,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
           </div>
       </div>
       <div class="vtl-actions">
-        
-        
+        <button class="vtl-action-btn" style="color:var(--acc);border-color:rgba(245,200,66,.25)" onclick="openEditStage(2)">✏ Изменить</button>
+        <button class="vtl-action-btn" onclick="cycleStatus(2)">↻ Статус</button>
         
       </div>
     </div></div><div class="vtl-item"><div class="vtl-left">
@@ -1597,8 +1597,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
           </div>
       </div>
       <div class="vtl-actions">
-        
-        
+        <button class="vtl-action-btn" style="color:var(--acc);border-color:rgba(245,200,66,.25)" onclick="openEditStage(3)">✏ Изменить</button>
+        <button class="vtl-action-btn" onclick="cycleStatus(3)">↻ Статус</button>
         
       </div>
     </div></div><div class="vtl-item"><div class="vtl-left">
@@ -1642,8 +1642,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
       <div class="vtl-scope">Коллектор, 4 радиатора, трубы, гидроиспытания</div>
       
       <div class="vtl-actions">
-        
-        
+        <button class="vtl-action-btn" style="color:var(--acc);border-color:rgba(245,200,66,.25)" onclick="openEditStage(4)">✏ Изменить</button>
+        <button class="vtl-action-btn" onclick="cycleStatus(4)">↻ Статус</button>
         
       </div>
     </div></div><div class="vtl-item"><div class="vtl-left">
@@ -1696,8 +1696,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
           </div>
       </div>
       <div class="vtl-actions">
-        
-        
+        <button class="vtl-action-btn" style="color:var(--acc);border-color:rgba(245,200,66,.25)" onclick="openEditStage(5)">✏ Изменить</button>
+        <button class="vtl-action-btn" onclick="cycleStatus(5)">↻ Статус</button>
         
       </div>
     </div></div><div class="vtl-item"><div class="vtl-left">
@@ -1750,8 +1750,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
           </div>
       </div>
       <div class="vtl-actions">
-        
-        
+        <button class="vtl-action-btn" style="color:var(--acc);border-color:rgba(245,200,66,.25)" onclick="openEditStage(6)">✏ Изменить</button>
+        <button class="vtl-action-btn" onclick="cycleStatus(6)">↻ Статус</button>
         
       </div>
     </div></div><div class="vtl-item"><div class="vtl-left">
@@ -1804,8 +1804,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
           </div>
       </div>
       <div class="vtl-actions">
-        
-        
+        <button class="vtl-action-btn" style="color:var(--acc);border-color:rgba(245,200,66,.25)" onclick="openEditStage(7)">✏ Изменить</button>
+        <button class="vtl-action-btn" onclick="cycleStatus(7)">↻ Статус</button>
         
       </div>
     </div></div><div class="vtl-item"><div class="vtl-left">
@@ -1858,8 +1858,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
           </div>
       </div>
       <div class="vtl-actions">
-        
-        
+        <button class="vtl-action-btn" style="color:var(--acc);border-color:rgba(245,200,66,.25)" onclick="openEditStage(8)">✏ Изменить</button>
+        <button class="vtl-action-btn" onclick="cycleStatus(8)">↻ Статус</button>
         
       </div>
     </div></div><div class="vtl-item"><div class="vtl-left">
@@ -1912,8 +1912,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
           </div>
       </div>
       <div class="vtl-actions">
-        
-        
+        <button class="vtl-action-btn" style="color:var(--acc);border-color:rgba(245,200,66,.25)" onclick="openEditStage(9)">✏ Изменить</button>
+        <button class="vtl-action-btn" onclick="cycleStatus(9)">↻ Статус</button>
         
       </div>
     </div></div><div class="vtl-item"><div class="vtl-left">
@@ -1966,8 +1966,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
           </div>
       </div>
       <div class="vtl-actions">
-        
-        
+        <button class="vtl-action-btn" style="color:var(--acc);border-color:rgba(245,200,66,.25)" onclick="openEditStage(10)">✏ Изменить</button>
+        <button class="vtl-action-btn" onclick="cycleStatus(10)">↻ Статус</button>
         
       </div>
     </div></div><div class="vtl-item"><div class="vtl-left">
@@ -2020,8 +2020,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
           </div>
       </div>
       <div class="vtl-actions">
-        
-        
+        <button class="vtl-action-btn" style="color:var(--acc);border-color:rgba(245,200,66,.25)" onclick="openEditStage(11)">✏ Изменить</button>
+        <button class="vtl-action-btn" onclick="cycleStatus(11)">↻ Статус</button>
         
       </div>
     </div></div><div class="vtl-item"><div class="vtl-left">
@@ -2074,8 +2074,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
           </div>
       </div>
       <div class="vtl-actions">
-        
-        
+        <button class="vtl-action-btn" style="color:var(--acc);border-color:rgba(245,200,66,.25)" onclick="openEditStage(12)">✏ Изменить</button>
+        <button class="vtl-action-btn" onclick="cycleStatus(12)">↻ Статус</button>
         
       </div>
     </div></div></div></div>
@@ -2086,7 +2086,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 <div class="sec" id="materials-sec">
   <div class="sec-hdr">
     Материалы и доставки
-    <button id="btnAddDelivery2" onclick="addDeliveryModal()" style="display: none; margin-left: auto; background: rgba(245, 200, 66, 0.1); border: 1px solid rgba(245, 200, 66, 0.3); color: var(--acc); padding: 5px 12px; border-radius: 5px; font-family: var(--mono); font-size: 9px; letter-spacing: 1px; cursor: pointer; white-space: nowrap;">＋ Добавить доставку</button>
+    <button id="btnAddDelivery2" onclick="addDeliveryModal()" style="display: inline-flex; margin-left: auto; background: rgba(245, 200, 66, 0.1); border: 1px solid rgba(245, 200, 66, 0.3); color: var(--acc); padding: 5px 12px; border-radius: 5px; font-family: var(--mono); font-size: 9px; letter-spacing: 1px; cursor: pointer; white-space: nowrap;">＋ Добавить доставку</button>
   </div>
   <div id="materialsGrid"><div style="background: var(--s1); border: 1px solid var(--bd); border-radius: 10px; overflow: hidden; margin-bottom: 12px;">
       <div style="padding:12px 16px;background:var(--s2);border-bottom:1px solid var(--bd);
@@ -2103,7 +2103,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
         <div style="display:flex;gap:6px;align-items:center">
           <span style="background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.2);color:var(--acc);padding:2px 8px;border-radius:4px;font-family:var(--mono);font-size:9px">📦 1 черн.</span>
           
-          
+          <button onclick="openAddDeliveryForStage(1)" style="background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.25);color:var(--acc);padding:4px 10px;border-radius:5px;font-family:var(--mono);font-size:9px;cursor:pointer;white-space:nowrap;touch-action:manipulation">＋ Доставка</button>
         </div>
       </div>
     <div style="padding: 8px 0px;"><div style="display: flex; align-items: center; gap: 10px; padding: 8px 16px; border-bottom: 1px solid rgba(28, 34, 51, 0.5);">
@@ -2116,7 +2116,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
               <span style="font-family:var(--mono);font-size:10px;color:var(--mu2)">📅 02 июн.</span>
             </div>
           </div>
-          
+          <button class="edit-del-btn" data-action="edit" data-id="d1" style="background:none;border:1px solid var(--bd);color:var(--mu);padding:5px 8px;border-radius:5px;font-size:13px;cursor:pointer;touch-action:manipulation;min-width:36px;min-height:36px">✏</button>
+          <button class="edit-del-btn" data-action="delete" data-id="d1" style="background:none;border:1px solid rgba(242,78,90,.25);color:var(--r);padding:5px 8px;border-radius:5px;font-size:13px;cursor:pointer;touch-action:manipulation;min-width:36px;min-height:36px">🗑</button>
         </div></div></div><div style="background: var(--s1); border: 1px solid var(--bd); border-radius: 10px; overflow: hidden; margin-bottom: 12px;">
       <div style="padding:12px 16px;background:var(--s2);border-bottom:1px solid var(--bd);
         display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
@@ -2132,7 +2133,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
         <div style="display:flex;gap:6px;align-items:center">
           <span style="background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.2);color:var(--acc);padding:2px 8px;border-radius:4px;font-family:var(--mono);font-size:9px">📦 1 черн.</span>
           
-          
+          <button onclick="openAddDeliveryForStage(2)" style="background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.25);color:var(--acc);padding:4px 10px;border-radius:5px;font-family:var(--mono);font-size:9px;cursor:pointer;white-space:nowrap;touch-action:manipulation">＋ Доставка</button>
         </div>
       </div>
     <div style="padding: 8px 0px;"><div style="display: flex; align-items: center; gap: 10px; padding: 8px 16px; border-bottom: 1px solid rgba(28, 34, 51, 0.5);">
@@ -2145,7 +2146,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
               <span style="font-family:var(--mono);font-size:10px;color:var(--mu2)">📅 14 июн.</span>
             </div>
           </div>
-          
+          <button class="edit-del-btn" data-action="edit" data-id="d2" style="background:none;border:1px solid var(--bd);color:var(--mu);padding:5px 8px;border-radius:5px;font-size:13px;cursor:pointer;touch-action:manipulation;min-width:36px;min-height:36px">✏</button>
+          <button class="edit-del-btn" data-action="delete" data-id="d2" style="background:none;border:1px solid rgba(242,78,90,.25);color:var(--r);padding:5px 8px;border-radius:5px;font-size:13px;cursor:pointer;touch-action:manipulation;min-width:36px;min-height:36px">🗑</button>
         </div></div></div><div style="background: var(--s1); border: 1px solid var(--bd); border-radius: 10px; overflow: hidden; margin-bottom: 12px;">
       <div style="padding:12px 16px;background:var(--s2);border-bottom:1px solid var(--bd);
         display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
@@ -2161,7 +2163,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
         <div style="display:flex;gap:6px;align-items:center">
           <span style="background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.2);color:var(--acc);padding:2px 8px;border-radius:4px;font-family:var(--mono);font-size:9px">📦 1 черн.</span>
           
-          
+          <button onclick="openAddDeliveryForStage(3)" style="background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.25);color:var(--acc);padding:4px 10px;border-radius:5px;font-family:var(--mono);font-size:9px;cursor:pointer;white-space:nowrap;touch-action:manipulation">＋ Доставка</button>
         </div>
       </div>
     <div style="padding: 8px 0px;"><div style="display: flex; align-items: center; gap: 10px; padding: 8px 16px; border-bottom: 1px solid rgba(28, 34, 51, 0.5);">
@@ -2174,7 +2176,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
               <span style="font-family:var(--mono);font-size:10px;color:var(--mu2)">📅 14 июн.</span>
             </div>
           </div>
-          
+          <button class="edit-del-btn" data-action="edit" data-id="d3" style="background:none;border:1px solid var(--bd);color:var(--mu);padding:5px 8px;border-radius:5px;font-size:13px;cursor:pointer;touch-action:manipulation;min-width:36px;min-height:36px">✏</button>
+          <button class="edit-del-btn" data-action="delete" data-id="d3" style="background:none;border:1px solid rgba(242,78,90,.25);color:var(--r);padding:5px 8px;border-radius:5px;font-size:13px;cursor:pointer;touch-action:manipulation;min-width:36px;min-height:36px">🗑</button>
         </div></div></div><div style="background: var(--s1); border: 1px solid var(--bd); border-radius: 10px; overflow: hidden; margin-bottom: 12px;">
       <div style="padding:12px 16px;background:var(--s2);border-bottom:1px solid var(--bd);
         display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
@@ -2190,7 +2193,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
         <div style="display:flex;gap:6px;align-items:center">
           
           
-          
+          <button onclick="openAddDeliveryForStage(4)" style="background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.25);color:var(--acc);padding:4px 10px;border-radius:5px;font-family:var(--mono);font-size:9px;cursor:pointer;white-space:nowrap;touch-action:manipulation">＋ Доставка</button>
         </div>
       </div>
     <div style="padding: 16px; text-align: center; font-family: var(--mono); font-size: 10px; color: var(--mu);">Доставки не запланированы</div></div><div style="background: var(--s1); border: 1px solid var(--bd); border-radius: 10px; overflow: hidden; margin-bottom: 12px;">
@@ -2208,7 +2211,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
         <div style="display:flex;gap:6px;align-items:center">
           <span style="background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.2);color:var(--acc);padding:2px 8px;border-radius:4px;font-family:var(--mono);font-size:9px">📦 1 черн.</span>
           
-          
+          <button onclick="openAddDeliveryForStage(5)" style="background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.25);color:var(--acc);padding:4px 10px;border-radius:5px;font-family:var(--mono);font-size:9px;cursor:pointer;white-space:nowrap;touch-action:manipulation">＋ Доставка</button>
         </div>
       </div>
     <div style="padding: 8px 0px;"><div style="display: flex; align-items: center; gap: 10px; padding: 8px 16px; border-bottom: 1px solid rgba(28, 34, 51, 0.5);">
@@ -2221,7 +2224,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
               <span style="font-family:var(--mono);font-size:10px;color:var(--mu2)">📅 14 июн.</span>
             </div>
           </div>
-          
+          <button class="edit-del-btn" data-action="edit" data-id="d4" style="background:none;border:1px solid var(--bd);color:var(--mu);padding:5px 8px;border-radius:5px;font-size:13px;cursor:pointer;touch-action:manipulation;min-width:36px;min-height:36px">✏</button>
+          <button class="edit-del-btn" data-action="delete" data-id="d4" style="background:none;border:1px solid rgba(242,78,90,.25);color:var(--r);padding:5px 8px;border-radius:5px;font-size:13px;cursor:pointer;touch-action:manipulation;min-width:36px;min-height:36px">🗑</button>
         </div></div></div><div style="background: var(--s1); border: 1px solid var(--bd); border-radius: 10px; overflow: hidden; margin-bottom: 12px;">
       <div style="padding:12px 16px;background:var(--s2);border-bottom:1px solid var(--bd);
         display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
@@ -2237,7 +2241,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
         <div style="display:flex;gap:6px;align-items:center">
           <span style="background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.2);color:var(--acc);padding:2px 8px;border-radius:4px;font-family:var(--mono);font-size:9px">📦 1 черн.</span>
           
-          
+          <button onclick="openAddDeliveryForStage(6)" style="background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.25);color:var(--acc);padding:4px 10px;border-radius:5px;font-family:var(--mono);font-size:9px;cursor:pointer;white-space:nowrap;touch-action:manipulation">＋ Доставка</button>
         </div>
       </div>
     <div style="padding: 8px 0px;"><div style="display: flex; align-items: center; gap: 10px; padding: 8px 16px; border-bottom: 1px solid rgba(28, 34, 51, 0.5);">
@@ -2250,7 +2254,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
               <span style="font-family:var(--mono);font-size:10px;color:var(--mu2)">📅 14 июн.</span>
             </div>
           </div>
-          
+          <button class="edit-del-btn" data-action="edit" data-id="d5" style="background:none;border:1px solid var(--bd);color:var(--mu);padding:5px 8px;border-radius:5px;font-size:13px;cursor:pointer;touch-action:manipulation;min-width:36px;min-height:36px">✏</button>
+          <button class="edit-del-btn" data-action="delete" data-id="d5" style="background:none;border:1px solid rgba(242,78,90,.25);color:var(--r);padding:5px 8px;border-radius:5px;font-size:13px;cursor:pointer;touch-action:manipulation;min-width:36px;min-height:36px">🗑</button>
         </div></div></div><div style="background: var(--s1); border: 1px solid var(--bd); border-radius: 10px; overflow: hidden; margin-bottom: 12px;">
       <div style="padding:12px 16px;background:var(--s2);border-bottom:1px solid var(--bd);
         display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
@@ -2266,7 +2271,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
         <div style="display:flex;gap:6px;align-items:center">
           <span style="background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.2);color:var(--acc);padding:2px 8px;border-radius:4px;font-family:var(--mono);font-size:9px">📦 1 черн.</span>
           
-          
+          <button onclick="openAddDeliveryForStage(7)" style="background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.25);color:var(--acc);padding:4px 10px;border-radius:5px;font-family:var(--mono);font-size:9px;cursor:pointer;white-space:nowrap;touch-action:manipulation">＋ Доставка</button>
         </div>
       </div>
     <div style="padding: 8px 0px;"><div style="display: flex; align-items: center; gap: 10px; padding: 8px 16px; border-bottom: 1px solid rgba(28, 34, 51, 0.5);">
@@ -2279,7 +2284,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
               <span style="font-family:var(--mono);font-size:10px;color:var(--mu2)">📅 12 июл.</span>
             </div>
           </div>
-          
+          <button class="edit-del-btn" data-action="edit" data-id="d6" style="background:none;border:1px solid var(--bd);color:var(--mu);padding:5px 8px;border-radius:5px;font-size:13px;cursor:pointer;touch-action:manipulation;min-width:36px;min-height:36px">✏</button>
+          <button class="edit-del-btn" data-action="delete" data-id="d6" style="background:none;border:1px solid rgba(242,78,90,.25);color:var(--r);padding:5px 8px;border-radius:5px;font-size:13px;cursor:pointer;touch-action:manipulation;min-width:36px;min-height:36px">🗑</button>
         </div></div></div><div style="background: var(--s1); border: 1px solid var(--bd); border-radius: 10px; overflow: hidden; margin-bottom: 12px;">
       <div style="padding:12px 16px;background:var(--s2);border-bottom:1px solid var(--bd);
         display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
@@ -2295,7 +2301,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
         <div style="display:flex;gap:6px;align-items:center">
           
           <span style="background:rgba(61,214,140,.1);border:1px solid rgba(61,214,140,.2);color:var(--g);padding:2px 8px;border-radius:4px;font-family:var(--mono);font-size:9px">🚛 1 чист.</span>
-          
+          <button onclick="openAddDeliveryForStage(8)" style="background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.25);color:var(--acc);padding:4px 10px;border-radius:5px;font-family:var(--mono);font-size:9px;cursor:pointer;white-space:nowrap;touch-action:manipulation">＋ Доставка</button>
         </div>
       </div>
     <div style="padding: 8px 0px;"><div style="display: flex; align-items: center; gap: 10px; padding: 8px 16px; border-bottom: 1px solid rgba(28, 34, 51, 0.5);">
@@ -2308,7 +2314,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
               <span style="font-family:var(--mono);font-size:10px;color:var(--mu2)">📅 01 авг.</span>
             </div>
           </div>
-          
+          <button class="edit-del-btn" data-action="edit" data-id="d7" style="background:none;border:1px solid var(--bd);color:var(--mu);padding:5px 8px;border-radius:5px;font-size:13px;cursor:pointer;touch-action:manipulation;min-width:36px;min-height:36px">✏</button>
+          <button class="edit-del-btn" data-action="delete" data-id="d7" style="background:none;border:1px solid rgba(242,78,90,.25);color:var(--r);padding:5px 8px;border-radius:5px;font-size:13px;cursor:pointer;touch-action:manipulation;min-width:36px;min-height:36px">🗑</button>
         </div></div></div><div style="background: var(--s1); border: 1px solid var(--bd); border-radius: 10px; overflow: hidden; margin-bottom: 12px;">
       <div style="padding:12px 16px;background:var(--s2);border-bottom:1px solid var(--bd);
         display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
@@ -2324,7 +2331,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
         <div style="display:flex;gap:6px;align-items:center">
           
           <span style="background:rgba(61,214,140,.1);border:1px solid rgba(61,214,140,.2);color:var(--g);padding:2px 8px;border-radius:4px;font-family:var(--mono);font-size:9px">🚛 1 чист.</span>
-          
+          <button onclick="openAddDeliveryForStage(9)" style="background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.25);color:var(--acc);padding:4px 10px;border-radius:5px;font-family:var(--mono);font-size:9px;cursor:pointer;white-space:nowrap;touch-action:manipulation">＋ Доставка</button>
         </div>
       </div>
     <div style="padding: 8px 0px;"><div style="display: flex; align-items: center; gap: 10px; padding: 8px 16px; border-bottom: 1px solid rgba(28, 34, 51, 0.5);">
@@ -2337,7 +2344,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
               <span style="font-family:var(--mono);font-size:10px;color:var(--mu2)">📅 15 авг.</span>
             </div>
           </div>
-          
+          <button class="edit-del-btn" data-action="edit" data-id="d8" style="background:none;border:1px solid var(--bd);color:var(--mu);padding:5px 8px;border-radius:5px;font-size:13px;cursor:pointer;touch-action:manipulation;min-width:36px;min-height:36px">✏</button>
+          <button class="edit-del-btn" data-action="delete" data-id="d8" style="background:none;border:1px solid rgba(242,78,90,.25);color:var(--r);padding:5px 8px;border-radius:5px;font-size:13px;cursor:pointer;touch-action:manipulation;min-width:36px;min-height:36px">🗑</button>
         </div></div></div><div style="background: var(--s1); border: 1px solid var(--bd); border-radius: 10px; overflow: hidden; margin-bottom: 12px;">
       <div style="padding:12px 16px;background:var(--s2);border-bottom:1px solid var(--bd);
         display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
@@ -2353,7 +2361,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
         <div style="display:flex;gap:6px;align-items:center">
           
           <span style="background:rgba(61,214,140,.1);border:1px solid rgba(61,214,140,.2);color:var(--g);padding:2px 8px;border-radius:4px;font-family:var(--mono);font-size:9px">🚛 1 чист.</span>
-          
+          <button onclick="openAddDeliveryForStage(10)" style="background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.25);color:var(--acc);padding:4px 10px;border-radius:5px;font-family:var(--mono);font-size:9px;cursor:pointer;white-space:nowrap;touch-action:manipulation">＋ Доставка</button>
         </div>
       </div>
     <div style="padding: 8px 0px;"><div style="display: flex; align-items: center; gap: 10px; padding: 8px 16px; border-bottom: 1px solid rgba(28, 34, 51, 0.5);">
@@ -2366,7 +2374,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
               <span style="font-family:var(--mono);font-size:10px;color:var(--mu2)">📅 05 сент.</span>
             </div>
           </div>
-          
+          <button class="edit-del-btn" data-action="edit" data-id="d9" style="background:none;border:1px solid var(--bd);color:var(--mu);padding:5px 8px;border-radius:5px;font-size:13px;cursor:pointer;touch-action:manipulation;min-width:36px;min-height:36px">✏</button>
+          <button class="edit-del-btn" data-action="delete" data-id="d9" style="background:none;border:1px solid rgba(242,78,90,.25);color:var(--r);padding:5px 8px;border-radius:5px;font-size:13px;cursor:pointer;touch-action:manipulation;min-width:36px;min-height:36px">🗑</button>
         </div></div></div><div style="background: var(--s1); border: 1px solid var(--bd); border-radius: 10px; overflow: hidden; margin-bottom: 12px;">
       <div style="padding:12px 16px;background:var(--s2);border-bottom:1px solid var(--bd);
         display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
@@ -2382,7 +2391,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
         <div style="display:flex;gap:6px;align-items:center">
           
           <span style="background:rgba(61,214,140,.1);border:1px solid rgba(61,214,140,.2);color:var(--g);padding:2px 8px;border-radius:4px;font-family:var(--mono);font-size:9px">🚛 1 чист.</span>
-          
+          <button onclick="openAddDeliveryForStage(11)" style="background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.25);color:var(--acc);padding:4px 10px;border-radius:5px;font-family:var(--mono);font-size:9px;cursor:pointer;white-space:nowrap;touch-action:manipulation">＋ Доставка</button>
         </div>
       </div>
     <div style="padding: 8px 0px;"><div style="display: flex; align-items: center; gap: 10px; padding: 8px 16px; border-bottom: 1px solid rgba(28, 34, 51, 0.5);">
@@ -2395,7 +2404,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
               <span style="font-family:var(--mono);font-size:10px;color:var(--mu2)">📅 29 авг.</span>
             </div>
           </div>
-          
+          <button class="edit-del-btn" data-action="edit" data-id="d10" style="background:none;border:1px solid var(--bd);color:var(--mu);padding:5px 8px;border-radius:5px;font-size:13px;cursor:pointer;touch-action:manipulation;min-width:36px;min-height:36px">✏</button>
+          <button class="edit-del-btn" data-action="delete" data-id="d10" style="background:none;border:1px solid rgba(242,78,90,.25);color:var(--r);padding:5px 8px;border-radius:5px;font-size:13px;cursor:pointer;touch-action:manipulation;min-width:36px;min-height:36px">🗑</button>
         </div></div></div><div style="background: var(--s1); border: 1px solid var(--bd); border-radius: 10px; overflow: hidden; margin-bottom: 12px;">
       <div style="padding:12px 16px;background:var(--s2);border-bottom:1px solid var(--bd);
         display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
@@ -2411,7 +2421,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
         <div style="display:flex;gap:6px;align-items:center">
           
           <span style="background:rgba(61,214,140,.1);border:1px solid rgba(61,214,140,.2);color:var(--g);padding:2px 8px;border-radius:4px;font-family:var(--mono);font-size:9px">🚛 1 чист.</span>
-          
+          <button onclick="openAddDeliveryForStage(12)" style="background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.25);color:var(--acc);padding:4px 10px;border-radius:5px;font-family:var(--mono);font-size:9px;cursor:pointer;white-space:nowrap;touch-action:manipulation">＋ Доставка</button>
         </div>
       </div>
     <div style="padding: 8px 0px;"><div style="display: flex; align-items: center; gap: 10px; padding: 8px 16px; border-bottom: 1px solid rgba(28, 34, 51, 0.5);">
@@ -2424,7 +2434,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
               <span style="font-family:var(--mono);font-size:10px;color:var(--mu2)">📅 05 сент.</span>
             </div>
           </div>
-          
+          <button class="edit-del-btn" data-action="edit" data-id="d11" style="background:none;border:1px solid var(--bd);color:var(--mu);padding:5px 8px;border-radius:5px;font-size:13px;cursor:pointer;touch-action:manipulation;min-width:36px;min-height:36px">✏</button>
+          <button class="edit-del-btn" data-action="delete" data-id="d11" style="background:none;border:1px solid rgba(242,78,90,.25);color:var(--r);padding:5px 8px;border-radius:5px;font-size:13px;cursor:pointer;touch-action:manipulation;min-width:36px;min-height:36px">🗑</button>
         </div></div></div></div>
 </div>
 
@@ -2692,7 +2703,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
   </div>
 </div>
 
-<div class="toast" id="toast">🔒 РЕЖИМ ПРОСМОТРА</div>
+<div class="toast" id="toast">✅ СОХРАНЕНО В ОБЛАКО</div>
 
 <script>
 // ═══════════════════════════════════════════════════════════

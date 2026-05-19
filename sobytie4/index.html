@@ -139,7 +139,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .gtable tbody tr.delivery-row:hover{background:rgba(245,200,66,.045)}
 .gtable td{padding:0;vertical-align:middle}
 
-.td-drag{width:24px;padding:0 4px;cursor:grab;color:var(--mu);font-size:14px;text-align:center}
+.td-drag{width:24px;padding:0 4px;cursor:grab;color:var(--mu);font-size:16px;text-align:center;user-select:none;transition:color .15s}
+.td-drag:hover{color:var(--acc)}
 .td-id{padding:0 6px;font-family:var(--mono);font-size:10px;color:var(--mu);width:26px;text-align:center}
 .td-name{padding:8px 10px;min-width:170px;max-width:190px}
 .stage-nm{font-size:12px;font-weight:600;display:flex;align-items:center;gap:5px;flex-wrap:wrap}
@@ -721,6 +722,7 @@ const DEFAULT_DATA = {
     contact2: '',
     startDate: '2026-06-02',
     endDate: '2026-09-22',
+    binId: '6a0361c2250b1311c33dc0de',
     version: '1.4.0',
   },
   stages: [
@@ -781,9 +783,12 @@ const DEFAULT_DATA = {
 // ═══════════════════════════════════════════════════════════
 const APP_VERSION = '1.4.0';
 const STORAGE_KEY = 'dizmomap';
-const JSONBIN_ID  = '6a0361c2250b1311c33dc0de';
 const JSONBIN_KEY = '$2a$10$icAt3tfeElc475TK/YFNCeHJryFf4Y/NKzqeESro8WwR2vwfEz8GK';
-const JSONBIN_URL = 'https://api.jsonbin.io/v3/b/' + JSONBIN_ID;
+// BIN ID is stored in data.project.binId so each project has its own cloud storage
+function getJsonbinUrl(){
+  const id = (data && data.project && data.project.binId) ? data.project.binId : '6a0361c2250b1311c33dc0de';
+  return 'https://api.jsonbin.io/v3/b/' + id;
+}
 
 // Start with DEFAULT_DATA — cloud data loads and replaces asynchronously
 let data = JSON.parse(JSON.stringify(DEFAULT_DATA));
@@ -792,7 +797,7 @@ _timelineInitialized = false;
 // Load from cloud
 async function cloudLoad(){
   try{
-    const res = await fetch(JSONBIN_URL + '/latest', {
+    const res = await fetch(getJsonbinUrl() + '/latest', {
       headers: {'X-Master-Key': JSONBIN_KEY, 'X-Bin-Meta': 'false'}
     });
     if(!res.ok) throw new Error('HTTP '+res.status);
@@ -813,7 +818,7 @@ async function cloudLoad(){
 // Save to cloud
 async function cloudSave(){
   try{
-    const res = await fetch(JSONBIN_URL, {
+    const res = await fetch(getJsonbinUrl(), {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -848,6 +853,7 @@ if(!data.project.version || data.project.version !== APP_VERSION){
   localStorage.setItem('sobytie_data', JSON.stringify(data));
 }
 data.stages.forEach(s=>{ if(s.delayReason===undefined) s.delayReason=''; });
+if(!data.project.binId) data.project.binId = '6a0361c2250b1311c33dc0de';
 // Always enforce correct delivery colors (not version-dependent)
 data.deliveries.forEach(d=>{
   d.color = d.type==='rough' ? '#7890a8' : '#a89070';
@@ -2489,6 +2495,17 @@ function openProjectModal(){
         <input class="field-input" id="pj-end" type="date" value="${p.endDate}">
       </div>
     </div>
+    <div class="section-divider">
+      <div class="section-divider-label">☁ Облачное хранилище (JSONBin)</div>
+      <div class="field-group">
+        <label class="field-label">BIN ID проекта</label>
+        <input class="field-input" id="pj-binid" value="${p.binId||''}" placeholder="6a0361c2250b1311...">
+      </div>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--mu);line-height:1.6;margin-top:4px">
+        Создай новый Bin на jsonbin.io и вставь его ID сюда.<br>
+        Каждый проект должен иметь свой уникальный Bin ID.
+      </div>
+    </div>
     <div style="background:rgba(245,200,66,.07);border:1px solid rgba(245,200,66,.2);border-radius:6px;
       padding:10px 14px;font-family:var(--mono);font-size:9px;color:var(--mu2);line-height:1.6">
       💡 После сохранения заголовок, навигация и описание обновятся автоматически.<br>
@@ -2521,6 +2538,7 @@ function saveProject(){
     contact:      document.getElementById('pj-contact').value.trim(),
     contact2label:document.getElementById('pj-c2label').value.trim() || 'Руководитель проекта (РП)',
     contact2:     document.getElementById('pj-contact2').value.trim(),
+    binId:        document.getElementById('pj-binid').value.trim() || data.project.binId || '',
     startDate:    document.getElementById('pj-start').value || data.project.startDate,
     endDate:      document.getElementById('pj-end').value   || data.project.endDate,
     version:      APP_VERSION,
@@ -2755,8 +2773,101 @@ function saveNewPassword(){
     delDrag = null;
   }
 
-  document.addEventListener('mousemove', e=>{ onMove(e); onDelMove(e); }, {passive:false});
-  document.addEventListener('mouseup',   ()=>{ endDrag(); endDelDrag(); });
+  // ── ROW REORDER DRAG ──
+  let rowDrag = null;
+  // rowDrag = { stageId, tr, startY, placeholder }
+
+  document.addEventListener('mousedown', e=>{
+    if(!isEditor) return;
+    const handle = e.target.closest('.td-drag');
+    if(!handle) return;
+    const tr = handle.closest('tr.g-row');
+    if(!tr) return;
+    const sid = parseInt(tr.id.replace('row-',''));
+    if(!sid) return;
+    e.preventDefault();
+    e.stopPropagation();
+
+    // Create placeholder
+    const ph = document.createElement('tr');
+    ph.style.cssText = 'height:'+tr.offsetHeight+'px;background:rgba(245,200,66,.05);border:1px dashed rgba(245,200,66,.3)';
+    ph.id = 'row-placeholder';
+    tr.parentNode.insertBefore(ph, tr.nextSibling);
+
+    // Float the row
+    const rect = tr.getBoundingClientRect();
+    tr.style.cssText = `position:fixed;z-index:500;left:${rect.left}px;top:${rect.top}px;width:${rect.width}px;opacity:.9;box-shadow:0 8px 32px rgba(0,0,0,.6);pointer-events:none`;
+
+    rowDrag = { sid, tr, ph, startY: e.clientY, origTop: rect.top };
+    document.body.style.cursor = 'grabbing';
+  }, true);
+
+  document.addEventListener('mousemove', e=>{
+    if(!rowDrag) return;
+    const dy = e.clientY - rowDrag.startY;
+    rowDrag.tr.style.top = (rowDrag.origTop + dy) + 'px';
+
+    // Find which row we're hovering over
+    const rows = [...document.querySelectorAll('tr.g-row')].filter(r=>r!==rowDrag.tr);
+    const phEl = rowDrag.ph;
+    let inserted = false;
+    for(const row of rows){
+      const rect = row.getBoundingClientRect();
+      const mid  = rect.top + rect.height/2;
+      if(e.clientY < mid){
+        row.parentNode.insertBefore(phEl, row);
+        inserted = true;
+        break;
+      }
+    }
+    if(!inserted && rows.length){
+      const lastRow = rows[rows.length-1];
+      lastRow.parentNode.insertBefore(phEl, lastRow.nextSibling);
+    }
+  });
+
+  document.addEventListener('mouseup', e=>{
+    if(!rowDrag) return;
+    // Restore row style
+    rowDrag.tr.style.cssText = '';
+    document.body.style.cursor = '';
+
+    // Find new position from placeholder
+    const tbody = document.getElementById('ganttBody');
+    const allRows = [...tbody.querySelectorAll('tr')];
+    const phIdx = allRows.indexOf(rowDrag.ph);
+
+    // Reorder data.stages
+    const fromIdx = data.stages.findIndex(s=>s.id===rowDrag.sid);
+    if(fromIdx !== -1){
+      // Count g-rows before placeholder to find target index
+      let targetIdx = 0;
+      let gRowCount = 0;
+      for(let i=0; i<phIdx; i++){
+        if(allRows[i].classList.contains('g-row')) gRowCount++;
+      }
+      targetIdx = gRowCount;
+      if(targetIdx !== fromIdx){
+        const [moved] = data.stages.splice(fromIdx, 1);
+        data.stages.splice(targetIdx, 0, moved);
+        showToast('↕ Порядок этапов изменён');
+        // Build old→new id map before renumbering
+        const idMap = {};
+        data.stages.forEach((s,i)=>{ idMap[s.id] = i+1; });
+        // Update delivery relStage references
+        data.deliveries.forEach(d=>{ if(idMap[d.relStage]) d.relStage = idMap[d.relStage]; });
+        // Renumber stages
+        data.stages.forEach((s,i)=>{ s.id = i+1; });
+        saveData();
+      }
+    }
+
+    // Remove placeholder and rerender
+    rowDrag.ph.remove();
+    rowDrag = null;
+    renderGantt();
+  });
+  document.addEventListener('mouseup', ()=>{ if(!rowDrag){ endDrag(); endDelDrag(); } });
 
   // Touch
   document.addEventListener('touchstart', e=>{

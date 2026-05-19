@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -2628,6 +2627,7 @@ function saveNewPassword(){
     const s   = data.stages.find(x=>x.id===sid);
     if(!s) return;
     const track = getTrack(bar);
+    if(!track) return;
     const rect  = track.getBoundingClientRect();
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
     bar.classList.add('dragging');
@@ -2653,17 +2653,16 @@ function saveNewPassword(){
     if(!s) return;
 
     if(drag.action === 'move'){
-      const newStart = Math.max(0, drag.origStart + daysDelta);
+      const newStart = drag.origStart + daysDelta;
       s.planStart = newStart;
-      const lp = (newStart/PROJECT_DAYS*100).toFixed(2);
+      const lp = planStartToPercent(newStart).toFixed(2);
       const barEl = drag.bar.classList.contains('bar-single') ? drag.bar : drag.bar.closest('.bar-single') || drag.bar;
       barEl.style.left = lp+'%';
       tooltip.textContent = fmtDate(offsetToDate(newStart)) + ' → ' + fmtDate(offsetToDate(newStart+s.planDur));
     } else {
-      // resize — change duration
       const newDur = Math.max(1, drag.origDur + daysDelta);
       s.planDur = newDur;
-      const wp = (newDur/PROJECT_DAYS*100).toFixed(2);
+      const wp = planDurToPercent(newDur).toFixed(2);
       const rBarEl = drag.bar.classList.contains('bar-single') ? drag.bar : drag.bar.closest('.bar-single') || drag.bar;
       rBarEl.style.width = wp+'%';
       tooltip.textContent = newDur + ' дн. → ' + fmtDate(offsetToDate(s.planStart+newDur));
@@ -2690,9 +2689,33 @@ function saveNewPassword(){
     drag = null;
   }
 
-  // Event delegation on gantt scroll
+  // Event delegation on gantt scroll — SINGLE mousedown handler for all drag types
   document.addEventListener('mousedown', e=>{
-    // Resize handle (right edge of stage bar)
+    if(!isEditor) return;
+
+    // 1. Row reorder — only from ⠿ handle
+    const handle = e.target.closest('.td-drag');
+    if(handle){
+      const tr = handle.closest('tr.g-row');
+      if(tr){
+        const sid = parseInt(tr.id.replace('row-',''));
+        if(sid){
+          e.preventDefault();
+          e.stopPropagation();
+          const ph = document.createElement('tr');
+          ph.style.cssText = 'height:'+tr.offsetHeight+'px;background:rgba(245,200,66,.05);border:1px dashed rgba(245,200,66,.3)';
+          ph.id = 'row-placeholder';
+          tr.parentNode.insertBefore(ph, tr.nextSibling);
+          const rect = tr.getBoundingClientRect();
+          tr.style.cssText = `position:fixed;z-index:500;left:${rect.left}px;top:${rect.top}px;width:${rect.width}px;opacity:.9;box-shadow:0 8px 32px rgba(0,0,0,.6);pointer-events:none`;
+          rowDrag = { sid, tr, ph, startY: e.clientY, origTop: rect.top };
+          document.body.style.cursor = 'grabbing';
+          return;
+        }
+      }
+    }
+
+    // 2. Resize handle (right edge of bar)
     if(e.target.classList.contains('bar-resize')){
       const parentBar = e.target.closest('.bar-single');
       if(parentBar){
@@ -2701,13 +2724,15 @@ function saveNewPassword(){
         return;
       }
     }
-    // Delivery drag
+
+    // 3. Delivery drag
     const delBar = e.target.closest('.bar-delivery[data-did]');
-    if(delBar && isEditor){
+    if(delBar){
       startDeliveryDrag(e, delBar);
       return;
     }
-    // Move whole stage bar
+
+    // 4. Move stage bar
     const bar = e.target.closest('.bar-single[data-sid]');
     if(bar && !e.target.classList.contains('bar-resize')){
       startDrag(e, bar, 'move');
@@ -2747,9 +2772,9 @@ function saveNewPassword(){
     const daysDelta = Math.round(dx / delDrag.trackW * PROJECT_DAYS);
     const d = data.deliveries.find(x=>String(x.id)===String(delDrag.did));
     if(!d) return;
-    const newOffset = Math.max(0, delDrag.origOffset + daysDelta);
+    const newOffset = delDrag.origOffset + daysDelta;
     d.planOffset = newOffset;
-    const lp = (newOffset/PROJECT_DAYS*100).toFixed(2);
+    const lp = planStartToPercent(newOffset).toFixed(2);
     delDrag.el.style.left = lp+'%';
     // Update date display inline
     const dateEl = document.getElementById('del-date-'+d.id);
@@ -2776,32 +2801,6 @@ function saveNewPassword(){
 
   // ── ROW REORDER DRAG ──
   let rowDrag = null;
-  // rowDrag = { stageId, tr, startY, placeholder }
-
-  document.addEventListener('mousedown', e=>{
-    if(!isEditor) return;
-    const handle = e.target.closest('.td-drag');
-    if(!handle) return;
-    const tr = handle.closest('tr.g-row');
-    if(!tr) return;
-    const sid = parseInt(tr.id.replace('row-',''));
-    if(!sid) return;
-    e.preventDefault();
-    e.stopPropagation();
-
-    // Create placeholder
-    const ph = document.createElement('tr');
-    ph.style.cssText = 'height:'+tr.offsetHeight+'px;background:rgba(245,200,66,.05);border:1px dashed rgba(245,200,66,.3)';
-    ph.id = 'row-placeholder';
-    tr.parentNode.insertBefore(ph, tr.nextSibling);
-
-    // Float the row
-    const rect = tr.getBoundingClientRect();
-    tr.style.cssText = `position:fixed;z-index:500;left:${rect.left}px;top:${rect.top}px;width:${rect.width}px;opacity:.9;box-shadow:0 8px 32px rgba(0,0,0,.6);pointer-events:none`;
-
-    rowDrag = { sid, tr, ph, startY: e.clientY, origTop: rect.top };
-    document.body.style.cursor = 'grabbing';
-  }, true);
 
   document.addEventListener('mousemove', e=>{
     if(!rowDrag) return;

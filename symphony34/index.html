@@ -2803,71 +2803,68 @@ function saveNewPassword(){
   let rowDrag = null;
 
   document.addEventListener('mousemove', e=>{
-    if(!rowDrag) return;
-    const dy = e.clientY - rowDrag.startY;
-    rowDrag.tr.style.top = (rowDrag.origTop + dy) + 'px';
-
-    // Find which row we're hovering over
-    const rows = [...document.querySelectorAll('tr.g-row')].filter(r=>r!==rowDrag.tr);
-    const phEl = rowDrag.ph;
-    let inserted = false;
-    for(const row of rows){
-      const rect = row.getBoundingClientRect();
-      const mid  = rect.top + rect.height/2;
-      if(e.clientY < mid){
-        row.parentNode.insertBefore(phEl, row);
-        inserted = true;
-        break;
+    // Row reorder move
+    if(rowDrag){
+      const dy = e.clientY - rowDrag.startY;
+      rowDrag.tr.style.top = (rowDrag.origTop + dy) + 'px';
+      const rows = [...document.querySelectorAll('tr.g-row')].filter(r=>r!==rowDrag.tr);
+      const phEl = rowDrag.ph;
+      let inserted = false;
+      for(const row of rows){
+        const rect = row.getBoundingClientRect();
+        const mid  = rect.top + rect.height/2;
+        if(e.clientY < mid){
+          row.parentNode.insertBefore(phEl, row);
+          inserted = true;
+          break;
+        }
       }
+      if(!inserted && rows.length){
+        const lastRow = rows[rows.length-1];
+        lastRow.parentNode.insertBefore(phEl, lastRow.nextSibling);
+      }
+      return;
     }
-    if(!inserted && rows.length){
-      const lastRow = rows[rows.length-1];
-      lastRow.parentNode.insertBefore(phEl, lastRow.nextSibling);
-    }
-  });
+    // Bar drag / delivery drag
+    onMove(e);
+    onDelMove(e);
+  }, {passive:false});
 
   document.addEventListener('mouseup', e=>{
-    if(!rowDrag) return;
-    // Restore row style
-    rowDrag.tr.style.cssText = '';
-    document.body.style.cursor = '';
-
-    // Find new position from placeholder
-    const tbody = document.getElementById('ganttBody');
-    const allRows = [...tbody.querySelectorAll('tr')];
-    const phIdx = allRows.indexOf(rowDrag.ph);
-
-    // Reorder data.stages
-    const fromIdx = data.stages.findIndex(s=>s.id===rowDrag.sid);
-    if(fromIdx !== -1){
-      // Count g-rows before placeholder to find target index
-      let targetIdx = 0;
-      let gRowCount = 0;
-      for(let i=0; i<phIdx; i++){
-        if(allRows[i].classList.contains('g-row')) gRowCount++;
+    if(rowDrag){
+      // Row reorder end
+      rowDrag.tr.style.cssText = '';
+      document.body.style.cursor = '';
+      const tbody = document.getElementById('ganttBody');
+      const allRows = [...tbody.querySelectorAll('tr')];
+      const phIdx = allRows.indexOf(rowDrag.ph);
+      const fromIdx = data.stages.findIndex(s=>s.id===rowDrag.sid);
+      if(fromIdx !== -1){
+        let gRowCount = 0;
+        for(let i=0; i<phIdx; i++){
+          if(allRows[i].classList.contains('g-row')) gRowCount++;
+        }
+        const targetIdx = gRowCount;
+        if(targetIdx !== fromIdx){
+          const [moved] = data.stages.splice(fromIdx, 1);
+          data.stages.splice(targetIdx, 0, moved);
+          showToast('↕ Порядок этапов изменён');
+          const idMap = {};
+          data.stages.forEach((s,i)=>{ idMap[s.id] = i+1; });
+          data.deliveries.forEach(d=>{ if(idMap[d.relStage]) d.relStage = idMap[d.relStage]; });
+          data.stages.forEach((s,i)=>{ s.id = i+1; });
+          saveData();
+        }
       }
-      targetIdx = gRowCount;
-      if(targetIdx !== fromIdx){
-        const [moved] = data.stages.splice(fromIdx, 1);
-        data.stages.splice(targetIdx, 0, moved);
-        showToast('↕ Порядок этапов изменён');
-        // Build old→new id map before renumbering
-        const idMap = {};
-        data.stages.forEach((s,i)=>{ idMap[s.id] = i+1; });
-        // Update delivery relStage references
-        data.deliveries.forEach(d=>{ if(idMap[d.relStage]) d.relStage = idMap[d.relStage]; });
-        // Renumber stages
-        data.stages.forEach((s,i)=>{ s.id = i+1; });
-        saveData();
-      }
+      rowDrag.ph.remove();
+      rowDrag = null;
+      renderGantt();
+      return;
     }
-
-    // Remove placeholder and rerender
-    rowDrag.ph.remove();
-    rowDrag = null;
-    renderGantt();
+    // Bar drag / delivery drag end
+    endDrag();
+    endDelDrag();
   });
-  document.addEventListener('mouseup', ()=>{ if(!rowDrag){ endDrag(); endDelDrag(); } });
 
   // Touch
   document.addEventListener('touchstart', e=>{

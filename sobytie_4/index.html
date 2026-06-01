@@ -512,7 +512,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
       <div style="font-family:var(--mono);font-size:10px;color:var(--mu);margin-top:4px" id="heroContact">
     <div style="display:flex;align-items:baseline;gap:8px;margin-top:6px;flex-wrap:wrap">
       <span style="font-family:var(--mono);font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mu)">Руководитель компании:</span>
-      <span style="font-size:11px;font-weight:400;color:var(--mu2)">Андрей +7 915 883-25-26</span>
+      <span style="font-size:11px;font-weight:400;color:var(--mu2)">Андрей</span>
     </div>
     
   </div>
@@ -535,7 +535,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
     <div class="kpi" style="--c:var(--acc)"><div class="kpi-l">Готовность</div><div class="kpi-v">33%</div><div class="kpi-s">4 из 12 этапов</div></div>
     <div class="kpi" style="--c:var(--g)"><div class="kpi-l">В работе</div><div class="kpi-v">1</div><div class="kpi-s">этапов активно</div></div>
     <div class="kpi" style="--c:var(--r)"><div class="kpi-l">Задержки</div><div class="kpi-v">0</div><div class="kpi-s">этапов</div></div>
-    <div class="kpi" style="--c:var(--b)"><div class="kpi-l">День проекта</div><div class="kpi-v">89</div><div class="kpi-s">из 302</div></div>
+    <div class="kpi" style="--c:var(--b)"><div class="kpi-l">День проекта</div><div class="kpi-v">89</div><div class="kpi-s">из 274</div></div>
     <div class="kpi" style="--c:var(--p)"><div class="kpi-l">Доставок</div><div class="kpi-v">11</div><div class="kpi-s">плановых</div></div>
   </div>
 </div>
@@ -575,7 +575,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
       <button class="tb-btn" onclick="collapseDeliveries()" id="btnDeliveries">📦 Доставки</button>
       <button class="tb-btn" onclick="collapseAll()">↕ Свернуть</button>
       <div class="tb-sep"></div>
-      <span style="font-family:var(--mono);font-size:9px;color:var(--mu);letter-spacing:1px" id="lastSaved">☁ 15:39</span>
+      <span style="font-family:var(--mono);font-size:9px;color:var(--mu);letter-spacing:1px" id="lastSaved">☁ Сохранено в облако</span>
       <button id="btnCloudPush" onclick="cloudPush()" style="display: inline-block; background: rgba(78, 156, 242, 0.1); border: 1px solid rgba(78, 156, 242, 0.25); color: var(--b); padding: 4px 10px; border-radius: 5px; font-family: var(--mono); font-size: 9px; letter-spacing: 1px; cursor: pointer; margin-left: 8px; white-space: nowrap;" title="Отправить все данные в облако (JSONBin)">☁ В ОБЛАКО</button>
     </div>
     <div class="gantt-scroll">
@@ -2811,7 +2811,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
     </div>
     <div class="field-group">
       <label class="field-label">Контакт руководителя компании</label>
-      <input class="field-input" id="pj-contact" value="Андрей +7 915 883-25-26" placeholder="Имя +7 ...">
+      <input class="field-input" id="pj-contact" value="Андрей" placeholder="Имя +7 ...">
     </div>
     <div class="field-group">
       <label class="field-label">Должность руководителя проекта</label>
@@ -2824,7 +2824,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
     <div class="field-row">
       <div class="field-group">
         <label class="field-label">Дата начала проекта</label>
-        <input class="field-input" id="pj-start" type="date" value="2026-02-16">
+        <input class="field-input" id="pj-start" type="date" value="2026-03-05">
       </div>
       <div class="field-group">
         <label class="field-label">Плановая дата сдачи</label>
@@ -2861,7 +2861,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
   </div>
 </div>
 
-<div class="toast" id="toast">✅ СОХРАНЕНО В ОБЛАКО</div>
+<div class="toast" id="toast">✅ ДАННЫЕ ОТПРАВЛЕНЫ В ОБЛАКО</div>
 
 <script>
 // ═══════════════════════════════════════════════════════════
@@ -3089,13 +3089,14 @@ function exportFile(){
 
   // 2. Hardcode BIN ID for this project
   html = html.replace(
-    "const BINID_STORAGE_KEY = 'dizmomap_binid';",
+    "const BINID_STORAGE_KEY = 'dizmomap_binid_--------4';",
     "const BINID_STORAGE_KEY = 'dizmomap_binid_" + pName + "';"
   );
 
   // 3. Pre-set BIN ID in localStorage init block
   html = html.replace(
-    "// Restore saved BIN ID from localStorage (survives page reload)",
+    "localStorage.setItem('dizmomap_binid_--------4','6a1d807e21f9ee59d2a51fcf');
+// Restore saved BIN ID",
     "localStorage.setItem('dizmomap_binid_" + pName + "','" + binId + "');\n// Restore saved BIN ID"
   );
 
@@ -5099,7 +5100,7 @@ cloudLoad();
 
 const saved = localStorage.getItem(STORAGE_KEY);
 if(saved){ document.getElementById('lastSaved').textContent = 'Загружено из памяти'; }
-</script><div class="bar-drag-tooltip" id="dragTooltip" style="display: none; left: 1157px; top: 542px;">17 окт. → 27 окт.</div>
+</script><div class="bar-drag-tooltip" id="dragTooltip"></div><div class="bar-drag-tooltip" id="dragTooltip" style="display: none; left: 1157px; top: 542px;">17 окт. → 27 окт.</div>
 
 
 </body></html>

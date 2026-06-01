@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
+<html lang="ru"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <meta name="theme-color" content="#07090d">
 <meta name="color-scheme" content="dark">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>DIZMO STROY MAP</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;600&family=Manrope:wght@300;400;600;700&display=swap" rel="stylesheet">
+<title>DIZMO STROY MAP · СОБЫТИЕ 4</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=JetBrains+Mono:wght@400;600&amp;family=Manrope:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#07090d;--s1:#0d1018;--s2:#111520;--s3:#161c28;--s4:#1a2030;
@@ -391,8 +389,44 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
   letter-spacing:2px;transform:translateY(80px);opacity:0;transition:.3s;pointer-events:none}
 .toast.show{transform:translateY(0);opacity:1}
 </style>
-</head>
-<body style="background:#07090d!important;background-color:#07090d!important">
+<style id="dynBarCols">
+    .bar-col-m0{position:absolute;top:0;bottom:0;left:0.000%;width:11.314%;
+      background:rgba(245,200,66,.08);pointer-events:none;
+      }
+  
+    .bar-col-m1{position:absolute;top:0;bottom:0;left:11.314%;width:10.949%;
+      background:rgba(78,156,242,.08);pointer-events:none;
+      border-left:2px solid #4e9cf244}
+  
+    .bar-col-m2{position:absolute;top:0;bottom:0;left:22.263%;width:11.314%;
+      background:rgba(61,214,140,.08);pointer-events:none;
+      border-left:2px solid #3dd68c44}
+  
+    .bar-col-m3{position:absolute;top:0;bottom:0;left:33.577%;width:10.949%;
+      background:rgba(177,106,245,.08);pointer-events:none;
+      border-left:2px solid #b16af544}
+  
+    .bar-col-m4{position:absolute;top:0;bottom:0;left:44.526%;width:11.314%;
+      background:rgba(242,142,78,.08);pointer-events:none;
+      border-left:2px solid #f28c4e44}
+  
+    .bar-col-m5{position:absolute;top:0;bottom:0;left:55.839%;width:11.314%;
+      background:rgba(242,78,90,.08);pointer-events:none;
+      border-left:2px solid #f24e5a44}
+  
+    .bar-col-m6{position:absolute;top:0;bottom:0;left:67.153%;width:10.949%;
+      background:rgba(61,204,214,.08);pointer-events:none;
+      border-left:2px solid #3dccd644}
+  
+    .bar-col-m7{position:absolute;top:0;bottom:0;left:78.102%;width:11.314%;
+      background:rgba(245,200,66,.08);pointer-events:none;
+      border-left:2px solid #f5c84244}
+  
+    .bar-col-m8{position:absolute;top:0;bottom:0;left:89.416%;width:10.584%;
+      background:rgba(78,156,242,.08);pointer-events:none;
+      border-left:2px solid #4e9cf244}
+  </style></head>
+<body style="background: rgb(7, 9, 13) !important;">
 <div style="position:fixed;inset:0;background:#07090d;z-index:-1"></div>
 
 <!-- NAV -->
@@ -402,27 +436,22 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
     <div style="font-family:var(--disp);font-size:18px;letter-spacing:2px;white-space:nowrap">
       <span style="color:var(--acc)">DIZMO</span>&nbsp;<span style="color:var(--mu2)">STROY</span>&nbsp;<span style="color:var(--txt)">MAP</span>
     </div>
-    <div style="font-family:var(--mono);font-size:8px;letter-spacing:2px;color:var(--mu);text-transform:uppercase;margin-top:1px" id="navLogo">СОБЫТИЕ</div>
-  </div>
+    <div style="font-family:var(--mono);font-size:8px;letter-spacing:2px;color:var(--mu);text-transform:uppercase;margin-top:1px" id="navLogo">СОБЫТИЕ 4</div>
+  <div id="versionBadge" style="font-family: var(--mono); font-size: 8px; letter-spacing: 1px; color: var(--mu); padding: 2px 0px; pointer-events: none; display: block; margin-top: 1px;">v1.4.0</div></div>
 
   <!-- DESKTOP NAV LINKS -->
   <div class="nav-links-desktop">
-    <button class="nav-btn active" id="nb-gantt"     onclick="navGo('gantt-sec',this)">📅 График</button>
-    <button class="nav-btn"        id="nb-materials" onclick="navGo('materials-sec',this)">📦 Материалы</button>
-    <button class="nav-btn"        id="nb-stats"     onclick="navGo('stats-sec',this)">📊 Статус</button>
-    <button class="nav-btn"        id="nb-team"      onclick="navGo('team-sec',this)">👷 Команда</button>
+    <button class="nav-btn active" id="nb-gantt" onclick="navGo('gantt-sec',this)">📅 График</button>
+    <button class="nav-btn" id="nb-materials" onclick="navGo('materials-sec',this)">📦 Материалы</button>
+    <button class="nav-btn" id="nb-stats" onclick="navGo('stats-sec',this)">📊 Статус</button>
+    <button class="nav-btn" id="nb-team" onclick="navGo('team-sec',this)">👷 Команда</button>
   </div>
 
   <div class="nav-spacer"></div>
 
   <!-- LOCK BUTTON -->
   <button class="save-badge" id="lockBtn" onclick="lockAction()">🔒</button>
-  <button onclick="exportFile()" title="Скачать файл со всеми данными для GitHub"
-    style="background:rgba(78,156,242,.1);border:1px solid rgba(78,156,242,.25);color:var(--b);
-    padding:5px 10px;border-radius:6px;font-family:var(--mono);font-size:9px;letter-spacing:1px;
-    cursor:pointer;white-space:nowrap;margin-left:6px;transition:.2s;flex-shrink:0"
-    onmouseover="this.style.background='rgba(78,156,242,.2)'"
-    onmouseout="this.style.background='rgba(78,156,242,.1)'">⬇</button>
+  <button onclick="exportFile()" title="Скачать файл со всеми данными для GitHub" style="background: rgba(78, 156, 242, 0.2); border: 1px solid rgba(78, 156, 242, 0.25); color: var(--b); padding: 5px 10px; border-radius: 6px; font-family: var(--mono); font-size: 9px; letter-spacing: 1px; cursor: pointer; white-space: nowrap; margin-left: 6px; transition: 0.2s; flex-shrink: 0;" onmouseover="this.style.background='rgba(78,156,242,.2)'" onmouseout="this.style.background='rgba(78,156,242,.1)'">⬇</button>
 
   <!-- MOBILE BURGER -->
   <button class="burger-btn" id="burgerBtn" onclick="toggleMobileMenu()" aria-label="Меню">
@@ -453,8 +482,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
       </div>
       <div class="field-group">
         <label class="field-label">Пароль</label>
-        <input class="field-input" id="pwInput" type="password" placeholder="••••••••"
-          onkeydown="if(event.key==='Enter') checkPassword()">
+        <input class="field-input" id="pwInput" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter') checkPassword()">
       </div>
       <div id="pwError" style="color:var(--r);font-family:var(--mono);font-size:10px;min-height:16px;margin-top:4px"></div>
       <div class="modal-actions">
@@ -478,26 +506,38 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
       <div style="font-family:var(--disp);font-size:clamp(44px,8vw,80px);letter-spacing:3px;line-height:1;text-shadow:0 0 60px rgba(245,200,66,.2)">
     <span style="color:var(--acc)">DIZMO</span>&nbsp;<span style="color:var(--mu2)">STROY</span>&nbsp;<span style="color:var(--txt)">MAP</span>
   </div>
-  <div id="heroTitle" style="font-family:var(--mono);font-size:11px;letter-spacing:4px;color:var(--mu);text-transform:uppercase;margin-top:8px">График работ · <span style="color:var(--mu2)" id="heroProjectName">СОБЫТИЕ</span></div>
-      <div class="hero-sub" id="heroSub">ЖК «Событие» · Москва · 71,56 м² · 7 помещений</div>
+  <div id="heroTitle" style="font-family:var(--mono);font-size:11px;letter-spacing:4px;color:var(--mu);text-transform:uppercase;margin-top:8px">ГРАФИК РАБОТ</div>
+      <div class="hero-sub" id="heroSub">г. Москва, ЖК «Событие» · 145,56 м² · 11 помещений</div>
 
-      <div style="font-family:var(--mono);font-size:10px;color:var(--mu);margin-top:4px" id="heroContact"></div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--mu);margin-top:4px" id="heroContact">
+    <div style="display:flex;align-items:baseline;gap:8px;margin-top:6px;flex-wrap:wrap">
+      <span style="font-family:var(--mono);font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mu)">Руководитель компании:</span>
+      <span style="font-size:11px;font-weight:400;color:var(--mu2)">Андрей</span>
     </div>
-    <button id="btnEditProject" onclick="openProjectModal()"
-      style="display:none;margin-top:6px;background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.3);
-      color:var(--acc);padding:6px 14px;border-radius:6px;font-family:var(--mono);font-size:9px;
-      letter-spacing:2px;cursor:pointer;white-space:nowrap;transition:.2s"
-      onmouseover="this.style.background='rgba(245,200,66,.2)'"
-      onmouseout="this.style.background='rgba(245,200,66,.1)'">
+    
+  </div>
+    </div>
+    <button id="btnEditProject" onclick="openProjectModal()" style="display: none; margin-top: 6px; background: rgba(245, 200, 66, 0.1); border: 1px solid rgba(245, 200, 66, 0.3); color: var(--acc); padding: 6px 14px; border-radius: 6px; font-family: var(--mono); font-size: 9px; letter-spacing: 2px; cursor: pointer; white-space: nowrap; transition: 0.2s;" onmouseover="this.style.background='rgba(245,200,66,.2)'" onmouseout="this.style.background='rgba(245,200,66,.1)'">
       ✏ ПРОЕКТ
     </button>
   </div>
-  <div class="hero-meta" id="heroMeta"></div>
+  <div class="hero-meta" id="heroMeta">
+    <div class="hm"><b>12</b>Этапов</div>
+    <div class="hm"><b>4</b>Готово</div>
+    <div class="hm"><b>1</b>В работе</div>
+    <div class="hm"><b>11</b>Доставок</div>
+  </div>
 </div>
 
 <!-- KPI -->
 <div class="sec">
-  <div class="kpi-row" id="kpiRow"></div>
+  <div class="kpi-row" id="kpiRow">
+    <div class="kpi" style="--c:var(--acc)"><div class="kpi-l">Готовность</div><div class="kpi-v">33%</div><div class="kpi-s">4 из 12 этапов</div></div>
+    <div class="kpi" style="--c:var(--g)"><div class="kpi-l">В работе</div><div class="kpi-v">1</div><div class="kpi-s">этапов активно</div></div>
+    <div class="kpi" style="--c:var(--r)"><div class="kpi-l">Задержки</div><div class="kpi-v">0</div><div class="kpi-s">этапов</div></div>
+    <div class="kpi" style="--c:var(--b)"><div class="kpi-l">День проекта</div><div class="kpi-v">89</div><div class="kpi-s">из 274</div></div>
+    <div class="kpi" style="--c:var(--p)"><div class="kpi-l">Доставок</div><div class="kpi-v">11</div><div class="kpi-s">плановых</div></div>
+  </div>
 </div>
 
 <!-- LEGEND -->
@@ -517,13 +557,12 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 <div class="sec" id="gantt-sec">
   <div class="sec-hdr">
     Диаграмма Ганта — план / факт · зависимости · доставки
-    <span id="editModeTag" style="display:none;background:rgba(245,200,66,.15);color:var(--acc);
-      font-family:var(--mono);font-size:8px;letter-spacing:2px;padding:2px 8px;border-radius:3px;border:1px solid rgba(245,200,66,.3)">
+    <span id="editModeTag" style="display: none; background: rgba(245, 200, 66, 0.15); color: var(--acc); font-family: var(--mono); font-size: 8px; letter-spacing: 2px; padding: 2px 8px; border-radius: 3px; border: 1px solid rgba(245, 200, 66, 0.3);">
       ✏ РЕЖИМ РЕДАКТИРОВАНИЯ
     </span>
-    <button class="tb-btn" id="btnAddDel" style="margin-left:auto;display:none" onclick="addDeliveryModal()">＋ Доставка</button>
-    <button class="tb-btn" id="btnAddStage" style="display:none" onclick="addStageModal()">＋ Этап</button>
-    <button class="tb-btn" id="btnChangePw" style="display:none;position:absolute;left:-9999px" onclick="changePasswordModal()">⚙ Пароль</button>
+    <button class="tb-btn" id="btnAddDel" style="margin-left: auto; display: none;" onclick="addDeliveryModal()">＋ Доставка</button>
+    <button class="tb-btn" id="btnAddStage" style="display: none;" onclick="addStageModal()">＋ Этап</button>
+    <button class="tb-btn" id="btnChangePw" style="display: none; position: absolute; left: -9999px;" onclick="changePasswordModal()">⚙ Пароль</button>
   </div>
   <div class="gantt-container">
     <div class="toolbar">
@@ -533,10 +572,11 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
         <button class="vt-btn" onclick="setView('delayed',this)">⚠ Задержки</button>
       </div>
       <div class="tb-sep"></div>
-      <button class="tb-btn" onclick="collapseDeliveries()" id="btnDeliveries">📦 Доставки</button>
+      <button class="tb-btn" onclick="collapseDeliveries()" id="btnDeliveries" style="">📦 Доставки</button>
       <button class="tb-btn" onclick="collapseAll()">↕ Свернуть</button>
       <div class="tb-sep"></div>
-      <span style="font-family:var(--mono);font-size:9px;color:var(--mu);letter-spacing:1px" id="lastSaved">Не сохранено</span>
+      <span style="font-family:var(--mono);font-size:9px;color:var(--mu);letter-spacing:1px" id="lastSaved">☁ Сохранено в облако</span>
+      <button id="btnCloudPush" onclick="cloudPush()" style="display: none; background: rgba(78, 156, 242, 0.1); border: 1px solid rgba(78, 156, 242, 0.25); color: var(--b); padding: 4px 10px; border-radius: 5px; font-family: var(--mono); font-size: 9px; letter-spacing: 1px; cursor: pointer; margin-left: 8px; white-space: nowrap;" title="Отправить все данные в облако (JSONBin)">☁ В ОБЛАКО</button>
     </div>
     <div class="gantt-scroll">
       <table class="gtable">
@@ -549,44 +589,1664 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
             <th style="min-width:140px">Даты (план/факт)</th>
             <th style="width:76px">Статус</th>
             <th class="th-bar" id="thBar" style="min-width:340px;width:340px;border-left:1px solid var(--bd);padding:0;vertical-align:bottom">
-              <!-- MONTHS: both rows use repeat(16,1fr) for pixel-perfect alignment -->
-              <div style="display:grid;grid-template-columns:repeat(16,1fr);border-bottom:1px solid var(--bd2)">
-                <!-- ИЮН: cols 1-4 -->
-                <div style="grid-column:1/5;padding:5px 4px;text-align:center;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:2px;color:#f5c842;background:rgba(245,200,66,.08);border-right:2px solid rgba(245,200,66,.3)">ИЮН</div>
-                <!-- ИЮЛ: cols 5-8 -->
-                <div style="grid-column:5/9;padding:5px 4px;text-align:center;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:2px;color:#4e9cf2;background:rgba(78,156,242,.08);border-right:2px solid rgba(78,156,242,.3)">ИЮЛ</div>
-                <!-- АВГ: cols 9-12 -->
-                <div style="grid-column:9/13;padding:5px 4px;text-align:center;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:2px;color:#3dd68c;background:rgba(61,214,140,.08);border-right:2px solid rgba(61,214,140,.3)">АВГ</div>
-                <!-- СЕН: cols 13-16 -->
-                <div style="grid-column:13/17;padding:5px 4px;text-align:center;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:2px;color:#b16af5;background:rgba(177,106,245,.08)">СЕН</div>
-              </div>
-              <!-- DAYS: repeat(16,1fr) — just day numbers, step 7 -->
-              <div style="display:grid;grid-template-columns:repeat(16,1fr)">
-                <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;color:#f5c842;border-right:1px solid var(--bd)">2</div>
-                <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;color:#6b7a9e;border-right:1px solid var(--bd)">9</div>
-                <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;color:#6b7a9e;border-right:1px solid var(--bd)">16</div>
-                <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;color:#6b7a9e;border-right:2px solid rgba(78,156,242,.35)">23</div>
-                <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;color:#4e9cf2;border-right:1px solid var(--bd)">30</div>
-                <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;color:#6b7a9e;border-right:1px solid var(--bd)">7</div>
-                <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;color:#6b7a9e;border-right:1px solid var(--bd)">14</div>
-                <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;color:#6b7a9e;border-right:2px solid rgba(61,214,140,.35)">21</div>
-                <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;color:#3dd68c;border-right:1px solid var(--bd)">28</div>
-                <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;color:#6b7a9e;border-right:1px solid var(--bd)">4</div>
-                <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;color:#6b7a9e;border-right:1px solid var(--bd)">11</div>
-                <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;color:#6b7a9e;border-right:2px solid rgba(177,106,245,.35)">18</div>
-                <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;color:#b16af5;border-right:1px solid var(--bd)">25</div>
-                <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;color:#6b7a9e;border-right:1px solid var(--bd)">1</div>
-                <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;color:#6b7a9e;border-right:1px solid var(--bd)">8</div>
-                <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;color:#6b7a9e">15</div>
-              </div>
-            </th>
+    <div style="display:grid;grid-template-columns:11.314fr 10.949fr 11.314fr 10.949fr 11.314fr 11.314fr 10.949fr 11.314fr 10.584fr;border-bottom:1px solid var(--bd2)">
+      
+        <div style="padding:5px 4px;text-align:center;font-family:var(--mono);font-size:10px;font-weight:700;
+          letter-spacing:2px;color:#f5c842;
+          background:rgba(245,200,66,.08);
+          border-right:2px solid #f5c84244">МАРТ</div>
+      
+        <div style="padding:5px 4px;text-align:center;font-family:var(--mono);font-size:10px;font-weight:700;
+          letter-spacing:2px;color:#4e9cf2;
+          background:rgba(78,156,242,.08);
+          border-right:2px solid #4e9cf244">АПР</div>
+      
+        <div style="padding:5px 4px;text-align:center;font-family:var(--mono);font-size:10px;font-weight:700;
+          letter-spacing:2px;color:#3dd68c;
+          background:rgba(61,214,140,.08);
+          border-right:2px solid #3dd68c44">МАЙ</div>
+      
+        <div style="padding:5px 4px;text-align:center;font-family:var(--mono);font-size:10px;font-weight:700;
+          letter-spacing:2px;color:#b16af5;
+          background:rgba(177,106,245,.08);
+          border-right:2px solid #b16af544">ИЮНЬ</div>
+      
+        <div style="padding:5px 4px;text-align:center;font-family:var(--mono);font-size:10px;font-weight:700;
+          letter-spacing:2px;color:#f28c4e;
+          background:rgba(242,142,78,.08);
+          border-right:2px solid #f28c4e44">ИЮЛЬ</div>
+      
+        <div style="padding:5px 4px;text-align:center;font-family:var(--mono);font-size:10px;font-weight:700;
+          letter-spacing:2px;color:#f24e5a;
+          background:rgba(242,78,90,.08);
+          border-right:2px solid #f24e5a44">АВГ</div>
+      
+        <div style="padding:5px 4px;text-align:center;font-family:var(--mono);font-size:10px;font-weight:700;
+          letter-spacing:2px;color:#3dccd6;
+          background:rgba(61,204,214,.08);
+          border-right:2px solid #3dccd644">СЕНТ</div>
+      
+        <div style="padding:5px 4px;text-align:center;font-family:var(--mono);font-size:10px;font-weight:700;
+          letter-spacing:2px;color:#f5c842;
+          background:rgba(245,200,66,.08);
+          border-right:2px solid #f5c84244">ОКТ</div>
+      
+        <div style="padding:5px 4px;text-align:center;font-family:var(--mono);font-size:10px;font-weight:700;
+          letter-spacing:2px;color:#4e9cf2;
+          background:rgba(78,156,242,.08);
+          ">НОЯБ</div>
+      
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(40,1fr)">
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#f5c842;
+          border-right:1px solid var(--bd);
+          opacity:1">1</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#f5c842;
+          border-right:1px solid var(--bd);
+          opacity:0.7">8</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#f5c842;
+          border-right:1px solid var(--bd);
+          opacity:0.7">15</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#f5c842;
+          border-right:1px solid var(--bd);
+          opacity:0.7">22</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#f5c842;
+          border-right:2px solid #4e9cf255;
+          opacity:1">29</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#4e9cf2;
+          border-right:1px solid var(--bd);
+          opacity:0.7">5</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#4e9cf2;
+          border-right:1px solid var(--bd);
+          opacity:0.7">12</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#4e9cf2;
+          border-right:1px solid var(--bd);
+          opacity:0.7">19</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#4e9cf2;
+          border-right:2px solid #3dd68c55;
+          opacity:1">26</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#3dd68c;
+          border-right:1px solid var(--bd);
+          opacity:0.7">3</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#3dd68c;
+          border-right:1px solid var(--bd);
+          opacity:0.7">10</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#3dd68c;
+          border-right:1px solid var(--bd);
+          opacity:0.7">17</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#3dd68c;
+          border-right:1px solid var(--bd);
+          opacity:0.7">24</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#3dd68c;
+          border-right:2px solid #b16af555;
+          opacity:1">31</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#b16af5;
+          border-right:1px solid var(--bd);
+          opacity:0.7">7</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#b16af5;
+          border-right:1px solid var(--bd);
+          opacity:0.7">14</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#b16af5;
+          border-right:1px solid var(--bd);
+          opacity:0.7">21</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#b16af5;
+          border-right:2px solid #f28c4e55;
+          opacity:1">28</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#f28c4e;
+          border-right:1px solid var(--bd);
+          opacity:0.7">5</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#f28c4e;
+          border-right:1px solid var(--bd);
+          opacity:0.7">12</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#f28c4e;
+          border-right:1px solid var(--bd);
+          opacity:0.7">19</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#f28c4e;
+          border-right:2px solid #f24e5a55;
+          opacity:1">26</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#f24e5a;
+          border-right:1px solid var(--bd);
+          opacity:0.7">2</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#f24e5a;
+          border-right:1px solid var(--bd);
+          opacity:0.7">9</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#f24e5a;
+          border-right:1px solid var(--bd);
+          opacity:0.7">16</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#f24e5a;
+          border-right:1px solid var(--bd);
+          opacity:0.7">23</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#f24e5a;
+          border-right:2px solid #3dccd655;
+          opacity:1">30</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#3dccd6;
+          border-right:1px solid var(--bd);
+          opacity:0.7">6</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#3dccd6;
+          border-right:1px solid var(--bd);
+          opacity:0.7">13</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#3dccd6;
+          border-right:1px solid var(--bd);
+          opacity:0.7">20</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#3dccd6;
+          border-right:2px solid #f5c84255;
+          opacity:1">27</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#f5c842;
+          border-right:1px solid var(--bd);
+          opacity:0.7">4</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#f5c842;
+          border-right:1px solid var(--bd);
+          opacity:0.7">11</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#f5c842;
+          border-right:1px solid var(--bd);
+          opacity:0.7">18</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#f5c842;
+          border-right:2px solid #4e9cf255;
+          opacity:1">25</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#4e9cf2;
+          border-right:1px solid var(--bd);
+          opacity:0.7">1</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#4e9cf2;
+          border-right:1px solid var(--bd);
+          opacity:0.7">8</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#4e9cf2;
+          border-right:1px solid var(--bd);
+          opacity:0.7">15</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#4e9cf2;
+          border-right:1px solid var(--bd);
+          opacity:0.7">22</div>
+      
+        <div style="padding:3px 1px;text-align:center;font-family:var(--mono);font-size:8px;
+          color:#4e9cf2;
+          ;
+          opacity:1">29</div>
+      
+    </div>
+  </th>
             <th style="width:28px"></th>
           </tr>
         </thead>
-        <tbody id="ganttBody"></tbody>
+        <tbody id="ganttBody"><tr class="g-row" id="row-1">
+    <td class="td-drag">⠿</td>
+    <td class="td-id">1</td>
+    <td class="td-name">
+      <div class="stage-nm" style="color:#e8a838">
+        🔨 Подготовительные / демонтаж
+        
+      </div>
+      <div class="stage-pr">⬅ —</div>
+      
+    </td>
+    <td class="td-person">
+      <div class="person-cell">
+        <div class="avatar" style="background:#e8a83822;color:#e8a838">МА</div>
+        <div>
+          <div class="person-name">Морозов А.</div>
+          <div class="person-count">3 чел.</div>
+        </div>
+      </div>
+    </td>
+    <td class="td-dates">
+      <div class="date-pair">
+        <div class="dp-plan"><span class="lbl">ПЛАН</span><span class="val">05 мар. – 23 мар.</span></div>
+        <div class="dp-fact"><span class="lbl">ФАКТ</span><span class="val">05 мар. – 21 мар.</span></div>
+      </div>
+    </td>
+    <td class="td-status">
+      <span class="st-badge done" onclick="cycleStatus(1)" title="">Готово</span>
+      
+    </td>
+    <td class="td-bar" style="border-left:1px solid var(--bd)">
+      <div class="bar-track">
+        <div class="bar-col-jun"></div>
+        <div class="bar-col-jul"></div>
+        <div class="bar-col-aug"></div>
+        <div class="bar-col-sep"></div>
+        <div class="bar-week-line" style="left:6.25%"></div>
+        <div class="bar-week-line" style="left:12.5%"></div>
+        <div class="bar-week-line" style="left:18.75%"></div>
+        <div class="bar-week-line" style="left:25%"></div>
+        <div class="bar-week-line" style="left:31.25%"></div>
+        <div class="bar-week-line" style="left:37.5%"></div>
+        <div class="bar-week-line" style="left:43.75%"></div>
+        <div class="bar-week-line" style="left:50%"></div>
+        <div class="bar-week-line" style="left:56.25%"></div>
+        <div class="bar-week-line" style="left:62.5%"></div>
+        <div class="bar-week-line" style="left:68.75%"></div>
+        <div class="bar-week-line" style="left:75%"></div>
+        <div class="bar-week-line" style="left:81.25%"></div>
+        <div class="bar-week-line" style="left:87.5%"></div>
+        <div class="bar-week-line" style="left:93.75%"></div>
+        <div class="bar-plan" style="left:1.46%;width:6.57%;background:var(--b)"></div>
+                     <div class="bar-fact" style="left:1.46%;width:5.84%;background:var(--g);border-radius:4px;display:flex;align-items:center;padding:0 5px;font-family:var(--mono);font-size:9px;font-weight:700;color:#111;white-space:nowrap;overflow:hidden">✓  18д</div>
+        <div class="today-line" style="left:33.94%"></div>
+      </div>
+    </td>
+    <td class="td-edit">
+      <button class="edit-btn" onclick="openEditStage(1)" title="Только просмотр — войдите" style="opacity:0.35">✏</button>
+    </td>
+  </tr><tr class="g-row" id="row-2">
+    <td class="td-drag">⠿</td>
+    <td class="td-id">2</td>
+    <td class="td-name">
+      <div class="stage-nm" style="color:#c084e8">
+        🪣 Монтаж перегородок/Штукатурка стен
+        <span class="kp-dot"></span>
+      </div>
+      <div class="stage-pr">⬅ 1 (FS)</div>
+      
+    </td>
+    <td class="td-person">
+      <div class="person-cell">
+        <div class="avatar" style="background:#c084e822;color:#c084e8">КВ</div>
+        <div>
+          <div class="person-name">Кузнецов В.</div>
+          <div class="person-count">2 чел.</div>
+        </div>
+      </div>
+    </td>
+    <td class="td-dates">
+      <div class="date-pair">
+        <div class="dp-plan"><span class="lbl">ПЛАН</span><span class="val">23 мар. – 14 апр.</span></div>
+        <div class="dp-fact"><span class="lbl">ФАКТ</span><span class="val">23 мар. – 13 апр.</span></div>
+      </div>
+    </td>
+    <td class="td-status">
+      <span class="st-badge done" onclick="cycleStatus(2)" title="">Готово</span>
+      
+    </td>
+    <td class="td-bar" style="border-left:1px solid var(--bd)">
+      <div class="bar-track">
+        <div class="bar-col-jun"></div>
+        <div class="bar-col-jul"></div>
+        <div class="bar-col-aug"></div>
+        <div class="bar-col-sep"></div>
+        <div class="bar-week-line" style="left:6.25%"></div>
+        <div class="bar-week-line" style="left:12.5%"></div>
+        <div class="bar-week-line" style="left:18.75%"></div>
+        <div class="bar-week-line" style="left:25%"></div>
+        <div class="bar-week-line" style="left:31.25%"></div>
+        <div class="bar-week-line" style="left:37.5%"></div>
+        <div class="bar-week-line" style="left:43.75%"></div>
+        <div class="bar-week-line" style="left:50%"></div>
+        <div class="bar-week-line" style="left:56.25%"></div>
+        <div class="bar-week-line" style="left:62.5%"></div>
+        <div class="bar-week-line" style="left:68.75%"></div>
+        <div class="bar-week-line" style="left:75%"></div>
+        <div class="bar-week-line" style="left:81.25%"></div>
+        <div class="bar-week-line" style="left:87.5%"></div>
+        <div class="bar-week-line" style="left:93.75%"></div>
+        <div class="bar-plan" style="left:8.03%;width:8.03%;background:var(--b)"></div>
+                     <div class="bar-fact" style="left:8.03%;width:7.66%;background:var(--g);border-radius:4px;display:flex;align-items:center;padding:0 5px;font-family:var(--mono);font-size:9px;font-weight:700;color:#111;white-space:nowrap;overflow:hidden">✓  22д</div>
+        <div class="today-line" style="left:33.94%"></div>
+      </div>
+    </td>
+    <td class="td-edit">
+      <button class="edit-btn" onclick="openEditStage(2)" title="Только просмотр — войдите" style="opacity:0.35">✏</button>
+    </td>
+  </tr><tr class="g-row" id="row-3">
+    <td class="td-drag">⠿</td>
+    <td class="td-id">3</td>
+    <td class="td-name">
+      <div class="stage-nm" style="color:#38c4a8">
+        🔧 Чер. сантехника (вода/кан.)
+        
+      </div>
+      <div class="stage-pr">⬅ 1 (SS)</div>
+      
+    </td>
+    <td class="td-person">
+      <div class="person-cell">
+        <div class="avatar" style="background:#38c4a822;color:#38c4a8">СИ</div>
+        <div>
+          <div class="person-name">Соколов И.</div>
+          <div class="person-count">2 чел.</div>
+        </div>
+      </div>
+    </td>
+    <td class="td-dates">
+      <div class="date-pair">
+        <div class="dp-plan"><span class="lbl">ПЛАН</span><span class="val">16 апр. – 12 мая</span></div>
+        <div class="dp-fact"><span class="lbl">ФАКТ</span><span class="val">16 апр. – 08 мая</span></div>
+      </div>
+    </td>
+    <td class="td-status">
+      <span class="st-badge done" onclick="cycleStatus(3)" title="">Готово</span>
+      
+    </td>
+    <td class="td-bar" style="border-left:1px solid var(--bd)">
+      <div class="bar-track">
+        <div class="bar-col-jun"></div>
+        <div class="bar-col-jul"></div>
+        <div class="bar-col-aug"></div>
+        <div class="bar-col-sep"></div>
+        <div class="bar-week-line" style="left:6.25%"></div>
+        <div class="bar-week-line" style="left:12.5%"></div>
+        <div class="bar-week-line" style="left:18.75%"></div>
+        <div class="bar-week-line" style="left:25%"></div>
+        <div class="bar-week-line" style="left:31.25%"></div>
+        <div class="bar-week-line" style="left:37.5%"></div>
+        <div class="bar-week-line" style="left:43.75%"></div>
+        <div class="bar-week-line" style="left:50%"></div>
+        <div class="bar-week-line" style="left:56.25%"></div>
+        <div class="bar-week-line" style="left:62.5%"></div>
+        <div class="bar-week-line" style="left:68.75%"></div>
+        <div class="bar-week-line" style="left:75%"></div>
+        <div class="bar-week-line" style="left:81.25%"></div>
+        <div class="bar-week-line" style="left:87.5%"></div>
+        <div class="bar-week-line" style="left:93.75%"></div>
+        <div class="bar-plan" style="left:16.79%;width:9.49%;background:var(--b)"></div>
+                     <div class="bar-fact" style="left:16.79%;width:8.03%;background:var(--g);border-radius:4px;display:flex;align-items:center;padding:0 5px;font-family:var(--mono);font-size:9px;font-weight:700;color:#111;white-space:nowrap;overflow:hidden">✓  26д</div>
+        <div class="today-line" style="left:33.94%"></div>
+      </div>
+    </td>
+    <td class="td-edit">
+      <button class="edit-btn" onclick="openEditStage(3)" title="Только просмотр — войдите" style="opacity:0.35">✏</button>
+    </td>
+  </tr><tr class="g-row" id="row-4">
+    <td class="td-drag">⠿</td>
+    <td class="td-id">4</td>
+    <td class="td-name">
+      <div class="stage-nm" style="color:#e87058">
+        🌡 Чер. сантехника (отопление)
+        
+      </div>
+      <div class="stage-pr">⬅ 1 (SS)</div>
+      
+    </td>
+    <td class="td-person">
+      <div class="person-cell">
+        <div class="avatar" style="background:#e8705822;color:#e87058">СИ</div>
+        <div>
+          <div class="person-name">Соколов И.</div>
+          <div class="person-count">1 чел.</div>
+        </div>
+      </div>
+    </td>
+    <td class="td-dates">
+      <div class="date-pair">
+        <div class="dp-plan"><span class="lbl">ПЛАН</span><span class="val">05 мая – 19 мая</span></div>
+        <div class="dp-fact"><span class="lbl">ФАКТ</span><span class="val">05 мая – 15 мая</span></div>
+      </div>
+    </td>
+    <td class="td-status">
+      <span class="st-badge done" onclick="cycleStatus(4)" title="">Готово</span>
+      
+    </td>
+    <td class="td-bar" style="border-left:1px solid var(--bd)">
+      <div class="bar-track">
+        <div class="bar-col-jun"></div>
+        <div class="bar-col-jul"></div>
+        <div class="bar-col-aug"></div>
+        <div class="bar-col-sep"></div>
+        <div class="bar-week-line" style="left:6.25%"></div>
+        <div class="bar-week-line" style="left:12.5%"></div>
+        <div class="bar-week-line" style="left:18.75%"></div>
+        <div class="bar-week-line" style="left:25%"></div>
+        <div class="bar-week-line" style="left:31.25%"></div>
+        <div class="bar-week-line" style="left:37.5%"></div>
+        <div class="bar-week-line" style="left:43.75%"></div>
+        <div class="bar-week-line" style="left:50%"></div>
+        <div class="bar-week-line" style="left:56.25%"></div>
+        <div class="bar-week-line" style="left:62.5%"></div>
+        <div class="bar-week-line" style="left:68.75%"></div>
+        <div class="bar-week-line" style="left:75%"></div>
+        <div class="bar-week-line" style="left:81.25%"></div>
+        <div class="bar-week-line" style="left:87.5%"></div>
+        <div class="bar-week-line" style="left:93.75%"></div>
+        <div class="bar-plan" style="left:23.72%;width:5.11%;background:var(--b)"></div>
+                     <div class="bar-fact" style="left:23.72%;width:3.65%;background:var(--g);border-radius:4px;display:flex;align-items:center;padding:0 5px;font-family:var(--mono);font-size:9px;font-weight:700;color:#111;white-space:nowrap;overflow:hidden">✓  14д</div>
+        <div class="today-line" style="left:33.94%"></div>
+      </div>
+    </td>
+    <td class="td-edit">
+      <button class="edit-btn" onclick="openEditStage(4)" title="Только просмотр — войдите" style="opacity:0.35">✏</button>
+    </td>
+  </tr><tr class="g-row" id="row-5">
+    <td class="td-drag">⠿</td>
+    <td class="td-id">5</td>
+    <td class="td-name">
+      <div class="stage-nm" style="color:#e86090">
+        ⚡ Черновая электрика
+        
+      </div>
+      <div class="stage-pr">⬅ 1 (SS)</div>
+      
+    </td>
+    <td class="td-person">
+      <div class="person-cell">
+        <div class="avatar" style="background:#e8609022;color:#e86090">ПД</div>
+        <div>
+          <div class="person-name">Петров Д.</div>
+          <div class="person-count">2 чел.</div>
+        </div>
+      </div>
+    </td>
+    <td class="td-dates">
+      <div class="date-pair">
+        <div class="dp-plan"><span class="lbl">ПЛАН</span><span class="val">20 мая – 15 июн.</span></div>
+        <div class="dp-fact"><span class="lbl">ФАКТ</span><span class="val">18 мая – ...</span></div>
+      </div>
+    </td>
+    <td class="td-status">
+      <span class="st-badge active" onclick="cycleStatus(5)" title="">В работе</span>
+      
+    </td>
+    <td class="td-bar" style="border-left:1px solid var(--bd)">
+      <div class="bar-track">
+        <div class="bar-col-jun"></div>
+        <div class="bar-col-jul"></div>
+        <div class="bar-col-aug"></div>
+        <div class="bar-col-sep"></div>
+        <div class="bar-week-line" style="left:6.25%"></div>
+        <div class="bar-week-line" style="left:12.5%"></div>
+        <div class="bar-week-line" style="left:18.75%"></div>
+        <div class="bar-week-line" style="left:25%"></div>
+        <div class="bar-week-line" style="left:31.25%"></div>
+        <div class="bar-week-line" style="left:37.5%"></div>
+        <div class="bar-week-line" style="left:43.75%"></div>
+        <div class="bar-week-line" style="left:50%"></div>
+        <div class="bar-week-line" style="left:56.25%"></div>
+        <div class="bar-week-line" style="left:62.5%"></div>
+        <div class="bar-week-line" style="left:68.75%"></div>
+        <div class="bar-week-line" style="left:75%"></div>
+        <div class="bar-week-line" style="left:81.25%"></div>
+        <div class="bar-week-line" style="left:87.5%"></div>
+        <div class="bar-week-line" style="left:93.75%"></div>
+        <div class="bar-single" data-sid="5" data-action="move" style="left:29.20%;width:9.49%;background:#e86090;color:#111">
+                      ▶  26д
+                      
+                    </div>
+        <div class="today-line" style="left:33.94%"></div>
+      </div>
+    </td>
+    <td class="td-edit">
+      <button class="edit-btn" onclick="openEditStage(5)" title="Только просмотр — войдите" style="opacity:0.35">✏</button>
+    </td>
+  </tr><tr class="g-row" id="row-6">
+    <td class="td-drag">⠿</td>
+    <td class="td-id">6</td>
+    <td class="td-name">
+      <div class="stage-nm" style="color:#6098e8">
+        🏗 Черновой пол (стяжка)
+        <span class="kp-dot"></span>
+      </div>
+      <div class="stage-pr">⬅ 1 (SS)+сушка</div>
+      
+    </td>
+    <td class="td-person">
+      <div class="person-cell">
+        <div class="avatar" style="background:#6098e822;color:#6098e8">МА</div>
+        <div>
+          <div class="person-name">Морозов А.</div>
+          <div class="person-count">2 чел.</div>
+        </div>
+      </div>
+    </td>
+    <td class="td-dates">
+      <div class="date-pair">
+        <div class="dp-plan"><span class="lbl">ПЛАН</span><span class="val">16 июн. – 25 июн.</span></div>
+        <div class="dp-fact"><span class="lbl">ФАКТ</span><span class="val">—</span></div>
+      </div>
+    </td>
+    <td class="td-status">
+      <span class="st-badge plan" onclick="cycleStatus(6)" title="">План</span>
+      
+    </td>
+    <td class="td-bar" style="border-left:1px solid var(--bd)">
+      <div class="bar-track">
+        <div class="bar-col-jun"></div>
+        <div class="bar-col-jul"></div>
+        <div class="bar-col-aug"></div>
+        <div class="bar-col-sep"></div>
+        <div class="bar-week-line" style="left:6.25%"></div>
+        <div class="bar-week-line" style="left:12.5%"></div>
+        <div class="bar-week-line" style="left:18.75%"></div>
+        <div class="bar-week-line" style="left:25%"></div>
+        <div class="bar-week-line" style="left:31.25%"></div>
+        <div class="bar-week-line" style="left:37.5%"></div>
+        <div class="bar-week-line" style="left:43.75%"></div>
+        <div class="bar-week-line" style="left:50%"></div>
+        <div class="bar-week-line" style="left:56.25%"></div>
+        <div class="bar-week-line" style="left:62.5%"></div>
+        <div class="bar-week-line" style="left:68.75%"></div>
+        <div class="bar-week-line" style="left:75%"></div>
+        <div class="bar-week-line" style="left:81.25%"></div>
+        <div class="bar-week-line" style="left:87.5%"></div>
+        <div class="bar-week-line" style="left:93.75%"></div>
+        <div class="bar-single" data-sid="6" data-action="move" style="left:39.05%;width:3.28%;background:var(--b);color:rgba(200,210,230,.7)">
+                       9д
+                      
+                    </div>
+        <div class="today-line" style="left:33.94%"></div>
+      </div>
+    </td>
+    <td class="td-edit">
+      <button class="edit-btn" onclick="openEditStage(6)" title="Только просмотр — войдите" style="opacity:0.35">✏</button>
+    </td>
+  </tr><tr class="g-row" id="row-7">
+    <td class="td-drag">⠿</td>
+    <td class="td-id">7</td>
+    <td class="td-name">
+      <div class="stage-nm" style="color:#50c8e0">
+        📐 Монтаж ГКЛ (потолки)
+        <span class="kp-dot"></span>
+      </div>
+      <div class="stage-pr">⬅ 2+6 (FS)</div>
+      
+    </td>
+    <td class="td-person">
+      <div class="person-cell">
+        <div class="avatar" style="background:#50c8e022;color:#50c8e0">МА</div>
+        <div>
+          <div class="person-name">Морозов А.</div>
+          <div class="person-count">3 чел.</div>
+        </div>
+      </div>
+    </td>
+    <td class="td-dates">
+      <div class="date-pair">
+        <div class="dp-plan"><span class="lbl">ПЛАН</span><span class="val">27 июн. – 19 июл.</span></div>
+        <div class="dp-fact"><span class="lbl">ФАКТ</span><span class="val">—</span></div>
+      </div>
+    </td>
+    <td class="td-status">
+      <span class="st-badge plan" onclick="cycleStatus(7)" title="">План</span>
+      
+    </td>
+    <td class="td-bar" style="border-left:1px solid var(--bd)">
+      <div class="bar-track">
+        <div class="bar-col-jun"></div>
+        <div class="bar-col-jul"></div>
+        <div class="bar-col-aug"></div>
+        <div class="bar-col-sep"></div>
+        <div class="bar-week-line" style="left:6.25%"></div>
+        <div class="bar-week-line" style="left:12.5%"></div>
+        <div class="bar-week-line" style="left:18.75%"></div>
+        <div class="bar-week-line" style="left:25%"></div>
+        <div class="bar-week-line" style="left:31.25%"></div>
+        <div class="bar-week-line" style="left:37.5%"></div>
+        <div class="bar-week-line" style="left:43.75%"></div>
+        <div class="bar-week-line" style="left:50%"></div>
+        <div class="bar-week-line" style="left:56.25%"></div>
+        <div class="bar-week-line" style="left:62.5%"></div>
+        <div class="bar-week-line" style="left:68.75%"></div>
+        <div class="bar-week-line" style="left:75%"></div>
+        <div class="bar-week-line" style="left:81.25%"></div>
+        <div class="bar-week-line" style="left:87.5%"></div>
+        <div class="bar-week-line" style="left:93.75%"></div>
+        <div class="bar-single" data-sid="7" data-action="move" style="left:43.07%;width:8.03%;background:var(--b);color:rgba(200,210,230,.7)">
+                       22д
+                      
+                    </div>
+        <div class="today-line" style="left:33.94%"></div>
+      </div>
+    </td>
+    <td class="td-edit">
+      <button class="edit-btn" onclick="openEditStage(7)" title="Только просмотр — войдите" style="opacity:0.35">✏</button>
+    </td>
+  </tr><tr class="g-row" id="row-8">
+    <td class="td-drag">⠿</td>
+    <td class="td-id">8</td>
+    <td class="td-name">
+      <div class="stage-nm" style="color:#a8c840">
+        🪟 Плиточные работы
+        <span class="kp-dot"></span>
+      </div>
+      <div class="stage-pr">⬅ 7 (FS)</div>
+      
+    </td>
+    <td class="td-person">
+      <div class="person-cell">
+        <div class="avatar" style="background:#a8c84022;color:#a8c840">ТО</div>
+        <div>
+          <div class="person-name">Тихонов О.</div>
+          <div class="person-count">2 чел.</div>
+        </div>
+      </div>
+    </td>
+    <td class="td-dates">
+      <div class="date-pair">
+        <div class="dp-plan"><span class="lbl">ПЛАН</span><span class="val">19 июл. – 16 авг.</span></div>
+        <div class="dp-fact"><span class="lbl">ФАКТ</span><span class="val">—</span></div>
+      </div>
+    </td>
+    <td class="td-status">
+      <span class="st-badge plan" onclick="cycleStatus(8)" title="">План</span>
+      
+    </td>
+    <td class="td-bar" style="border-left:1px solid var(--bd)">
+      <div class="bar-track">
+        <div class="bar-col-jun"></div>
+        <div class="bar-col-jul"></div>
+        <div class="bar-col-aug"></div>
+        <div class="bar-col-sep"></div>
+        <div class="bar-week-line" style="left:6.25%"></div>
+        <div class="bar-week-line" style="left:12.5%"></div>
+        <div class="bar-week-line" style="left:18.75%"></div>
+        <div class="bar-week-line" style="left:25%"></div>
+        <div class="bar-week-line" style="left:31.25%"></div>
+        <div class="bar-week-line" style="left:37.5%"></div>
+        <div class="bar-week-line" style="left:43.75%"></div>
+        <div class="bar-week-line" style="left:50%"></div>
+        <div class="bar-week-line" style="left:56.25%"></div>
+        <div class="bar-week-line" style="left:62.5%"></div>
+        <div class="bar-week-line" style="left:68.75%"></div>
+        <div class="bar-week-line" style="left:75%"></div>
+        <div class="bar-week-line" style="left:81.25%"></div>
+        <div class="bar-week-line" style="left:87.5%"></div>
+        <div class="bar-week-line" style="left:93.75%"></div>
+        <div class="bar-single" data-sid="8" data-action="move" style="left:51.09%;width:10.22%;background:var(--b);color:rgba(200,210,230,.7)">
+                       28д
+                      
+                    </div>
+        <div class="today-line" style="left:33.94%"></div>
+      </div>
+    </td>
+    <td class="td-edit">
+      <button class="edit-btn" onclick="openEditStage(8)" title="Только просмотр — войдите" style="opacity:0.35">✏</button>
+    </td>
+  </tr><tr class="g-row" id="row-9">
+    <td class="td-drag">⠿</td>
+    <td class="td-id">9</td>
+    <td class="td-name">
+      <div class="stage-nm" style="color:#e8c050">
+        🎨 Малярные работы
+        <span class="kp-dot"></span>
+      </div>
+      <div class="stage-pr">⬅ 7+8 (FS)</div>
+      
+    </td>
+    <td class="td-person">
+      <div class="person-cell">
+        <div class="avatar" style="background:#e8c05022;color:#e8c050">Мб</div>
+        <div>
+          <div class="person-name">Малярная бригада</div>
+          <div class="person-count">3 чел.</div>
+        </div>
+      </div>
+    </td>
+    <td class="td-dates">
+      <div class="date-pair">
+        <div class="dp-plan"><span class="lbl">ПЛАН</span><span class="val">18 авг. – 15 сент.</span></div>
+        <div class="dp-fact"><span class="lbl">ФАКТ</span><span class="val">—</span></div>
+      </div>
+    </td>
+    <td class="td-status">
+      <span class="st-badge plan" onclick="cycleStatus(9)" title="">План</span>
+      
+    </td>
+    <td class="td-bar" style="border-left:1px solid var(--bd)">
+      <div class="bar-track">
+        <div class="bar-col-jun"></div>
+        <div class="bar-col-jul"></div>
+        <div class="bar-col-aug"></div>
+        <div class="bar-col-sep"></div>
+        <div class="bar-week-line" style="left:6.25%"></div>
+        <div class="bar-week-line" style="left:12.5%"></div>
+        <div class="bar-week-line" style="left:18.75%"></div>
+        <div class="bar-week-line" style="left:25%"></div>
+        <div class="bar-week-line" style="left:31.25%"></div>
+        <div class="bar-week-line" style="left:37.5%"></div>
+        <div class="bar-week-line" style="left:43.75%"></div>
+        <div class="bar-week-line" style="left:50%"></div>
+        <div class="bar-week-line" style="left:56.25%"></div>
+        <div class="bar-week-line" style="left:62.5%"></div>
+        <div class="bar-week-line" style="left:68.75%"></div>
+        <div class="bar-week-line" style="left:75%"></div>
+        <div class="bar-week-line" style="left:81.25%"></div>
+        <div class="bar-week-line" style="left:87.5%"></div>
+        <div class="bar-week-line" style="left:93.75%"></div>
+        <div class="bar-single" data-sid="9" data-action="move" style="left:62.04%;width:10.22%;background:var(--b);color:rgba(200,210,230,.7)">
+                       28д
+                      
+                    </div>
+        <div class="today-line" style="left:33.94%"></div>
+      </div>
+    </td>
+    <td class="td-edit">
+      <button class="edit-btn" onclick="openEditStage(9)" title="Только просмотр — войдите" style="opacity:0.35">✏</button>
+    </td>
+  </tr><tr class="g-row" id="row-10">
+    <td class="td-drag">⠿</td>
+    <td class="td-id">10</td>
+    <td class="td-name">
+      <div class="stage-nm" style="color:#9860e8">
+        🟫 Устройство пола / плинтус
+        
+      </div>
+      <div class="stage-pr">⬅ 9 (FS)</div>
+      
+    </td>
+    <td class="td-person">
+      <div class="person-cell">
+        <div class="avatar" style="background:#9860e822;color:#9860e8">ТО</div>
+        <div>
+          <div class="person-name">Тихонов О.</div>
+          <div class="person-count">2 чел.</div>
+        </div>
+      </div>
+    </td>
+    <td class="td-dates">
+      <div class="date-pair">
+        <div class="dp-plan"><span class="lbl">ПЛАН</span><span class="val">16 сент. – 01 окт.</span></div>
+        <div class="dp-fact"><span class="lbl">ФАКТ</span><span class="val">—</span></div>
+      </div>
+    </td>
+    <td class="td-status">
+      <span class="st-badge plan" onclick="cycleStatus(10)" title="">План</span>
+      
+    </td>
+    <td class="td-bar" style="border-left:1px solid var(--bd)">
+      <div class="bar-track">
+        <div class="bar-col-jun"></div>
+        <div class="bar-col-jul"></div>
+        <div class="bar-col-aug"></div>
+        <div class="bar-col-sep"></div>
+        <div class="bar-week-line" style="left:6.25%"></div>
+        <div class="bar-week-line" style="left:12.5%"></div>
+        <div class="bar-week-line" style="left:18.75%"></div>
+        <div class="bar-week-line" style="left:25%"></div>
+        <div class="bar-week-line" style="left:31.25%"></div>
+        <div class="bar-week-line" style="left:37.5%"></div>
+        <div class="bar-week-line" style="left:43.75%"></div>
+        <div class="bar-week-line" style="left:50%"></div>
+        <div class="bar-week-line" style="left:56.25%"></div>
+        <div class="bar-week-line" style="left:62.5%"></div>
+        <div class="bar-week-line" style="left:68.75%"></div>
+        <div class="bar-week-line" style="left:75%"></div>
+        <div class="bar-week-line" style="left:81.25%"></div>
+        <div class="bar-week-line" style="left:87.5%"></div>
+        <div class="bar-week-line" style="left:93.75%"></div>
+        <div class="bar-single" data-sid="10" data-action="move" style="left:72.63%;width:5.47%;background:var(--b);color:rgba(200,210,230,.7)">
+                       15д
+                      
+                    </div>
+        <div class="today-line" style="left:33.94%"></div>
+      </div>
+    </td>
+    <td class="td-edit">
+      <button class="edit-btn" onclick="openEditStage(10)" title="Только просмотр — войдите" style="opacity:0.35">✏</button>
+    </td>
+  </tr><tr class="g-row" id="row-11">
+    <td class="td-drag">⠿</td>
+    <td class="td-id">11</td>
+    <td class="td-name">
+      <div class="stage-nm" style="color:#40d890">
+        🚿 Чистовой сантехмонтаж
+        
+      </div>
+      <div class="stage-pr">⬅ 8 (FS)</div>
+      
+    </td>
+    <td class="td-person">
+      <div class="person-cell">
+        <div class="avatar" style="background:#40d89022;color:#40d890">СИ</div>
+        <div>
+          <div class="person-name">Соколов И.</div>
+          <div class="person-count">1 чел.</div>
+        </div>
+      </div>
+    </td>
+    <td class="td-dates">
+      <div class="date-pair">
+        <div class="dp-plan"><span class="lbl">ПЛАН</span><span class="val">02 окт. – 16 окт.</span></div>
+        <div class="dp-fact"><span class="lbl">ФАКТ</span><span class="val">—</span></div>
+      </div>
+    </td>
+    <td class="td-status">
+      <span class="st-badge plan" onclick="cycleStatus(11)" title="">План</span>
+      
+    </td>
+    <td class="td-bar" style="border-left:1px solid var(--bd)">
+      <div class="bar-track">
+        <div class="bar-col-jun"></div>
+        <div class="bar-col-jul"></div>
+        <div class="bar-col-aug"></div>
+        <div class="bar-col-sep"></div>
+        <div class="bar-week-line" style="left:6.25%"></div>
+        <div class="bar-week-line" style="left:12.5%"></div>
+        <div class="bar-week-line" style="left:18.75%"></div>
+        <div class="bar-week-line" style="left:25%"></div>
+        <div class="bar-week-line" style="left:31.25%"></div>
+        <div class="bar-week-line" style="left:37.5%"></div>
+        <div class="bar-week-line" style="left:43.75%"></div>
+        <div class="bar-week-line" style="left:50%"></div>
+        <div class="bar-week-line" style="left:56.25%"></div>
+        <div class="bar-week-line" style="left:62.5%"></div>
+        <div class="bar-week-line" style="left:68.75%"></div>
+        <div class="bar-week-line" style="left:75%"></div>
+        <div class="bar-week-line" style="left:81.25%"></div>
+        <div class="bar-week-line" style="left:87.5%"></div>
+        <div class="bar-week-line" style="left:93.75%"></div>
+        <div class="bar-single" data-sid="11" data-action="move" style="left:78.47%;width:5.11%;background:var(--b);color:rgba(200,210,230,.7)">
+                       14д
+                      
+                    </div>
+        <div class="today-line" style="left:33.94%"></div>
+      </div>
+    </td>
+    <td class="td-edit">
+      <button class="edit-btn" onclick="openEditStage(11)" title="Только просмотр — войдите" style="opacity:0.35">✏</button>
+    </td>
+  </tr><tr class="g-row" id="row-12">
+    <td class="td-drag">⠿</td>
+    <td class="td-id">12</td>
+    <td class="td-name">
+      <div class="stage-nm" style="color:#e89040">
+        💡 Чистовой электромонтаж
+        <span class="kp-dot"></span>
+      </div>
+      <div class="stage-pr">⬅ 9+11 (FS)</div>
+      
+    </td>
+    <td class="td-person">
+      <div class="person-cell">
+        <div class="avatar" style="background:#e8904022;color:#e89040">ПД</div>
+        <div>
+          <div class="person-name">Петров Д.</div>
+          <div class="person-count">2 чел.</div>
+        </div>
+      </div>
+    </td>
+    <td class="td-dates">
+      <div class="date-pair">
+        <div class="dp-plan"><span class="lbl">ПЛАН</span><span class="val">17 окт. – 27 окт.</span></div>
+        <div class="dp-fact"><span class="lbl">ФАКТ</span><span class="val">—</span></div>
+      </div>
+    </td>
+    <td class="td-status">
+      <span class="st-badge plan" onclick="cycleStatus(12)" title="">План</span>
+      
+    </td>
+    <td class="td-bar" style="border-left:1px solid var(--bd)">
+      <div class="bar-track">
+        <div class="bar-col-jun"></div>
+        <div class="bar-col-jul"></div>
+        <div class="bar-col-aug"></div>
+        <div class="bar-col-sep"></div>
+        <div class="bar-week-line" style="left:6.25%"></div>
+        <div class="bar-week-line" style="left:12.5%"></div>
+        <div class="bar-week-line" style="left:18.75%"></div>
+        <div class="bar-week-line" style="left:25%"></div>
+        <div class="bar-week-line" style="left:31.25%"></div>
+        <div class="bar-week-line" style="left:37.5%"></div>
+        <div class="bar-week-line" style="left:43.75%"></div>
+        <div class="bar-week-line" style="left:50%"></div>
+        <div class="bar-week-line" style="left:56.25%"></div>
+        <div class="bar-week-line" style="left:62.5%"></div>
+        <div class="bar-week-line" style="left:68.75%"></div>
+        <div class="bar-week-line" style="left:75%"></div>
+        <div class="bar-week-line" style="left:81.25%"></div>
+        <div class="bar-week-line" style="left:87.5%"></div>
+        <div class="bar-week-line" style="left:93.75%"></div>
+        <div class="bar-single" data-sid="12" data-action="move" style="left:83.94%;width:3.65%;background:var(--b);color:rgba(200,210,230,.7)">
+                       10д
+                      
+                    </div>
+        <div class="today-line" style="left:33.94%"></div>
+      </div>
+    </td>
+    <td class="td-edit">
+      <button class="edit-btn" onclick="openEditStage(12)" title="Только просмотр — войдите" style="opacity:0.35">✏</button>
+    </td>
+  </tr></tbody>
       </table>
     </div>
-    <div class="m-cards" id="mCards"></div>
+    <div class="m-cards" id="mCards"><div class="mob-timeline-wrap">
+    <div class="mob-timeline-title">
+      <span>TIMELINE · СОБЫТИЕ 4</span>
+      <span style="color:var(--mu)">05 мар. – 04 дек.</span>
+    </div>
+    <div class="mob-timeline-track">
+      <div class="mob-timeline-month" style="left:0;width:25%;background:rgba(245,200,66,.15);color:#f5c842">ИЮН</div>
+      <div class="mob-timeline-month" style="left:25%;width:25%;background:rgba(78,156,242,.15);color:#4e9cf2">ИЮЛ</div>
+      <div class="mob-timeline-month" style="left:50%;width:25%;background:rgba(61,214,140,.15);color:#3dd68c">АВГ</div>
+      <div class="mob-timeline-month" style="left:75%;width:25%;background:rgba(177,106,245,.15);color:#b16af5">СЕН</div>
+      <div class="mob-timeline-today" style="left:32.5%"></div>
+      <div style="position:absolute;top:0;bottom:0;left:1.5%;width:6.6%;background:var(--g);opacity:.7"></div><div style="position:absolute;top:0;bottom:0;left:8.0%;width:8.0%;background:var(--g);opacity:.7"></div><div style="position:absolute;top:0;bottom:0;left:16.8%;width:9.5%;background:var(--g);opacity:.7"></div><div style="position:absolute;top:0;bottom:0;left:23.7%;width:5.1%;background:var(--g);opacity:.7"></div><div style="position:absolute;top:0;bottom:0;left:29.2%;width:9.5%;background:#e86090;opacity:.7"></div><div style="position:absolute;top:0;bottom:0;left:39.1%;width:3.3%;background:rgba(255,255,255,.15);opacity:.7"></div><div style="position:absolute;top:0;bottom:0;left:43.1%;width:8.0%;background:rgba(255,255,255,.15);opacity:.7"></div><div style="position:absolute;top:0;bottom:0;left:51.1%;width:10.2%;background:rgba(255,255,255,.15);opacity:.7"></div><div style="position:absolute;top:0;bottom:0;left:62.0%;width:10.2%;background:rgba(255,255,255,.15);opacity:.7"></div><div style="position:absolute;top:0;bottom:0;left:72.6%;width:5.5%;background:rgba(255,255,255,.15);opacity:.7"></div><div style="position:absolute;top:0;bottom:0;left:78.5%;width:5.1%;background:rgba(255,255,255,.15);opacity:.7"></div><div style="position:absolute;top:0;bottom:0;left:83.9%;width:3.6%;background:rgba(255,255,255,.15);opacity:.7"></div>
+    </div>
+    <div class="mob-timeline-labels">
+      <span>2 ИЮН</span><span>30 ИЮН</span><span>28 ИЮЛ</span><span>25 АВГ</span><span>22 СЕН</span>
+    </div>
+  </div><div class="vtl"><div class="vtl-item"><div class="vtl-left">
+      <div class="vtl-dot done" style="background:var(--g)"></div>
+      <div class="vtl-connector" style="background:var(--g)"></div>
+    </div><div class="vtl-card done">
+      <div class="vtl-card-top">
+        <div>
+          <div class="vtl-card-name" style="color:#e8a838">🔨 Подготовительные / демонтаж</div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--mu);margin-top:2px">⬅ —</div>
+        </div>
+        <span class="st-badge done" style="cursor:pointer;flex-shrink:0" onclick="cycleStatus(1)">Готово</span>
+      </div>
+      <div class="vtl-card-meta">
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Исполнитель</div>
+          <div class="vtl-meta-val" style="color:#e8a838;font-size:11px">Морозов А.</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Бригада</div>
+          <div class="vtl-meta-val" style="color:#e8a838">3 чел.</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Дней</div>
+          <div class="vtl-meta-val">18</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Готовность</div>
+          <div class="vtl-meta-val" style="color:var(--g)">100%</div>
+        </div>
+      </div>
+      <div style="height:3px;background:var(--bd);margin:0 12px;border-radius:2px;overflow:hidden">
+        <div style="height:100%;border-radius:2px;background:var(--g);width:100%"></div>
+      </div>
+      <div class="vtl-datebar">
+        <span style="font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--mu);width:36px">ПЛАН</span>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--mu2)">05 мар. → 23 мар.</span>
+      </div>
+      
+      <div class="vtl-datebar" style="background:rgba(78,156,242,.05);border-top:1px solid rgba(78,156,242,.1)">
+        <span style="font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--b);width:36px">ФАКТ</span>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--b)">05 мар. → 21 мар.</span>
+      </div>
+      
+      <div class="vtl-scope">Укрывка, демонтаж, перегородки газобетон 107,5 м²</div>
+      
+      <div style="padding:6px 12px 8px;border-top:1px solid var(--bd)">
+        <div style="font-family:var(--mono);font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mu);margin-bottom:5px">📦 Доставки</div>
+        
+          <div style="display:flex;align-items:center;gap:6px;padding:3px 0;border-bottom:1px solid rgba(28,34,51,.4);font-size:11px">
+            <span>📦</span>
+            <span style="flex:1;color:#7890a8;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Газобетон + ЦПС (перегородки)</span>
+            <span style="font-family:var(--mono);font-size:9px;color:var(--mu);flex-shrink:0">05 мар.</span>
+          </div>
+      </div>
+      <div class="vtl-actions">
+        
+        
+        
+      </div>
+    </div></div><div class="vtl-item"><div class="vtl-left">
+      <div class="vtl-dot done" style="background:var(--g)"></div>
+      <div class="vtl-connector" style="background:var(--g)"></div>
+    </div><div class="vtl-card done">
+      <div class="vtl-card-top">
+        <div>
+          <div class="vtl-card-name" style="color:#c084e8">🪣 Монтаж перегородок/Штукатурка стен<span style="font-size:9px;color:var(--r);margin-left:5px;font-family:var(--mono)">●КП</span></div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--mu);margin-top:2px">⬅ 1 (FS)</div>
+        </div>
+        <span class="st-badge done" style="cursor:pointer;flex-shrink:0" onclick="cycleStatus(2)">Готово</span>
+      </div>
+      <div class="vtl-card-meta">
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Исполнитель</div>
+          <div class="vtl-meta-val" style="color:#c084e8;font-size:11px">Кузнецов В.</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Бригада</div>
+          <div class="vtl-meta-val" style="color:#c084e8">2 чел.</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Дней</div>
+          <div class="vtl-meta-val">22</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Готовность</div>
+          <div class="vtl-meta-val" style="color:var(--g)">100%</div>
+        </div>
+      </div>
+      <div style="height:3px;background:var(--bd);margin:0 12px;border-radius:2px;overflow:hidden">
+        <div style="height:100%;border-radius:2px;background:var(--g);width:100%"></div>
+      </div>
+      <div class="vtl-datebar">
+        <span style="font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--mu);width:36px">ПЛАН</span>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--mu2)">23 мар. → 14 апр.</span>
+      </div>
+      
+      <div class="vtl-datebar" style="background:rgba(78,156,242,.05);border-top:1px solid rgba(78,156,242,.1)">
+        <span style="font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--b);width:36px">ФАКТ</span>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--b)">23 мар. → 13 апр.</span>
+      </div>
+      
+      <div class="vtl-scope">Грунт 241 м², сетка 186 м², штукатурка по маякам 241 м²</div>
+      
+      <div style="padding:6px 12px 8px;border-top:1px solid var(--bd)">
+        <div style="font-family:var(--mono);font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mu);margin-bottom:5px">📦 Доставки</div>
+        
+          <div style="display:flex;align-items:center;gap:6px;padding:3px 0;border-bottom:1px solid rgba(28,34,51,.4);font-size:11px">
+            <span>📦</span>
+            <span style="flex:1;color:#7890a8;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Штукатурные смеси Knauf</span>
+            <span style="font-family:var(--mono);font-size:9px;color:var(--mu);flex-shrink:0">23 мар.</span>
+          </div>
+      </div>
+      <div class="vtl-actions">
+        
+        
+        
+      </div>
+    </div></div><div class="vtl-item"><div class="vtl-left">
+      <div class="vtl-dot done" style="background:var(--g)"></div>
+      <div class="vtl-connector" style="background:var(--g)"></div>
+    </div><div class="vtl-card done">
+      <div class="vtl-card-top">
+        <div>
+          <div class="vtl-card-name" style="color:#38c4a8">🔧 Чер. сантехника (вода/кан.)</div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--mu);margin-top:2px">⬅ 1 (SS)</div>
+        </div>
+        <span class="st-badge done" style="cursor:pointer;flex-shrink:0" onclick="cycleStatus(3)">Готово</span>
+      </div>
+      <div class="vtl-card-meta">
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Исполнитель</div>
+          <div class="vtl-meta-val" style="color:#38c4a8;font-size:11px">Соколов И.</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Бригада</div>
+          <div class="vtl-meta-val" style="color:#38c4a8">2 чел.</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Дней</div>
+          <div class="vtl-meta-val">26</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Готовность</div>
+          <div class="vtl-meta-val" style="color:var(--g)">100%</div>
+        </div>
+      </div>
+      <div style="height:3px;background:var(--bd);margin:0 12px;border-radius:2px;overflow:hidden">
+        <div style="height:100%;border-radius:2px;background:var(--g);width:100%"></div>
+      </div>
+      <div class="vtl-datebar">
+        <span style="font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--mu);width:36px">ПЛАН</span>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--mu2)">16 апр. → 12 мая</span>
+      </div>
+      
+      <div class="vtl-datebar" style="background:rgba(78,156,242,.05);border-top:1px solid rgba(78,156,242,.1)">
+        <span style="font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--b);width:36px">ФАКТ</span>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--b)">16 апр. → 08 мая</span>
+      </div>
+      
+      <div class="vtl-scope">11 точек ХВС/ГВС, 12 точек канализации, TECE, трап</div>
+      
+      <div style="padding:6px 12px 8px;border-top:1px solid var(--bd)">
+        <div style="font-family:var(--mono);font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mu);margin-bottom:5px">📦 Доставки</div>
+        
+          <div style="display:flex;align-items:center;gap:6px;padding:3px 0;border-bottom:1px solid rgba(28,34,51,.4);font-size:11px">
+            <span>📦</span>
+            <span style="flex:1;color:#7890a8;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Трубы ХВС/ГВС + фитинги</span>
+            <span style="font-family:var(--mono);font-size:9px;color:var(--mu);flex-shrink:0">18 апр.</span>
+          </div>
+      </div>
+      <div class="vtl-actions">
+        
+        
+        
+      </div>
+    </div></div><div class="vtl-item"><div class="vtl-left">
+      <div class="vtl-dot done" style="background:var(--g)"></div>
+      <div class="vtl-connector" style="background:var(--g)"></div>
+    </div><div class="vtl-card done">
+      <div class="vtl-card-top">
+        <div>
+          <div class="vtl-card-name" style="color:#e87058">🌡 Чер. сантехника (отопление)</div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--mu);margin-top:2px">⬅ 1 (SS)</div>
+        </div>
+        <span class="st-badge done" style="cursor:pointer;flex-shrink:0" onclick="cycleStatus(4)">Готово</span>
+      </div>
+      <div class="vtl-card-meta">
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Исполнитель</div>
+          <div class="vtl-meta-val" style="color:#e87058;font-size:11px">Соколов И.</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Бригада</div>
+          <div class="vtl-meta-val" style="color:#e87058">1 чел.</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Дней</div>
+          <div class="vtl-meta-val">14</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Готовность</div>
+          <div class="vtl-meta-val" style="color:var(--g)">100%</div>
+        </div>
+      </div>
+      <div style="height:3px;background:var(--bd);margin:0 12px;border-radius:2px;overflow:hidden">
+        <div style="height:100%;border-radius:2px;background:var(--g);width:100%"></div>
+      </div>
+      <div class="vtl-datebar">
+        <span style="font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--mu);width:36px">ПЛАН</span>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--mu2)">05 мая → 19 мая</span>
+      </div>
+      
+      <div class="vtl-datebar" style="background:rgba(78,156,242,.05);border-top:1px solid rgba(78,156,242,.1)">
+        <span style="font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--b);width:36px">ФАКТ</span>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--b)">05 мая → 15 мая</span>
+      </div>
+      
+      <div class="vtl-scope">Коллектор, 4 радиатора, трубы, гидроиспытания</div>
+      
+      <div class="vtl-actions">
+        
+        
+        
+      </div>
+    </div></div><div class="vtl-item"><div class="vtl-left">
+      <div class="vtl-dot active" style="background:#e86090"></div>
+      <div class="vtl-connector" style="background:var(--bd2)"></div>
+    </div><div class="vtl-card active">
+      <div class="vtl-card-top">
+        <div>
+          <div class="vtl-card-name" style="color:#e86090">⚡ Черновая электрика</div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--mu);margin-top:2px">⬅ 1 (SS)</div>
+        </div>
+        <span class="st-badge active" style="cursor:pointer;flex-shrink:0" onclick="cycleStatus(5)">В работе</span>
+      </div>
+      <div class="vtl-card-meta">
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Исполнитель</div>
+          <div class="vtl-meta-val" style="color:#e86090;font-size:11px">Петров Д.</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Бригада</div>
+          <div class="vtl-meta-val" style="color:#e86090">2 чел.</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Дней</div>
+          <div class="vtl-meta-val">26</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Готовность</div>
+          <div class="vtl-meta-val" style="color:#e86090">50%</div>
+        </div>
+      </div>
+      <div style="height:3px;background:var(--bd);margin:0 12px;border-radius:2px;overflow:hidden">
+        <div style="height:100%;border-radius:2px;background:#e86090;width:50%"></div>
+      </div>
+      <div class="vtl-datebar">
+        <span style="font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--mu);width:36px">ПЛАН</span>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--mu2)">20 мая → 15 июн.</span>
+      </div>
+      
+      <div class="vtl-datebar" style="background:rgba(78,156,242,.05);border-top:1px solid rgba(78,156,242,.1)">
+        <span style="font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--b);width:36px">ФАКТ</span>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--b)">18 мая → ...</span>
+      </div>
+      
+      <div class="vtl-scope">97 подрозетников, щит (умный дом), 380 м.п. кабеля</div>
+      
+      <div style="padding:6px 12px 8px;border-top:1px solid var(--bd)">
+        <div style="font-family:var(--mono);font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mu);margin-bottom:5px">📦 Доставки</div>
+        
+          <div style="display:flex;align-items:center;gap:6px;padding:3px 0;border-bottom:1px solid rgba(28,34,51,.4);font-size:11px">
+            <span>📦</span>
+            <span style="flex:1;color:#7890a8;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Кабель + гофра (380 м.п.)</span>
+            <span style="font-family:var(--mono);font-size:9px;color:var(--mu);flex-shrink:0">19 мая</span>
+          </div>
+      </div>
+      <div class="vtl-actions">
+        
+        
+        
+      </div>
+    </div></div><div class="vtl-item"><div class="vtl-left">
+      <div class="vtl-dot plan" style="background:var(--mu)"></div>
+      <div class="vtl-connector" style="background:var(--bd2)"></div>
+    </div><div class="vtl-card plan">
+      <div class="vtl-card-top">
+        <div>
+          <div class="vtl-card-name" style="color:#6098e8">🏗 Черновой пол (стяжка)<span style="font-size:9px;color:var(--r);margin-left:5px;font-family:var(--mono)">●КП</span></div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--mu);margin-top:2px">⬅ 1 (SS)+сушка</div>
+        </div>
+        <span class="st-badge plan" style="cursor:pointer;flex-shrink:0" onclick="cycleStatus(6)">План</span>
+      </div>
+      <div class="vtl-card-meta">
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Исполнитель</div>
+          <div class="vtl-meta-val" style="color:#6098e8;font-size:11px">Морозов А.</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Бригада</div>
+          <div class="vtl-meta-val" style="color:#6098e8">2 чел.</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Дней</div>
+          <div class="vtl-meta-val">9</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Готовность</div>
+          <div class="vtl-meta-val" style="color:var(--mu)">0%</div>
+        </div>
+      </div>
+      <div style="height:3px;background:var(--bd);margin:0 12px;border-radius:2px;overflow:hidden">
+        <div style="height:100%;border-radius:2px;background:var(--mu);width:0%"></div>
+      </div>
+      <div class="vtl-datebar">
+        <span style="font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--mu);width:36px">ПЛАН</span>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--mu2)">16 июн. → 25 июн.</span>
+      </div>
+      
+      
+      <div class="vtl-scope">Гидро-шумоизоляция 71,56 м², ЦПС стяжка, сушка 21 дн.</div>
+      
+      <div style="padding:6px 12px 8px;border-top:1px solid var(--bd)">
+        <div style="font-family:var(--mono);font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mu);margin-bottom:5px">📦 Доставки</div>
+        
+          <div style="display:flex;align-items:center;gap:6px;padding:3px 0;border-bottom:1px solid rgba(28,34,51,.4);font-size:11px">
+            <span>📦</span>
+            <span style="flex:1;color:#7890a8;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Материалы стяжки + гидроизол.</span>
+            <span style="font-family:var(--mono);font-size:9px;color:var(--mu);flex-shrink:0">15 июн.</span>
+          </div>
+      </div>
+      <div class="vtl-actions">
+        
+        
+        
+      </div>
+    </div></div><div class="vtl-item"><div class="vtl-left">
+      <div class="vtl-dot plan" style="background:var(--mu)"></div>
+      <div class="vtl-connector" style="background:var(--bd2)"></div>
+    </div><div class="vtl-card plan">
+      <div class="vtl-card-top">
+        <div>
+          <div class="vtl-card-name" style="color:#50c8e0">📐 Монтаж ГКЛ (потолки)<span style="font-size:9px;color:var(--r);margin-left:5px;font-family:var(--mono)">●КП</span></div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--mu);margin-top:2px">⬅ 2+6 (FS)</div>
+        </div>
+        <span class="st-badge plan" style="cursor:pointer;flex-shrink:0" onclick="cycleStatus(7)">План</span>
+      </div>
+      <div class="vtl-card-meta">
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Исполнитель</div>
+          <div class="vtl-meta-val" style="color:#50c8e0;font-size:11px">Морозов А.</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Бригада</div>
+          <div class="vtl-meta-val" style="color:#50c8e0">3 чел.</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Дней</div>
+          <div class="vtl-meta-val">22</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Готовность</div>
+          <div class="vtl-meta-val" style="color:var(--mu)">0%</div>
+        </div>
+      </div>
+      <div style="height:3px;background:var(--bd);margin:0 12px;border-radius:2px;overflow:hidden">
+        <div style="height:100%;border-radius:2px;background:var(--mu);width:0%"></div>
+      </div>
+      <div class="vtl-datebar">
+        <span style="font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--mu);width:36px">ПЛАН</span>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--mu2)">27 июн. → 19 июл.</span>
+      </div>
+      
+      
+      <div class="vtl-scope">Каркас+ГКЛ 2 слоя потолков 71,56 м², ниши, откосы</div>
+      
+      <div style="padding:6px 12px 8px;border-top:1px solid var(--bd)">
+        <div style="font-family:var(--mono);font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mu);margin-bottom:5px">📦 Доставки</div>
+        
+          <div style="display:flex;align-items:center;gap:6px;padding:3px 0;border-bottom:1px solid rgba(28,34,51,.4);font-size:11px">
+            <span>📦</span>
+            <span style="flex:1;color:#7890a8;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Профиль ГКЛ + гипсокартон</span>
+            <span style="font-family:var(--mono);font-size:9px;color:var(--mu);flex-shrink:0">27 июн.</span>
+          </div>
+      </div>
+      <div class="vtl-actions">
+        
+        
+        
+      </div>
+    </div></div><div class="vtl-item"><div class="vtl-left">
+      <div class="vtl-dot plan" style="background:var(--mu)"></div>
+      <div class="vtl-connector" style="background:var(--bd2)"></div>
+    </div><div class="vtl-card plan">
+      <div class="vtl-card-top">
+        <div>
+          <div class="vtl-card-name" style="color:#a8c840">🪟 Плиточные работы<span style="font-size:9px;color:var(--r);margin-left:5px;font-family:var(--mono)">●КП</span></div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--mu);margin-top:2px">⬅ 7 (FS)</div>
+        </div>
+        <span class="st-badge plan" style="cursor:pointer;flex-shrink:0" onclick="cycleStatus(8)">План</span>
+      </div>
+      <div class="vtl-card-meta">
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Исполнитель</div>
+          <div class="vtl-meta-val" style="color:#a8c840;font-size:11px">Тихонов О.</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Бригада</div>
+          <div class="vtl-meta-val" style="color:#a8c840">2 чел.</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Дней</div>
+          <div class="vtl-meta-val">28</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Готовность</div>
+          <div class="vtl-meta-val" style="color:var(--mu)">0%</div>
+        </div>
+      </div>
+      <div style="height:3px;background:var(--bd);margin:0 12px;border-radius:2px;overflow:hidden">
+        <div style="height:100%;border-radius:2px;background:var(--mu);width:0%"></div>
+      </div>
+      <div class="vtl-datebar">
+        <span style="font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--mu);width:36px">ПЛАН</span>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--mu2)">19 июл. → 16 авг.</span>
+      </div>
+      
+      
+      <div class="vtl-scope">Гидроизоляция 65,7 м², плитка пол/стены, теплый пол 5,5 м²</div>
+      
+      <div style="padding:6px 12px 8px;border-top:1px solid var(--bd)">
+        <div style="font-family:var(--mono);font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mu);margin-bottom:5px">📦 Доставки</div>
+        
+          <div style="display:flex;align-items:center;gap:6px;padding:3px 0;border-bottom:1px solid rgba(28,34,51,.4);font-size:11px">
+            <span>🚛</span>
+            <span style="flex:1;color:#a89070;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Плитка + затирки + гидроизол.</span>
+            <span style="font-family:var(--mono);font-size:9px;color:var(--mu);flex-shrink:0">19 июл.</span>
+          </div>
+      </div>
+      <div class="vtl-actions">
+        
+        
+        
+      </div>
+    </div></div><div class="vtl-item"><div class="vtl-left">
+      <div class="vtl-dot plan" style="background:var(--mu)"></div>
+      <div class="vtl-connector" style="background:var(--bd2)"></div>
+    </div><div class="vtl-card plan">
+      <div class="vtl-card-top">
+        <div>
+          <div class="vtl-card-name" style="color:#e8c050">🎨 Малярные работы<span style="font-size:9px;color:var(--r);margin-left:5px;font-family:var(--mono)">●КП</span></div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--mu);margin-top:2px">⬅ 7+8 (FS)</div>
+        </div>
+        <span class="st-badge plan" style="cursor:pointer;flex-shrink:0" onclick="cycleStatus(9)">План</span>
+      </div>
+      <div class="vtl-card-meta">
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Исполнитель</div>
+          <div class="vtl-meta-val" style="color:#e8c050;font-size:11px">Малярная бригада</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Бригада</div>
+          <div class="vtl-meta-val" style="color:#e8c050">3 чел.</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Дней</div>
+          <div class="vtl-meta-val">28</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Готовность</div>
+          <div class="vtl-meta-val" style="color:var(--mu)">0%</div>
+        </div>
+      </div>
+      <div style="height:3px;background:var(--bd);margin:0 12px;border-radius:2px;overflow:hidden">
+        <div style="height:100%;border-radius:2px;background:var(--mu);width:0%"></div>
+      </div>
+      <div class="vtl-datebar">
+        <span style="font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--mu);width:36px">ПЛАН</span>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--mu2)">18 авг. → 15 сент.</span>
+      </div>
+      
+      
+      <div class="vtl-scope">Шпатлёвка Q3 потолок+стены 262 м², карниз, молдинг, покраска</div>
+      
+      <div style="padding:6px 12px 8px;border-top:1px solid var(--bd)">
+        <div style="font-family:var(--mono);font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mu);margin-bottom:5px">📦 Доставки</div>
+        
+          <div style="display:flex;align-items:center;gap:6px;padding:3px 0;border-bottom:1px solid rgba(28,34,51,.4);font-size:11px">
+            <span>🚛</span>
+            <span style="flex:1;color:#a89070;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Краски + шпатлёвка + молдинги</span>
+            <span style="font-family:var(--mono);font-size:9px;color:var(--mu);flex-shrink:0">18 авг.</span>
+          </div>
+      </div>
+      <div class="vtl-actions">
+        
+        
+        
+      </div>
+    </div></div><div class="vtl-item"><div class="vtl-left">
+      <div class="vtl-dot plan" style="background:var(--mu)"></div>
+      <div class="vtl-connector" style="background:var(--bd2)"></div>
+    </div><div class="vtl-card plan">
+      <div class="vtl-card-top">
+        <div>
+          <div class="vtl-card-name" style="color:#9860e8">🟫 Устройство пола / плинтус</div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--mu);margin-top:2px">⬅ 9 (FS)</div>
+        </div>
+        <span class="st-badge plan" style="cursor:pointer;flex-shrink:0" onclick="cycleStatus(10)">План</span>
+      </div>
+      <div class="vtl-card-meta">
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Исполнитель</div>
+          <div class="vtl-meta-val" style="color:#9860e8;font-size:11px">Тихонов О.</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Бригада</div>
+          <div class="vtl-meta-val" style="color:#9860e8">2 чел.</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Дней</div>
+          <div class="vtl-meta-val">15</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Готовность</div>
+          <div class="vtl-meta-val" style="color:var(--mu)">0%</div>
+        </div>
+      </div>
+      <div style="height:3px;background:var(--bd);margin:0 12px;border-radius:2px;overflow:hidden">
+        <div style="height:100%;border-radius:2px;background:var(--mu);width:0%"></div>
+      </div>
+      <div class="vtl-datebar">
+        <span style="font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--mu);width:36px">ПЛАН</span>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--mu2)">16 сент. → 01 окт.</span>
+      </div>
+      
+      
+      <div class="vtl-scope">Паркет ёлкой COSWICK орех 55,4 м², плинтус МДФ</div>
+      
+      <div style="padding:6px 12px 8px;border-top:1px solid var(--bd)">
+        <div style="font-family:var(--mono);font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mu);margin-bottom:5px">📦 Доставки</div>
+        
+          <div style="display:flex;align-items:center;gap:6px;padding:3px 0;border-bottom:1px solid rgba(28,34,51,.4);font-size:11px">
+            <span>🚛</span>
+            <span style="flex:1;color:#a89070;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Паркет COSWICK орех + плинтус</span>
+            <span style="font-family:var(--mono);font-size:9px;color:var(--mu);flex-shrink:0">15 сент.</span>
+          </div>
+      </div>
+      <div class="vtl-actions">
+        
+        
+        
+      </div>
+    </div></div><div class="vtl-item"><div class="vtl-left">
+      <div class="vtl-dot plan" style="background:var(--mu)"></div>
+      <div class="vtl-connector" style="background:var(--bd2)"></div>
+    </div><div class="vtl-card plan">
+      <div class="vtl-card-top">
+        <div>
+          <div class="vtl-card-name" style="color:#40d890">🚿 Чистовой сантехмонтаж</div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--mu);margin-top:2px">⬅ 8 (FS)</div>
+        </div>
+        <span class="st-badge plan" style="cursor:pointer;flex-shrink:0" onclick="cycleStatus(11)">План</span>
+      </div>
+      <div class="vtl-card-meta">
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Исполнитель</div>
+          <div class="vtl-meta-val" style="color:#40d890;font-size:11px">Соколов И.</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Бригада</div>
+          <div class="vtl-meta-val" style="color:#40d890">1 чел.</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Дней</div>
+          <div class="vtl-meta-val">14</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Готовность</div>
+          <div class="vtl-meta-val" style="color:var(--mu)">0%</div>
+        </div>
+      </div>
+      <div style="height:3px;background:var(--bd);margin:0 12px;border-radius:2px;overflow:hidden">
+        <div style="height:100%;border-radius:2px;background:var(--mu);width:0%"></div>
+      </div>
+      <div class="vtl-datebar">
+        <span style="font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--mu);width:36px">ПЛАН</span>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--mu2)">02 окт. → 16 окт.</span>
+      </div>
+      
+      
+      <div class="vtl-scope">2 унитаза, 2 душ. стойки GROHE, смесители, бойлер</div>
+      
+      <div style="padding:6px 12px 8px;border-top:1px solid var(--bd)">
+        <div style="font-family:var(--mono);font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mu);margin-bottom:5px">📦 Доставки</div>
+        
+          <div style="display:flex;align-items:center;gap:6px;padding:3px 0;border-bottom:1px solid rgba(28,34,51,.4);font-size:11px">
+            <span>🚛</span>
+            <span style="flex:1;color:#a89070;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Сантехника чистовая GROHE/TECE</span>
+            <span style="font-family:var(--mono);font-size:9px;color:var(--mu);flex-shrink:0">02 окт.</span>
+          </div>
+      </div>
+      <div class="vtl-actions">
+        
+        
+        
+      </div>
+    </div></div><div class="vtl-item"><div class="vtl-left">
+      <div class="vtl-dot plan" style="background:var(--mu)"></div>
+      
+    </div><div class="vtl-card plan">
+      <div class="vtl-card-top">
+        <div>
+          <div class="vtl-card-name" style="color:#e89040">💡 Чистовой электромонтаж<span style="font-size:9px;color:var(--r);margin-left:5px;font-family:var(--mono)">●КП</span></div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--mu);margin-top:2px">⬅ 9+11 (FS)</div>
+        </div>
+        <span class="st-badge plan" style="cursor:pointer;flex-shrink:0" onclick="cycleStatus(12)">План</span>
+      </div>
+      <div class="vtl-card-meta">
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Исполнитель</div>
+          <div class="vtl-meta-val" style="color:#e89040;font-size:11px">Петров Д.</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Бригада</div>
+          <div class="vtl-meta-val" style="color:#e89040">2 чел.</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Дней</div>
+          <div class="vtl-meta-val">10</div>
+        </div>
+        <div class="vtl-meta-cell">
+          <div class="vtl-meta-lbl">Готовность</div>
+          <div class="vtl-meta-val" style="color:var(--mu)">0%</div>
+        </div>
+      </div>
+      <div style="height:3px;background:var(--bd);margin:0 12px;border-radius:2px;overflow:hidden">
+        <div style="height:100%;border-radius:2px;background:var(--mu);width:0%"></div>
+      </div>
+      <div class="vtl-datebar">
+        <span style="font-family:var(--mono);font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--mu);width:36px">ПЛАН</span>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--mu2)">17 окт. → 27 окт.</span>
+      </div>
+      
+      
+      <div class="vtl-scope">Умный дом, 73 розетки, 21 выкл., светильники</div>
+      
+      <div style="padding:6px 12px 8px;border-top:1px solid var(--bd)">
+        <div style="font-family:var(--mono);font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mu);margin-bottom:5px">📦 Доставки</div>
+        
+          <div style="display:flex;align-items:center;gap:6px;padding:3px 0;border-bottom:1px solid rgba(28,34,51,.4);font-size:11px">
+            <span>🚛</span>
+            <span style="flex:1;color:#a89070;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Розетки, выкл., светильники</span>
+            <span style="font-family:var(--mono);font-size:9px;color:var(--mu);flex-shrink:0">16 окт.</span>
+          </div>
+      </div>
+      <div class="vtl-actions">
+        
+        
+        
+      </div>
+    </div></div></div></div>
   </div>
 </div>
 
@@ -594,23 +2254,526 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 <div class="sec" id="materials-sec">
   <div class="sec-hdr">
     Материалы и доставки
-    <button id="btnAddDelivery2" onclick="addDeliveryModal()" style="display:none;margin-left:auto;background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.3);color:var(--acc);padding:5px 12px;border-radius:5px;font-family:var(--mono);font-size:9px;letter-spacing:1px;cursor:pointer;white-space:nowrap">＋ Добавить доставку</button>
+    <button id="btnAddDelivery2" onclick="addDeliveryModal()" style="display: none; margin-left: auto; background: rgba(245, 200, 66, 0.1); border: 1px solid rgba(245, 200, 66, 0.3); color: var(--acc); padding: 5px 12px; border-radius: 5px; font-family: var(--mono); font-size: 9px; letter-spacing: 1px; cursor: pointer; white-space: nowrap;">＋ Добавить доставку</button>
   </div>
-  <div id="materialsGrid"></div>
+  <div id="materialsGrid"><div style="background: var(--s1); border: 1px solid var(--bd); border-radius: 10px; overflow: hidden; margin-bottom: 12px;">
+      <div style="padding:12px 16px;background:var(--s2);border-bottom:1px solid var(--bd);
+        display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:16px">🔨</span>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:#e8a838">Подготовительные / демонтаж</div>
+            <div style="font-family:var(--mono);font-size:9px;color:var(--mu);margin-top:1px">
+              1 черновых · 0 чистовых · 1 доставок
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;gap:6px;align-items:center">
+          <span style="background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.2);color:var(--acc);padding:2px 8px;border-radius:4px;font-family:var(--mono);font-size:9px">📦 1 черн.</span>
+          
+          
+        </div>
+      </div>
+    <div style="padding: 8px 0px;"><div style="display: flex; align-items: center; gap: 10px; padding: 8px 16px; border-bottom: 1px solid rgba(28, 34, 51, 0.5);">
+          <span style="font-size:18px;flex-shrink:0">📦</span>
+          <div style="flex:1;min-width:0">
+            <div style="font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Газобетон + ЦПС (перегородки)</div>
+            <div style="display: flex; gap: 6px; margin-top: 3px; align-items: center; flex-wrap: wrap; border-bottom-width: medium; border-bottom-style: none; border-bottom-color: currentcolor;">
+              <span style="background:rgba(120,144,168,.12);border:1px solid #7890a833;color:#7890a8;
+                padding:1px 7px;border-radius:3px;font-family:var(--mono);font-size:8px;letter-spacing:1px">ЧЕРНОВЫЕ</span>
+              <span style="font-family:var(--mono);font-size:10px;color:var(--mu2)">📅 05 мар.</span>
+            </div>
+          </div>
+          
+        </div></div></div><div style="background: var(--s1); border: 1px solid var(--bd); border-radius: 10px; overflow: hidden; margin-bottom: 12px;">
+      <div style="padding:12px 16px;background:var(--s2);border-bottom:1px solid var(--bd);
+        display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:16px">🪣</span>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:#c084e8">Монтаж перегородок/Штукатурка стен</div>
+            <div style="font-family:var(--mono);font-size:9px;color:var(--mu);margin-top:1px">
+              1 черновых · 0 чистовых · 1 доставок
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;gap:6px;align-items:center">
+          <span style="background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.2);color:var(--acc);padding:2px 8px;border-radius:4px;font-family:var(--mono);font-size:9px">📦 1 черн.</span>
+          
+          
+        </div>
+      </div>
+    <div style="padding: 8px 0px;"><div style="display: flex; align-items: center; gap: 10px; padding: 8px 16px; border-bottom: 1px solid rgba(28, 34, 51, 0.5);">
+          <span style="font-size:18px;flex-shrink:0">📦</span>
+          <div style="flex:1;min-width:0">
+            <div style="font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Штукатурные смеси Knauf</div>
+            <div style="display: flex; gap: 6px; margin-top: 3px; align-items: center; flex-wrap: wrap; border-bottom-width: medium; border-bottom-style: none; border-bottom-color: currentcolor;">
+              <span style="background:rgba(120,144,168,.12);border:1px solid #7890a833;color:#7890a8;
+                padding:1px 7px;border-radius:3px;font-family:var(--mono);font-size:8px;letter-spacing:1px">ЧЕРНОВЫЕ</span>
+              <span style="font-family:var(--mono);font-size:10px;color:var(--mu2)">📅 23 мар.</span>
+            </div>
+          </div>
+          
+        </div></div></div><div style="background: var(--s1); border: 1px solid var(--bd); border-radius: 10px; overflow: hidden; margin-bottom: 12px;">
+      <div style="padding:12px 16px;background:var(--s2);border-bottom:1px solid var(--bd);
+        display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:16px">🔧</span>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:#38c4a8">Чер. сантехника (вода/кан.)</div>
+            <div style="font-family:var(--mono);font-size:9px;color:var(--mu);margin-top:1px">
+              1 черновых · 0 чистовых · 1 доставок
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;gap:6px;align-items:center">
+          <span style="background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.2);color:var(--acc);padding:2px 8px;border-radius:4px;font-family:var(--mono);font-size:9px">📦 1 черн.</span>
+          
+          
+        </div>
+      </div>
+    <div style="padding: 8px 0px;"><div style="display: flex; align-items: center; gap: 10px; padding: 8px 16px; border-bottom: 1px solid rgba(28, 34, 51, 0.5);">
+          <span style="font-size:18px;flex-shrink:0">📦</span>
+          <div style="flex:1;min-width:0">
+            <div style="font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Трубы ХВС/ГВС + фитинги</div>
+            <div style="display: flex; gap: 6px; margin-top: 3px; align-items: center; flex-wrap: wrap; border-bottom-width: medium; border-bottom-style: none; border-bottom-color: currentcolor;">
+              <span style="background:rgba(120,144,168,.12);border:1px solid #7890a833;color:#7890a8;
+                padding:1px 7px;border-radius:3px;font-family:var(--mono);font-size:8px;letter-spacing:1px">ЧЕРНОВЫЕ</span>
+              <span style="font-family:var(--mono);font-size:10px;color:var(--mu2)">📅 18 апр.</span>
+            </div>
+          </div>
+          
+        </div></div></div><div style="background: var(--s1); border: 1px solid var(--bd); border-radius: 10px; overflow: hidden; margin-bottom: 12px;">
+      <div style="padding:12px 16px;background:var(--s2);border-bottom:1px solid var(--bd);
+        display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:16px">🌡</span>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:#e87058">Чер. сантехника (отопление)</div>
+            <div style="font-family:var(--mono);font-size:9px;color:var(--mu);margin-top:1px">
+              0 черновых · 0 чистовых · 0 доставок
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;gap:6px;align-items:center">
+          
+          
+          
+        </div>
+      </div>
+    <div style="padding: 16px; text-align: center; font-family: var(--mono); font-size: 10px; color: var(--mu);">Доставки не запланированы</div></div><div style="background: var(--s1); border: 1px solid var(--bd); border-radius: 10px; overflow: hidden; margin-bottom: 12px;">
+      <div style="padding:12px 16px;background:var(--s2);border-bottom:1px solid var(--bd);
+        display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:16px">⚡</span>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:#e86090">Черновая электрика</div>
+            <div style="font-family:var(--mono);font-size:9px;color:var(--mu);margin-top:1px">
+              1 черновых · 0 чистовых · 1 доставок
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;gap:6px;align-items:center">
+          <span style="background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.2);color:var(--acc);padding:2px 8px;border-radius:4px;font-family:var(--mono);font-size:9px">📦 1 черн.</span>
+          
+          
+        </div>
+      </div>
+    <div style="padding: 8px 0px;"><div style="display: flex; align-items: center; gap: 10px; padding: 8px 16px; border-bottom: 1px solid rgba(28, 34, 51, 0.5);">
+          <span style="font-size:18px;flex-shrink:0">📦</span>
+          <div style="flex:1;min-width:0">
+            <div style="font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Кабель + гофра (380 м.п.)</div>
+            <div style="display: flex; gap: 6px; margin-top: 3px; align-items: center; flex-wrap: wrap; border-bottom-width: medium; border-bottom-style: none; border-bottom-color: currentcolor;">
+              <span style="background:rgba(120,144,168,.12);border:1px solid #7890a833;color:#7890a8;
+                padding:1px 7px;border-radius:3px;font-family:var(--mono);font-size:8px;letter-spacing:1px">ЧЕРНОВЫЕ</span>
+              <span style="font-family:var(--mono);font-size:10px;color:var(--mu2)">📅 19 мая</span>
+            </div>
+          </div>
+          
+        </div></div></div><div style="background: var(--s1); border: 1px solid var(--bd); border-radius: 10px; overflow: hidden; margin-bottom: 12px;">
+      <div style="padding:12px 16px;background:var(--s2);border-bottom:1px solid var(--bd);
+        display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:16px">🏗</span>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:#6098e8">Черновой пол (стяжка)</div>
+            <div style="font-family:var(--mono);font-size:9px;color:var(--mu);margin-top:1px">
+              1 черновых · 0 чистовых · 1 доставок
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;gap:6px;align-items:center">
+          <span style="background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.2);color:var(--acc);padding:2px 8px;border-radius:4px;font-family:var(--mono);font-size:9px">📦 1 черн.</span>
+          
+          
+        </div>
+      </div>
+    <div style="padding: 8px 0px;"><div style="display: flex; align-items: center; gap: 10px; padding: 8px 16px; border-bottom: 1px solid rgba(28, 34, 51, 0.5);">
+          <span style="font-size:18px;flex-shrink:0">📦</span>
+          <div style="flex:1;min-width:0">
+            <div style="font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Материалы стяжки + гидроизол.</div>
+            <div style="display: flex; gap: 6px; margin-top: 3px; align-items: center; flex-wrap: wrap; border-bottom-width: medium; border-bottom-style: none; border-bottom-color: currentcolor;">
+              <span style="background:rgba(120,144,168,.12);border:1px solid #7890a833;color:#7890a8;
+                padding:1px 7px;border-radius:3px;font-family:var(--mono);font-size:8px;letter-spacing:1px">ЧЕРНОВЫЕ</span>
+              <span style="font-family:var(--mono);font-size:10px;color:var(--mu2)">📅 15 июн.</span>
+            </div>
+          </div>
+          
+        </div></div></div><div style="background: var(--s1); border: 1px solid var(--bd); border-radius: 10px; overflow: hidden; margin-bottom: 12px;">
+      <div style="padding:12px 16px;background:var(--s2);border-bottom:1px solid var(--bd);
+        display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:16px">📐</span>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:#50c8e0">Монтаж ГКЛ (потолки)</div>
+            <div style="font-family:var(--mono);font-size:9px;color:var(--mu);margin-top:1px">
+              1 черновых · 0 чистовых · 1 доставок
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;gap:6px;align-items:center">
+          <span style="background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.2);color:var(--acc);padding:2px 8px;border-radius:4px;font-family:var(--mono);font-size:9px">📦 1 черн.</span>
+          
+          
+        </div>
+      </div>
+    <div style="padding: 8px 0px;"><div style="display: flex; align-items: center; gap: 10px; padding: 8px 16px; border-bottom: 1px solid rgba(28, 34, 51, 0.5);">
+          <span style="font-size:18px;flex-shrink:0">📦</span>
+          <div style="flex:1;min-width:0">
+            <div style="font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Профиль ГКЛ + гипсокартон</div>
+            <div style="display: flex; gap: 6px; margin-top: 3px; align-items: center; flex-wrap: wrap; border-bottom-width: medium; border-bottom-style: none; border-bottom-color: currentcolor;">
+              <span style="background:rgba(120,144,168,.12);border:1px solid #7890a833;color:#7890a8;
+                padding:1px 7px;border-radius:3px;font-family:var(--mono);font-size:8px;letter-spacing:1px">ЧЕРНОВЫЕ</span>
+              <span style="font-family:var(--mono);font-size:10px;color:var(--mu2)">📅 27 июн.</span>
+            </div>
+          </div>
+          
+        </div></div></div><div style="background: var(--s1); border: 1px solid var(--bd); border-radius: 10px; overflow: hidden; margin-bottom: 12px;">
+      <div style="padding:12px 16px;background:var(--s2);border-bottom:1px solid var(--bd);
+        display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:16px">🪟</span>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:#a8c840">Плиточные работы</div>
+            <div style="font-family:var(--mono);font-size:9px;color:var(--mu);margin-top:1px">
+              0 черновых · 1 чистовых · 1 доставок
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;gap:6px;align-items:center">
+          
+          <span style="background:rgba(61,214,140,.1);border:1px solid rgba(61,214,140,.2);color:var(--g);padding:2px 8px;border-radius:4px;font-family:var(--mono);font-size:9px">🚛 1 чист.</span>
+          
+        </div>
+      </div>
+    <div style="padding: 8px 0px;"><div style="display: flex; align-items: center; gap: 10px; padding: 8px 16px; border-bottom: 1px solid rgba(28, 34, 51, 0.5);">
+          <span style="font-size:18px;flex-shrink:0">🚛</span>
+          <div style="flex:1;min-width:0">
+            <div style="font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Плитка + затирки + гидроизол.</div>
+            <div style="display: flex; gap: 6px; margin-top: 3px; align-items: center; flex-wrap: wrap; border-bottom-width: medium; border-bottom-style: none; border-bottom-color: currentcolor;">
+              <span style="background:rgba(168,144,112,.12);border:1px solid #a8907033;color:#a89070;
+                padding:1px 7px;border-radius:3px;font-family:var(--mono);font-size:8px;letter-spacing:1px">ЧИСТОВЫЕ</span>
+              <span style="font-family:var(--mono);font-size:10px;color:var(--mu2)">📅 19 июл.</span>
+            </div>
+          </div>
+          
+        </div></div></div><div style="background: var(--s1); border: 1px solid var(--bd); border-radius: 10px; overflow: hidden; margin-bottom: 12px;">
+      <div style="padding:12px 16px;background:var(--s2);border-bottom:1px solid var(--bd);
+        display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:16px">🎨</span>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:#e8c050">Малярные работы</div>
+            <div style="font-family:var(--mono);font-size:9px;color:var(--mu);margin-top:1px">
+              0 черновых · 1 чистовых · 1 доставок
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;gap:6px;align-items:center">
+          
+          <span style="background:rgba(61,214,140,.1);border:1px solid rgba(61,214,140,.2);color:var(--g);padding:2px 8px;border-radius:4px;font-family:var(--mono);font-size:9px">🚛 1 чист.</span>
+          
+        </div>
+      </div>
+    <div style="padding: 8px 0px;"><div style="display: flex; align-items: center; gap: 10px; padding: 8px 16px; border-bottom: 1px solid rgba(28, 34, 51, 0.5);">
+          <span style="font-size:18px;flex-shrink:0">🚛</span>
+          <div style="flex:1;min-width:0">
+            <div style="font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Краски + шпатлёвка + молдинги</div>
+            <div style="display: flex; gap: 6px; margin-top: 3px; align-items: center; flex-wrap: wrap; border-bottom-width: medium; border-bottom-style: none; border-bottom-color: currentcolor;">
+              <span style="background:rgba(168,144,112,.12);border:1px solid #a8907033;color:#a89070;
+                padding:1px 7px;border-radius:3px;font-family:var(--mono);font-size:8px;letter-spacing:1px">ЧИСТОВЫЕ</span>
+              <span style="font-family:var(--mono);font-size:10px;color:var(--mu2)">📅 18 авг.</span>
+            </div>
+          </div>
+          
+        </div></div></div><div style="background: var(--s1); border: 1px solid var(--bd); border-radius: 10px; overflow: hidden; margin-bottom: 12px;">
+      <div style="padding:12px 16px;background:var(--s2);border-bottom:1px solid var(--bd);
+        display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:16px">🟫</span>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:#9860e8">Устройство пола / плинтус</div>
+            <div style="font-family:var(--mono);font-size:9px;color:var(--mu);margin-top:1px">
+              0 черновых · 1 чистовых · 1 доставок
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;gap:6px;align-items:center">
+          
+          <span style="background:rgba(61,214,140,.1);border:1px solid rgba(61,214,140,.2);color:var(--g);padding:2px 8px;border-radius:4px;font-family:var(--mono);font-size:9px">🚛 1 чист.</span>
+          
+        </div>
+      </div>
+    <div style="padding: 8px 0px;"><div style="display: flex; align-items: center; gap: 10px; padding: 8px 16px; border-bottom: 1px solid rgba(28, 34, 51, 0.5);">
+          <span style="font-size:18px;flex-shrink:0">🚛</span>
+          <div style="flex:1;min-width:0">
+            <div style="font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Паркет COSWICK орех + плинтус</div>
+            <div style="display: flex; gap: 6px; margin-top: 3px; align-items: center; flex-wrap: wrap; border-bottom-width: medium; border-bottom-style: none; border-bottom-color: currentcolor;">
+              <span style="background:rgba(168,144,112,.12);border:1px solid #a8907033;color:#a89070;
+                padding:1px 7px;border-radius:3px;font-family:var(--mono);font-size:8px;letter-spacing:1px">ЧИСТОВЫЕ</span>
+              <span style="font-family:var(--mono);font-size:10px;color:var(--mu2)">📅 15 сент.</span>
+            </div>
+          </div>
+          
+        </div></div></div><div style="background: var(--s1); border: 1px solid var(--bd); border-radius: 10px; overflow: hidden; margin-bottom: 12px;">
+      <div style="padding:12px 16px;background:var(--s2);border-bottom:1px solid var(--bd);
+        display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:16px">🚿</span>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:#40d890">Чистовой сантехмонтаж</div>
+            <div style="font-family:var(--mono);font-size:9px;color:var(--mu);margin-top:1px">
+              0 черновых · 1 чистовых · 1 доставок
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;gap:6px;align-items:center">
+          
+          <span style="background:rgba(61,214,140,.1);border:1px solid rgba(61,214,140,.2);color:var(--g);padding:2px 8px;border-radius:4px;font-family:var(--mono);font-size:9px">🚛 1 чист.</span>
+          
+        </div>
+      </div>
+    <div style="padding: 8px 0px;"><div style="display: flex; align-items: center; gap: 10px; padding: 8px 16px; border-bottom: 1px solid rgba(28, 34, 51, 0.5);">
+          <span style="font-size:18px;flex-shrink:0">🚛</span>
+          <div style="flex:1;min-width:0">
+            <div style="font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Сантехника чистовая GROHE/TECE</div>
+            <div style="display: flex; gap: 6px; margin-top: 3px; align-items: center; flex-wrap: wrap; border-bottom-width: medium; border-bottom-style: none; border-bottom-color: currentcolor;">
+              <span style="background:rgba(168,144,112,.12);border:1px solid #a8907033;color:#a89070;
+                padding:1px 7px;border-radius:3px;font-family:var(--mono);font-size:8px;letter-spacing:1px">ЧИСТОВЫЕ</span>
+              <span style="font-family:var(--mono);font-size:10px;color:var(--mu2)">📅 02 окт.</span>
+            </div>
+          </div>
+          
+        </div></div></div><div style="background: var(--s1); border: 1px solid var(--bd); border-radius: 10px; overflow: hidden; margin-bottom: 12px;">
+      <div style="padding:12px 16px;background:var(--s2);border-bottom:1px solid var(--bd);
+        display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:16px">💡</span>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:#e89040">Чистовой электромонтаж</div>
+            <div style="font-family:var(--mono);font-size:9px;color:var(--mu);margin-top:1px">
+              0 черновых · 1 чистовых · 1 доставок
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;gap:6px;align-items:center">
+          
+          <span style="background:rgba(61,214,140,.1);border:1px solid rgba(61,214,140,.2);color:var(--g);padding:2px 8px;border-radius:4px;font-family:var(--mono);font-size:9px">🚛 1 чист.</span>
+          
+        </div>
+      </div>
+    <div style="padding: 8px 0px;"><div style="display: flex; align-items: center; gap: 10px; padding: 8px 16px; border-bottom: 1px solid rgba(28, 34, 51, 0.5);">
+          <span style="font-size:18px;flex-shrink:0">🚛</span>
+          <div style="flex:1;min-width:0">
+            <div style="font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Розетки, выкл., светильники</div>
+            <div style="display: flex; gap: 6px; margin-top: 3px; align-items: center; flex-wrap: wrap; border-bottom-width: medium; border-bottom-style: none; border-bottom-color: currentcolor;">
+              <span style="background:rgba(168,144,112,.12);border:1px solid #a8907033;color:#a89070;
+                padding:1px 7px;border-radius:3px;font-family:var(--mono);font-size:8px;letter-spacing:1px">ЧИСТОВЫЕ</span>
+              <span style="font-family:var(--mono);font-size:10px;color:var(--mu2)">📅 16 окт.</span>
+            </div>
+          </div>
+          
+        </div></div></div></div>
 </div>
 
 <!-- STATS -->
 <div class="sec" id="stats-sec">
   <div class="sec-hdr">Статус по этапам</div>
-  <div id="statsGrid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px">
-  </div>
+  <div id="statsGrid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px"><div style="background: var(--s2); border: 1px solid var(--bd); border-radius: 8px; padding: 12px 14px; display: flex; align-items: center; gap: 10px;">
+      <span style="font-size:18px">🔨</span>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Подготовительные / демонтаж</div>
+        <div style="height:4px;background:var(--bd);border-radius:2px;margin-top:5px;overflow:hidden">
+          <div style="height:100%;border-radius:2px;background:var(--g);width:100%"></div>
+        </div>
+      </div>
+      <span class="st-badge done">Готово</span>
+    </div><div style="background: var(--s2); border: 1px solid var(--bd); border-radius: 8px; padding: 12px 14px; display: flex; align-items: center; gap: 10px;">
+      <span style="font-size:18px">🪣</span>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Монтаж перегородок/Штукатурка стен</div>
+        <div style="height:4px;background:var(--bd);border-radius:2px;margin-top:5px;overflow:hidden">
+          <div style="height:100%;border-radius:2px;background:var(--g);width:100%"></div>
+        </div>
+      </div>
+      <span class="st-badge done">Готово</span>
+    </div><div style="background: var(--s2); border: 1px solid var(--bd); border-radius: 8px; padding: 12px 14px; display: flex; align-items: center; gap: 10px;">
+      <span style="font-size:18px">🔧</span>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Чер. сантехника (вода/кан.)</div>
+        <div style="height:4px;background:var(--bd);border-radius:2px;margin-top:5px;overflow:hidden">
+          <div style="height:100%;border-radius:2px;background:var(--g);width:100%"></div>
+        </div>
+      </div>
+      <span class="st-badge done">Готово</span>
+    </div><div style="background: var(--s2); border: 1px solid var(--bd); border-radius: 8px; padding: 12px 14px; display: flex; align-items: center; gap: 10px;">
+      <span style="font-size:18px">🌡</span>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Чер. сантехника (отопление)</div>
+        <div style="height:4px;background:var(--bd);border-radius:2px;margin-top:5px;overflow:hidden">
+          <div style="height:100%;border-radius:2px;background:var(--g);width:100%"></div>
+        </div>
+      </div>
+      <span class="st-badge done">Готово</span>
+    </div><div style="background: var(--s2); border: 1px solid var(--bd); border-radius: 8px; padding: 12px 14px; display: flex; align-items: center; gap: 10px;">
+      <span style="font-size:18px">⚡</span>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Черновая электрика</div>
+        <div style="height:4px;background:var(--bd);border-radius:2px;margin-top:5px;overflow:hidden">
+          <div style="height:100%;border-radius:2px;background:#e86090;width:50%"></div>
+        </div>
+      </div>
+      <span class="st-badge active">В работе</span>
+    </div><div style="background: var(--s2); border: 1px solid var(--bd); border-radius: 8px; padding: 12px 14px; display: flex; align-items: center; gap: 10px;">
+      <span style="font-size:18px">🏗</span>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Черновой пол (стяжка)</div>
+        <div style="height:4px;background:var(--bd);border-radius:2px;margin-top:5px;overflow:hidden">
+          <div style="height:100%;border-radius:2px;background:var(--mu);width:0%"></div>
+        </div>
+      </div>
+      <span class="st-badge plan">План</span>
+    </div><div style="background: var(--s2); border: 1px solid var(--bd); border-radius: 8px; padding: 12px 14px; display: flex; align-items: center; gap: 10px;">
+      <span style="font-size:18px">📐</span>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Монтаж ГКЛ (потолки)</div>
+        <div style="height:4px;background:var(--bd);border-radius:2px;margin-top:5px;overflow:hidden">
+          <div style="height:100%;border-radius:2px;background:var(--mu);width:0%"></div>
+        </div>
+      </div>
+      <span class="st-badge plan">План</span>
+    </div><div style="background: var(--s2); border: 1px solid var(--bd); border-radius: 8px; padding: 12px 14px; display: flex; align-items: center; gap: 10px;">
+      <span style="font-size:18px">🪟</span>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Плиточные работы</div>
+        <div style="height:4px;background:var(--bd);border-radius:2px;margin-top:5px;overflow:hidden">
+          <div style="height:100%;border-radius:2px;background:var(--mu);width:0%"></div>
+        </div>
+      </div>
+      <span class="st-badge plan">План</span>
+    </div><div style="background: var(--s2); border: 1px solid var(--bd); border-radius: 8px; padding: 12px 14px; display: flex; align-items: center; gap: 10px;">
+      <span style="font-size:18px">🎨</span>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Малярные работы</div>
+        <div style="height:4px;background:var(--bd);border-radius:2px;margin-top:5px;overflow:hidden">
+          <div style="height:100%;border-radius:2px;background:var(--mu);width:0%"></div>
+        </div>
+      </div>
+      <span class="st-badge plan">План</span>
+    </div><div style="background: var(--s2); border: 1px solid var(--bd); border-radius: 8px; padding: 12px 14px; display: flex; align-items: center; gap: 10px;">
+      <span style="font-size:18px">🟫</span>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Устройство пола / плинтус</div>
+        <div style="height:4px;background:var(--bd);border-radius:2px;margin-top:5px;overflow:hidden">
+          <div style="height:100%;border-radius:2px;background:var(--mu);width:0%"></div>
+        </div>
+      </div>
+      <span class="st-badge plan">План</span>
+    </div><div style="background: var(--s2); border: 1px solid var(--bd); border-radius: 8px; padding: 12px 14px; display: flex; align-items: center; gap: 10px;">
+      <span style="font-size:18px">🚿</span>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Чистовой сантехмонтаж</div>
+        <div style="height:4px;background:var(--bd);border-radius:2px;margin-top:5px;overflow:hidden">
+          <div style="height:100%;border-radius:2px;background:var(--mu);width:0%"></div>
+        </div>
+      </div>
+      <span class="st-badge plan">План</span>
+    </div><div style="background: var(--s2); border: 1px solid var(--bd); border-radius: 8px; padding: 12px 14px; display: flex; align-items: center; gap: 10px;">
+      <span style="font-size:18px">💡</span>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Чистовой электромонтаж</div>
+        <div style="height:4px;background:var(--bd);border-radius:2px;margin-top:5px;overflow:hidden">
+          <div style="height:100%;border-radius:2px;background:var(--mu);width:0%"></div>
+        </div>
+      </div>
+      <span class="st-badge plan">План</span>
+    </div></div>
 </div>
 
 <!-- TEAM -->
 <div class="sec" id="team-sec">
   <div class="sec-hdr">Команда проекта</div>
-  <div id="teamGrid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">
-  </div>
+  <div id="teamGrid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px"><div style="background: var(--s2); border: 1px solid var(--bd); border-radius: 8px; padding: 14px; text-align: center;">
+      <div style="width:42px;height:42px;border-radius:50%;background:#e8a83822;color:#e8a838;
+        display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-size:18px;margin:0 auto 8px">
+        МА
+      </div>
+      <div style="font-size:12px;font-weight:700;margin-bottom:3px">Морозов А.</div>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--mu)">
+        Этапы: 1, 6, 7<br>
+        3 чел./смену
+      </div>
+    </div><div style="background: var(--s2); border: 1px solid var(--bd); border-radius: 8px; padding: 14px; text-align: center;">
+      <div style="width:42px;height:42px;border-radius:50%;background:#c084e822;color:#c084e8;
+        display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-size:18px;margin:0 auto 8px">
+        КВ
+      </div>
+      <div style="font-size:12px;font-weight:700;margin-bottom:3px">Кузнецов В.</div>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--mu)">
+        Этапы: 2<br>
+        2 чел./смену
+      </div>
+    </div><div style="background: var(--s2); border: 1px solid var(--bd); border-radius: 8px; padding: 14px; text-align: center;">
+      <div style="width:42px;height:42px;border-radius:50%;background:#38c4a822;color:#38c4a8;
+        display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-size:18px;margin:0 auto 8px">
+        СИ
+      </div>
+      <div style="font-size:12px;font-weight:700;margin-bottom:3px">Соколов И.</div>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--mu)">
+        Этапы: 3, 4, 11<br>
+        2 чел./смену
+      </div>
+    </div><div style="background: var(--s2); border: 1px solid var(--bd); border-radius: 8px; padding: 14px; text-align: center;">
+      <div style="width:42px;height:42px;border-radius:50%;background:#e8609022;color:#e86090;
+        display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-size:18px;margin:0 auto 8px">
+        ПД
+      </div>
+      <div style="font-size:12px;font-weight:700;margin-bottom:3px">Петров Д.</div>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--mu)">
+        Этапы: 5, 12<br>
+        2 чел./смену
+      </div>
+    </div><div style="background: var(--s2); border: 1px solid var(--bd); border-radius: 8px; padding: 14px; text-align: center;">
+      <div style="width:42px;height:42px;border-radius:50%;background:#a8c84022;color:#a8c840;
+        display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-size:18px;margin:0 auto 8px">
+        ТО
+      </div>
+      <div style="font-size:12px;font-weight:700;margin-bottom:3px">Тихонов О.</div>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--mu)">
+        Этапы: 8, 10<br>
+        2 чел./смену
+      </div>
+    </div><div style="background: var(--s2); border: 1px solid var(--bd); border-radius: 8px; padding: 14px; text-align: center;">
+      <div style="width:42px;height:42px;border-radius:50%;background:#e8c05022;color:#e8c050;
+        display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-size:18px;margin:0 auto 8px">
+        Мб
+      </div>
+      <div style="font-size:12px;font-weight:700;margin-bottom:3px">Малярная бригада</div>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--mu)">
+        Этапы: 9<br>
+        3 чел./смену
+      </div>
+    </div></div>
 </div>
 
 </div><!-- /page -->
@@ -619,14 +2782,99 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 <div class="modal-overlay" id="editModal">
   <div class="modal">
     <div class="modal-hdr">
-      <div class="modal-title" id="modalTitle">Редактировать этап</div>
+      <div class="modal-title" id="modalTitle">⚡ Черновая электрика</div>
       <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
-    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-body" id="modalBody">
+    <div class="field-row">
+      <div class="field-group">
+        <label class="field-label">Название</label>
+        <input class="field-input" id="fe-name" value="Черновая электрика">
+      </div>
+      <div class="field-group">
+        <label class="field-label">Emoji</label>
+        <input class="field-input" id="fe-em" value="⚡" style="max-width:70px">
+      </div>
+    </div>
+    <div class="field-group">
+      <label class="field-label">Исполнитель</label>
+      <input class="field-input" id="fe-person" value="Петров Д." list="people-list">
+      <datalist id="people-list">
+        <option value="Морозов А."></option><option value="Кузнецов В."></option><option value="Соколов И."></option><option value="Петров Д."></option><option value="Тихонов О."></option><option value="Малярная бригада">
+      </option></datalist>
+    </div>
+    <div class="field-row">
+      <div class="field-group">
+        <label class="field-label">Кол-во человек</label>
+        <input class="field-input" id="fe-count" type="number" min="1" max="20" value="2">
+      </div>
+      <div class="field-group">
+        <label class="field-label">Статус</label>
+        <select class="field-input field-select" id="fe-status">
+          <option value="plan">План</option><option value="active" selected="">В работе</option><option value="done">Готово</option><option value="delayed">⚠ Задержка</option>
+        </select>
+      </div>
+    </div>
+    <div class="section-divider">
+      <div class="section-divider-label">📅 Плановые даты</div>
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label">Начало (план)</label>
+          <input class="field-input" id="fe-ps" type="date" value="2026-05-20">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Конец (план)</label>
+          <input class="field-input" id="fe-pe" type="date" value="2026-06-15">
+        </div>
+      </div>
+    </div>
+    <div class="section-divider">
+      <div class="section-divider-label">✅ Фактические даты</div>
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label">Начало (факт)</label>
+          <input class="field-input" id="fe-fs" type="date" value="">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Конец (факт)</label>
+          <input class="field-input" id="fe-fe" type="date" value="">
+        </div>
+      </div>
+    </div>
+    <div class="section-divider">
+      <div class="section-divider-label">🔗 Зависимости</div>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--mu);margin-bottom:10px;line-height:1.5">
+        <b style="color:var(--mu2)">FS</b> — Finish-to-Start: этап начинается <b>после</b> завершения предшественника. Даты сдвигаются автоматически.<br>
+        <b style="color:var(--mu2)">SS</b> — Start-to-Start: этапы идут <b>параллельно</b>. Даты устанавливаются вручную независимо.
+      </div>
+      <div id="pred-list" style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px"><div class="pred-row" style="display: flex; gap: 8px; align-items: center;">
+    <select class="field-input field-select pred-stage-sel" style="flex:1;font-size:13px;padding:7px 10px">
+      <option value="">— нет предшественника —</option>
+      <option value="1" selected="">#1 🔨 Подготовительные / демонтаж</option><option value="2">#2 🪣 Монтаж перегородок/Штукатурка стен</option><option value="3">#3 🔧 Чер. сантехника (вода/кан.)</option><option value="4">#4 🌡 Чер. сантехника (отопление)</option><option value="6">#6 🏗 Черновой пол (стяжка)</option><option value="7">#7 📐 Монтаж ГКЛ (потолки)</option><option value="8">#8 🪟 Плиточные работы</option><option value="9">#9 🎨 Малярные работы</option><option value="10">#10 🟫 Устройство пола / плинтус</option><option value="11">#11 🚿 Чистовой сантехмонтаж</option><option value="12">#12 💡 Чистовой электромонтаж</option>
+    </select>
+    <select class="field-input field-select pred-type-sel" style="width:100px;font-size:13px;padding:7px 8px" title="Тип зависимости">
+      <option value="FS">FS →</option>
+      <option value="SS" selected="">SS ∥</option>
+    </select>
+    <button type="button" onclick="this.closest('.pred-row').remove();updatePredString()" style="background:none;border:1px solid rgba(242,78,90,.2);color:var(--r);padding:6px 8px;border-radius:5px;font-size:12px;cursor:pointer;touch-action:manipulation;flex-shrink:0">✕</button>
+  </div></div>
+      <button type="button" onclick="addPredRow()" style="background:var(--s3);border:1px dashed var(--bd2);color:var(--mu2);padding:6px 12px;border-radius:5px;font-family:var(--mono);font-size:9px;letter-spacing:1px;cursor:pointer;width:100%;text-align:center;touch-action:manipulation">+ Добавить предшественника</button>
+      <input type="hidden" id="fe-pred" value="1 (SS)" data-stageid="5">
+    </div>
+    <div class="field-group">
+      <label class="field-label">Описание объёма работ</label>
+      <textarea class="field-input" id="fe-scope" rows="2" style="resize:vertical">97 подрозетников, щит (умный дом), 380 м.п. кабеля</textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-danger" onclick="deleteStage(5)">🗑 Удалить</button>
+      <button class="btn-secondary" onclick="closeModal()">Отмена</button>
+      <button class="btn-primary" onclick="saveStage(5)">СОХРАНИТЬ</button>
+    </div>
+  </div>
   </div>
 </div>
 
-<div class="toast" id="toast"></div>
+<div class="toast show" id="toast">🔒 РЕЖИМ ПРОСМОТРА</div>
 
 <script>
 // ═══════════════════════════════════════════════════════════
@@ -710,73 +2958,7 @@ function fmtDate(d){
 // ═══════════════════════════════════════════════════════════
 // DEFAULT DATA
 // ═══════════════════════════════════════════════════════════
-const DEFAULT_DATA = {
-  project: {
-    name: 'СОБЫТИЕ',
-    address: 'г. Москва, ЖК «Событие»',
-    area: '71,56 м²',
-    rooms: '7 помещений',
-    contactlabel: 'Руководитель компании',
-    contact: 'Андрей +7 915 883-25-26',
-    contact2label: 'Руководитель проекта (РП)',
-    contact2: '',
-    startDate: '2026-06-02',
-    endDate: '2026-09-22',
-    binId: '6a0361c2250b1311c33dc0de',
-    version: '1.4.0',
-  },
-  stages: [
-    {id:1,  em:'🔨', name:'Подготовительные / демонтаж',   planStart:0,  planDur:14, factStart:null, factDur:null,
-     color:'#e8a838', person:'Морозов А.',   count:3, status:'active', delayReason:'',
-     pred:'—',  kp:false, scope:'Укрывка, демонтаж, перегородки газобетон 107,5 м²', dep:[]},
-    {id:2,  em:'🪣', name:'Штукатурка стен',                planStart:14, planDur:21, factStart:null, factDur:null,
-     color:'#c084e8', person:'Кузнецов В.',  count:2, status:'plan', delayReason:'',
-     pred:'1 (FS)', kp:true, scope:'Грунт 241 м², сетка 186 м², штукатурка по маякам 241 м²', dep:[1]},
-    {id:3,  em:'🔧', name:'Чер. сантехника (вода/кан.)',    planStart:14, planDur:18, factStart:null, factDur:null,
-     color:'#38c4a8', person:'Соколов И.',   count:2, status:'plan', delayReason:'',
-     pred:'1 (SS)', kp:false, scope:'11 точек ХВС/ГВС, 12 точек канализации, TECE, трап', dep:[1]},
-    {id:4,  em:'🌡', name:'Чер. сантехника (отопление)',    planStart:14, planDur:14, factStart:null, factDur:null,
-     color:'#e87058', person:'Соколов И.',   count:1, status:'plan', delayReason:'',
-     pred:'1 (SS)', kp:false, scope:'Коллектор, 4 радиатора, трубы, гидроиспытания', dep:[1]},
-    {id:5,  em:'⚡', name:'Черновая электрика',             planStart:14, planDur:21, factStart:null, factDur:null,
-     color:'#e86090', person:'Петров Д.',    count:2, status:'plan', delayReason:'',
-     pred:'1 (SS)', kp:false, scope:'97 подрозетников, щит (умный дом), 380 м.п. кабеля', dep:[1]},
-    {id:6,  em:'🏗', name:'Черновой пол (стяжка)',           planStart:14, planDur:28, factStart:null, factDur:null,
-     color:'#6098e8', person:'Морозов А.',   count:2, status:'plan', delayReason:'',
-     pred:'1 (SS)+сушка', kp:true, scope:'Гидро-шумоизоляция 71,56 м², ЦПС стяжка, сушка 21 дн.', dep:[1]},
-    {id:7,  em:'📐', name:'Монтаж ГКЛ (потолки)',           planStart:42, planDur:21, factStart:null, factDur:null,
-     color:'#50c8e0', person:'Морозов А.',   count:3, status:'plan', delayReason:'',
-     pred:'2+6 (FS)', kp:true, scope:'Каркас+ГКЛ 2 слоя потолков 71,56 м², ниши, откосы', dep:[2,6]},
-    {id:8,  em:'🪟', name:'Плиточные работы',                planStart:63, planDur:28, factStart:null, factDur:null,
-     color:'#a8c840', person:'Тихонов О.',   count:2, status:'plan', delayReason:'',
-     pred:'7 (FS)', kp:true, scope:'Гидроизоляция 65,7 м², плитка пол/стены, теплый пол 5,5 м²', dep:[7]},
-    {id:9,  em:'🎨', name:'Малярные работы',                 planStart:77, planDur:28, factStart:null, factDur:null,
-     color:'#e8c050', person:'Малярная бригада', count:3, status:'plan', delayReason:'',
-     pred:'7+8 (FS)', kp:true, scope:'Шпатлёвка Q3 потолок+стены 262 м², карниз, молдинг, покраска', dep:[7,8]},
-    {id:10, em:'🟫', name:'Устройство пола / плинтус',       planStart:98, planDur:10, factStart:null, factDur:null,
-     color:'#9860e8', person:'Тихонов О.',   count:2, status:'plan', delayReason:'',
-     pred:'9 (FS)', kp:false, scope:'Паркет ёлкой COSWICK орех 55,4 м², плинтус МДФ', dep:[9]},
-    {id:11, em:'🚿', name:'Чистовой сантехмонтаж',           planStart:91, planDur:14, factStart:null, factDur:null,
-     color:'#40d890', person:'Соколов И.',   count:1, status:'plan', delayReason:'',
-     pred:'8 (FS)', kp:false, scope:'2 унитаза, 2 душ. стойки GROHE, смесители, бойлер', dep:[8]},
-    {id:12, em:'💡', name:'Чистовой электромонтаж',          planStart:98, planDur:10, factStart:null, factDur:null,
-     color:'#e89040', person:'Петров Д.',    count:2, status:'plan', delayReason:'',
-     pred:'9+11 (FS)', kp:true, scope:'Умный дом, 73 розетки, 21 выкл., светильники', dep:[9,11]},
-  ],
-  deliveries: [
-    {id:'d1', em:'📦', name:'Газобетон + ЦПС (перегородки)',  planOffset:0,  color:'#7890a8', type:'rough', relStage:1},
-    {id:'d2', em:'📦', name:'Штукатурные смеси Knauf',         planOffset:12, color:'#7890a8', type:'rough', relStage:2},
-    {id:'d3', em:'📦', name:'Трубы ХВС/ГВС + фитинги',        planOffset:12, color:'#7890a8', type:'rough', relStage:3},
-    {id:'d4', em:'📦', name:'Кабель + гофра (380 м.п.)',       planOffset:12, color:'#7890a8', type:'rough', relStage:5},
-    {id:'d5', em:'📦', name:'Материалы стяжки + гидроизол.',  planOffset:12, color:'#7890a8', type:'rough', relStage:6},
-    {id:'d6', em:'📦', name:'Профиль ГКЛ + гипсокартон',      planOffset:40, color:'#7890a8', type:'rough', relStage:7},
-    {id:'d7', em:'🚛', name:'Плитка + затирки + гидроизол.',   planOffset:60, color:'#a89070', type:'finish', relStage:8},
-    {id:'d8', em:'🚛', name:'Краски + шпатлёвка + молдинги',   planOffset:74, color:'#a89070', type:'finish', relStage:9},
-    {id:'d9', em:'🚛', name:'Паркет COSWICK орех + плинтус',   planOffset:95, color:'#a89070', type:'finish', relStage:10},
-    {id:'d10',em:'🚛', name:'Сантехника чистовая GROHE/TECE',  planOffset:88, color:'#a89070', type:'finish', relStage:11},
-    {id:'d11',em:'🚛', name:'Розетки, выкл., светильники',     planOffset:95, color:'#a89070', type:'finish', relStage:12},
-  ]
-};
+const DEFAULT_DATA = {"project":{"name":"СОБЫТИЕ 4","address":"г. Москва, ЖК «Событие»","area":"145,56 м²","rooms":"11 помещений","contactlabel":"Руководитель компании","contact":"Андрей","contact2label":"Руководитель проекта (РП)","contact2":"","binId":"6a1d91d4ddf5aa59f7801db1","startDate":"2026-03-05","endDate":"2026-11-26","version":"1.4.0"},"stages":[{"id":1,"em":"🔨","name":"Подготовительные / демонтаж","planStart":0,"planDur":18,"factStart":0,"factDur":16,"color":"#e8a838","person":"Морозов А.","count":3,"status":"done","delayReason":"","pred":"—","kp":false,"scope":"Укрывка, демонтаж, перегородки газобетон 107,5 м²","dep":[]},{"id":2,"em":"🪣","name":"Монтаж перегородок/Штукатурка стен","planStart":18,"planDur":22,"factStart":18,"factDur":21,"color":"#c084e8","person":"Кузнецов В.","count":2,"status":"done","delayReason":"","pred":"1 (FS)","kp":true,"scope":"Грунт 241 м², сетка 186 м², штукатурка по маякам 241 м²","dep":[1]},{"id":3,"em":"🔧","name":"Чер. сантехника (вода/кан.)","planStart":42,"planDur":26,"factStart":42,"factDur":22,"color":"#38c4a8","person":"Соколов И.","count":2,"status":"done","delayReason":"","pred":"1 (SS)","kp":false,"scope":"11 точек ХВС/ГВС, 12 точек канализации, TECE, трап","dep":[1]},{"id":4,"em":"🌡","name":"Чер. сантехника (отопление)","planStart":61,"planDur":14,"factStart":61,"factDur":10,"color":"#e87058","person":"Соколов И.","count":1,"status":"done","delayReason":"","pred":"1 (SS)","kp":false,"scope":"Коллектор, 4 радиатора, трубы, гидроиспытания","dep":[1]},{"id":5,"em":"⚡","name":"Черновая электрика","planStart":76,"planDur":26,"factStart":74,"factDur":null,"color":"#e86090","person":"Петров Д.","count":2,"status":"active","delayReason":"","pred":"1 (SS)","kp":false,"scope":"97 подрозетников, щит (умный дом), 380 м.п. кабеля","dep":[1]},{"id":6,"em":"🏗","name":"Черновой пол (стяжка)","planStart":103,"planDur":9,"factStart":null,"factDur":null,"color":"#6098e8","person":"Морозов А.","count":2,"status":"plan","delayReason":"","pred":"1 (SS)+сушка","kp":true,"scope":"Гидро-шумоизоляция 71,56 м², ЦПС стяжка, сушка 21 дн.","dep":[1]},{"id":7,"em":"📐","name":"Монтаж ГКЛ (потолки)","planStart":114,"planDur":22,"factStart":null,"factDur":null,"color":"#50c8e0","person":"Морозов А.","count":3,"status":"plan","delayReason":"","pred":"2+6 (FS)","kp":true,"scope":"Каркас+ГКЛ 2 слоя потолков 71,56 м², ниши, откосы","dep":[2,6]},{"id":8,"em":"🪟","name":"Плиточные работы","planStart":136,"planDur":28,"factStart":null,"factDur":null,"color":"#a8c840","person":"Тихонов О.","count":2,"status":"plan","delayReason":"","pred":"7 (FS)","kp":true,"scope":"Гидроизоляция 65,7 м², плитка пол/стены, теплый пол 5,5 м²","dep":[7]},{"id":9,"em":"🎨","name":"Малярные работы","planStart":166,"planDur":28,"factStart":null,"factDur":null,"color":"#e8c050","person":"Малярная бригада","count":3,"status":"plan","delayReason":"","pred":"7+8 (FS)","kp":true,"scope":"Шпатлёвка Q3 потолок+стены 262 м², карниз, молдинг, покраска","dep":[7,8]},{"id":10,"em":"🟫","name":"Устройство пола / плинтус","planStart":195,"planDur":15,"factStart":null,"factDur":null,"color":"#9860e8","person":"Тихонов О.","count":2,"status":"plan","delayReason":"","pred":"9 (FS)","kp":false,"scope":"Паркет ёлкой COSWICK орех 55,4 м², плинтус МДФ","dep":[9]},{"id":11,"em":"🚿","name":"Чистовой сантехмонтаж","planStart":211,"planDur":14,"factStart":null,"factDur":null,"color":"#40d890","person":"Соколов И.","count":1,"status":"plan","delayReason":"","pred":"8 (FS)","kp":false,"scope":"2 унитаза, 2 душ. стойки GROHE, смесители, бойлер","dep":[8]},{"id":12,"em":"💡","name":"Чистовой электромонтаж","planStart":226,"planDur":10,"factStart":null,"factDur":null,"color":"#e89040","person":"Петров Д.","count":2,"status":"plan","delayReason":"","pred":"9+11 (FS)","kp":true,"scope":"Умный дом, 73 розетки, 21 выкл., светильники","dep":[9,11]}],"deliveries":[{"id":"d1","em":"📦","name":"Газобетон + ЦПС (перегородки)","planOffset":0,"color":"#7890a8","type":"rough","relStage":1},{"id":"d2","em":"📦","name":"Штукатурные смеси Knauf","planOffset":18,"color":"#7890a8","type":"rough","relStage":2},{"id":"d3","em":"📦","name":"Трубы ХВС/ГВС + фитинги","planOffset":44,"color":"#7890a8","type":"rough","relStage":3},{"id":"d4","em":"📦","name":"Кабель + гофра (380 м.п.)","planOffset":75,"color":"#7890a8","type":"rough","relStage":5},{"id":"d5","em":"📦","name":"Материалы стяжки + гидроизол.","planOffset":102,"color":"#7890a8","type":"rough","relStage":6},{"id":"d6","em":"📦","name":"Профиль ГКЛ + гипсокартон","planOffset":114,"color":"#7890a8","type":"rough","relStage":7},{"id":"d7","em":"🚛","name":"Плитка + затирки + гидроизол.","planOffset":136,"color":"#a89070","type":"finish","relStage":8},{"id":"d8","em":"🚛","name":"Краски + шпатлёвка + молдинги","planOffset":166,"color":"#a89070","type":"finish","relStage":9},{"id":"d9","em":"🚛","name":"Паркет COSWICK орех + плинтус","planOffset":194,"color":"#a89070","type":"finish","relStage":10},{"id":"d10","em":"🚛","name":"Сантехника чистовая GROHE/TECE","planOffset":211,"color":"#a89070","type":"finish","relStage":11},{"id":"d11","em":"🚛","name":"Розетки, выкл., светильники","planOffset":225,"color":"#a89070","type":"finish","relStage":12}]}; // END DEFAULT_DATA
 
 // ═══════════════════════════════════════════════════════════
 // CLOUD SYNC via JSONBin.io
@@ -784,34 +2966,69 @@ const DEFAULT_DATA = {
 const APP_VERSION = '1.4.0';
 const STORAGE_KEY = 'dizmomap';
 const JSONBIN_KEY = '$2a$10$icAt3tfeElc475TK/YFNCeHJryFf4Y/NKzqeESro8WwR2vwfEz8GK';
-// BIN ID is stored in data.project.binId so each project has its own cloud storage
+const BINID_STORAGE_KEY = 'dizmomap_binid'; // stored separately from project data
+
+function getSavedBinId(){
+  // Priority: localStorage > DEFAULT_DATA
+  return localStorage.getItem(BINID_STORAGE_KEY) || DEFAULT_DATA.project.binId || '6a0361c2250b1311c33dc0de';
+}
+
+function saveBinId(id){
+  if(id) localStorage.setItem(BINID_STORAGE_KEY, id);
+}
+
 function getJsonbinUrl(){
-  const id = (data && data.project && data.project.binId) ? data.project.binId : '6a0361c2250b1311c33dc0de';
+  const id = (data && data.project && data.project.binId) ? data.project.binId : getSavedBinId();
   return 'https://api.jsonbin.io/v3/b/' + id;
 }
 
 // Start with DEFAULT_DATA — cloud data loads and replaces asynchronously
 let data = JSON.parse(JSON.stringify(DEFAULT_DATA));
+localStorage.setItem('dizmomap_binid','6a1d74af21f9ee59d2a4e6d5');
+// Restore saved BIN ID
+localStorage.setItem("dizmomap_binid","6a1d91d4ddf5aa59f7801db1");localStorage.setItem("dizmomap_binid","6a1d91d4ddf5aa59f7801db1");/*BINID_INJECT*/
+const _savedBinId = getSavedBinId();
+if(_savedBinId) data.project.binId = _savedBinId;
 _timelineInitialized = false;
 
 // Load from cloud
 async function cloudLoad(){
+  const binId = (data && data.project && data.project.binId) ? data.project.binId : null;
+  if(!binId) return;
   try{
-    const res = await fetch(getJsonbinUrl() + '/latest', {
+    const res = await fetch('https://api.jsonbin.io/v3/b/' + binId + '/latest', {
       headers: {'X-Master-Key': JSONBIN_KEY, 'X-Bin-Meta': 'false'}
     });
     if(!res.ok) throw new Error('HTTP '+res.status);
     const cloud = await res.json();
     if(cloud && cloud.project && cloud.stages && cloud.stages.length > 0){
+      const savedBinId = data.project.binId || getSavedBinId();
       data = cloud;
+      if(!data.project.binId) data.project.binId = savedBinId;
+      saveBinId(data.project.binId); // persist to localStorage
       data.stages.forEach(s=>{ if(!s.delayReason) s.delayReason=''; });
       data.deliveries.forEach(d=>{ d.color=d.type==='rough'?'#7890a8':'#a89070'; d.em=d.type==='rough'?'📦':'🚛'; });
-      _timelineInitialized = false; // force reinit from loaded project dates
+      _timelineInitialized = false;
       renderAll();
       document.getElementById('lastSaved').textContent = '☁ Загружено из облака';
     }
+    // cloud empty — keep DEFAULT_DATA
   }catch(e){
     console.warn('Cloud load error:', e.message);
+  }
+}
+
+async function cloudPush(){
+  // Force push current data to cloud — use this to initialize a new bin
+  const binId = (data && data.project && data.project.binId) ? data.project.binId : null;
+  if(!binId){ showToast('⚠️ Укажите BIN ID в настройках проекта'); return; }
+  document.getElementById('lastSaved').textContent = 'Отправка в облако...';
+  const ok = await cloudSave();
+  if(ok){
+    document.getElementById('lastSaved').textContent = '☁ Сохранено в облако';
+    showToast('✅ ДАННЫЕ ОТПРАВЛЕНЫ В ОБЛАКО');
+  } else {
+    showToast('⚠️ Ошибка отправки — проверьте BIN ID');
   }
 }
 
@@ -870,35 +3087,41 @@ const statusColors = {plan:'var(--mu2)',active:'var(--acc)',done:'var(--g)',dela
 // SAVE / LOAD
 // ═══════════════════════════════════════════════════════════
 function exportFile(){
-  const html = document.documentElement.outerHTML;
+  const pName    = (data.project.name||'project').toLowerCase().replace(/[^a-z0-9]/g,'-');
+  const binId    = data.project.binId || getSavedBinId();
   const dataJson = JSON.stringify(data);
-  const pName = (data.project.name||'project').toLowerCase().replace(/[^a-z0-9]/g,'-');
 
-  // Replace DEFAULT_DATA with current data so file opens with correct data on ANY device
-  // Also clear localStorage dependency — embedded data is the source of truth
-  const patched = html.replace(
-    /const STORAGE_KEY = 'dizmomap';\s*\/\/ Always start from DEFAULT_DATA[\s\S]*?_timelineInitialized = false;/,
-    `const STORAGE_KEY = 'dizmomap_${pName}';
-// Embedded data is source of truth — localStorage only for session edits
-const _EMBEDDED_DATA = ${dataJson};
-let data = (function(){
-  try {
-    const s = localStorage.getItem('dizmomap_${pName}');
-    if(s){
-      const d = JSON.parse(s);
-      // Only use localStorage if same project AND newer (has been edited)
-      if(d && d.project && d.project.name === _EMBEDDED_DATA.project.name) return d;
-    }
-  } catch(e){}
-  return JSON.parse(JSON.stringify(_EMBEDDED_DATA));
-})();
-_timelineInitialized = false;`
+  let html = document.documentElement.outerHTML;
+
+  // 1. Embed current data using indexOf/substring (safe with any chars)
+  const marker = '; // END DEFAULT_DATA';
+  const defStart = html.indexOf('const DEFAULT_DATA = ');
+  const defEnd   = html.indexOf(marker) + marker.length;
+  if(defStart > 0 && defEnd > defStart){
+    html = html.substring(0, defStart)
+      + 'const DEFAULT_DATA = ' + dataJson + marker
+      + html.substring(defEnd);
+  }
+
+  // 2. Fix storage key
+  html = html.replace(
+    /const BINID_STORAGE_KEY = '[^']*';/,
+    "const BINID_STORAGE_KEY = 'dizmomap_binid';"
   );
 
-  const blob = new Blob([patched], {type:'text/html;charset=utf-8'});
+  // 3. Inject BIN ID using unique marker comment (not a string — avoids self-reference bug)
+  const injectTag = '/*BINID_INJECT*/';
+  const injectIdx = html.indexOf(injectTag);
+  if(injectIdx > 0){
+    html = html.substring(0, injectIdx)
+      + 'localStorage.setItem("dizmomap_binid","' + binId + '");'
+      + html.substring(injectIdx);
+  }
+
+  const blob = new Blob([html], {type:'text/html;charset=utf-8'});
   const url  = URL.createObjectURL(blob);
   const a    = document.createElement('a');
-  a.href = url;
+  a.href     = url;
   a.download = pName + '-map.html';
   document.body.appendChild(a);
   a.click();
@@ -906,6 +3129,7 @@ _timelineInitialized = false;`
   URL.revokeObjectURL(url);
   showToast('⬇ СКАЧАН: ' + a.download);
 }
+
 
 function saveData(){
   if(!isEditor){ showToast('🔒 НУЖЕН ПАРОЛЬ'); return; }
@@ -2121,11 +4345,13 @@ function openModal(){
 }
 
 // close on overlay tap (touch + click)
-const _overlay = document.getElementById('editModal');
-['click','touchend'].forEach(evt => {
-  _overlay.addEventListener(evt, e=>{
-    if(e.target === _overlay){ e.preventDefault(); closeModal(); }
-  }, {passive:false});
+document.addEventListener('DOMContentLoaded', ()=>{
+  const _overlay = document.getElementById('editModal');
+  if(_overlay){['click','touchend'].forEach(evt => {
+    _overlay.addEventListener(evt, e=>{
+      if(e.target === _overlay){ e.preventDefault(); closeModal(); }
+    }, {passive:false});
+  });}
 });
 
 // Auto-detect delays — call before every render
@@ -2394,10 +4620,13 @@ function closePwModal(){
   document.getElementById('pwModal').classList.remove('show');
   document.body.style.overflow = '';
 }
-['click','touchend'].forEach(evt => {
-  document.getElementById('pwModal').addEventListener(evt, e=>{
-    if(e.target === document.getElementById('pwModal')){ e.preventDefault(); closePwModal(); }
-  }, {passive:false});
+document.addEventListener('DOMContentLoaded', ()=>{
+  const _pw = document.getElementById('pwModal');
+  if(_pw){['click','touchend'].forEach(evt => {
+    _pw.addEventListener(evt, e=>{
+      if(e.target === _pw){ e.preventDefault(); closePwModal(); }
+    }, {passive:false});
+  });}
 });
 
 function updateEditorUI(){
@@ -2422,6 +4651,8 @@ function updateEditorUI(){
     if(bd2) bd2.style.display = 'inline-flex';
     const mbl = document.getElementById('mobLockBtn');
     if(mbl) mbl.textContent = '🔓 Заблокировать';
+    const cpBtn = document.getElementById('btnCloudPush');
+    if(cpBtn) cpBtn.style.display = 'inline-block';
   } else {
     lb.textContent = '🔒';
     lb.classList.remove('editing');
@@ -2437,6 +4668,8 @@ function updateEditorUI(){
     if(bd2h) bd2h.style.display = 'none';
     const mbl = document.getElementById('mobLockBtn');
     if(mbl) mbl.textContent = '🔒 Режим просмотра';
+    const cpBtn = document.getElementById('btnCloudPush');
+    if(cpBtn) cpBtn.style.display = 'none';
   }
   renderGantt();    // re-render to show/hide edit buttons in gantt rows
   renderMaterials(); // re-render to show/hide edit buttons in materials
@@ -2538,7 +4771,7 @@ function saveProject(){
     contact:      document.getElementById('pj-contact').value.trim(),
     contact2label:document.getElementById('pj-c2label').value.trim() || 'Руководитель проекта (РП)',
     contact2:     document.getElementById('pj-contact2').value.trim(),
-    binId:        document.getElementById('pj-binid').value.trim() || data.project.binId || '',
+    binId:        (()=>{ const b = document.getElementById('pj-binid').value.trim() || data.project.binId || ''; saveBinId(b); return b; })(),
     startDate:    document.getElementById('pj-start').value || data.project.startDate,
     endDate:      document.getElementById('pj-end').value   || data.project.endDate,
     version:      APP_VERSION,
@@ -2627,6 +4860,7 @@ function saveNewPassword(){
     const s   = data.stages.find(x=>x.id===sid);
     if(!s) return;
     const track = getTrack(bar);
+    if(!track) return;
     const rect  = track.getBoundingClientRect();
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
     bar.classList.add('dragging');
@@ -2652,17 +4886,16 @@ function saveNewPassword(){
     if(!s) return;
 
     if(drag.action === 'move'){
-      const newStart = Math.max(0, drag.origStart + daysDelta);
+      const newStart = drag.origStart + daysDelta;
       s.planStart = newStart;
-      const lp = (newStart/PROJECT_DAYS*100).toFixed(2);
+      const lp = planStartToPercent(newStart).toFixed(2);
       const barEl = drag.bar.classList.contains('bar-single') ? drag.bar : drag.bar.closest('.bar-single') || drag.bar;
       barEl.style.left = lp+'%';
       tooltip.textContent = fmtDate(offsetToDate(newStart)) + ' → ' + fmtDate(offsetToDate(newStart+s.planDur));
     } else {
-      // resize — change duration
       const newDur = Math.max(1, drag.origDur + daysDelta);
       s.planDur = newDur;
-      const wp = (newDur/PROJECT_DAYS*100).toFixed(2);
+      const wp = planDurToPercent(newDur).toFixed(2);
       const rBarEl = drag.bar.classList.contains('bar-single') ? drag.bar : drag.bar.closest('.bar-single') || drag.bar;
       rBarEl.style.width = wp+'%';
       tooltip.textContent = newDur + ' дн. → ' + fmtDate(offsetToDate(s.planStart+newDur));
@@ -2689,9 +4922,33 @@ function saveNewPassword(){
     drag = null;
   }
 
-  // Event delegation on gantt scroll
+  // Event delegation on gantt scroll — SINGLE mousedown handler for all drag types
   document.addEventListener('mousedown', e=>{
-    // Resize handle (right edge of stage bar)
+    if(!isEditor) return;
+
+    // 1. Row reorder — only from ⠿ handle
+    const handle = e.target.closest('.td-drag');
+    if(handle){
+      const tr = handle.closest('tr.g-row');
+      if(tr){
+        const sid = parseInt(tr.id.replace('row-',''));
+        if(sid){
+          e.preventDefault();
+          e.stopPropagation();
+          const ph = document.createElement('tr');
+          ph.style.cssText = 'height:'+tr.offsetHeight+'px;background:rgba(245,200,66,.05);border:1px dashed rgba(245,200,66,.3)';
+          ph.id = 'row-placeholder';
+          tr.parentNode.insertBefore(ph, tr.nextSibling);
+          const rect = tr.getBoundingClientRect();
+          tr.style.cssText = `position:fixed;z-index:500;left:${rect.left}px;top:${rect.top}px;width:${rect.width}px;opacity:.9;box-shadow:0 8px 32px rgba(0,0,0,.6);pointer-events:none`;
+          rowDrag = { sid, tr, ph, startY: e.clientY, origTop: rect.top };
+          document.body.style.cursor = 'grabbing';
+          return;
+        }
+      }
+    }
+
+    // 2. Resize handle (right edge of bar)
     if(e.target.classList.contains('bar-resize')){
       const parentBar = e.target.closest('.bar-single');
       if(parentBar){
@@ -2700,13 +4957,15 @@ function saveNewPassword(){
         return;
       }
     }
-    // Delivery drag
+
+    // 3. Delivery drag
     const delBar = e.target.closest('.bar-delivery[data-did]');
-    if(delBar && isEditor){
+    if(delBar){
       startDeliveryDrag(e, delBar);
       return;
     }
-    // Move whole stage bar
+
+    // 4. Move stage bar
     const bar = e.target.closest('.bar-single[data-sid]');
     if(bar && !e.target.classList.contains('bar-resize')){
       startDrag(e, bar, 'move');
@@ -2746,9 +5005,9 @@ function saveNewPassword(){
     const daysDelta = Math.round(dx / delDrag.trackW * PROJECT_DAYS);
     const d = data.deliveries.find(x=>String(x.id)===String(delDrag.did));
     if(!d) return;
-    const newOffset = Math.max(0, delDrag.origOffset + daysDelta);
+    const newOffset = delDrag.origOffset + daysDelta;
     d.planOffset = newOffset;
-    const lp = (newOffset/PROJECT_DAYS*100).toFixed(2);
+    const lp = planStartToPercent(newOffset).toFixed(2);
     delDrag.el.style.left = lp+'%';
     // Update date display inline
     const dateEl = document.getElementById('del-date-'+d.id);
@@ -2775,99 +5034,70 @@ function saveNewPassword(){
 
   // ── ROW REORDER DRAG ──
   let rowDrag = null;
-  // rowDrag = { stageId, tr, startY, placeholder }
-
-  document.addEventListener('mousedown', e=>{
-    if(!isEditor) return;
-    const handle = e.target.closest('.td-drag');
-    if(!handle) return;
-    const tr = handle.closest('tr.g-row');
-    if(!tr) return;
-    const sid = parseInt(tr.id.replace('row-',''));
-    if(!sid) return;
-    e.preventDefault();
-    e.stopPropagation();
-
-    // Create placeholder
-    const ph = document.createElement('tr');
-    ph.style.cssText = 'height:'+tr.offsetHeight+'px;background:rgba(245,200,66,.05);border:1px dashed rgba(245,200,66,.3)';
-    ph.id = 'row-placeholder';
-    tr.parentNode.insertBefore(ph, tr.nextSibling);
-
-    // Float the row
-    const rect = tr.getBoundingClientRect();
-    tr.style.cssText = `position:fixed;z-index:500;left:${rect.left}px;top:${rect.top}px;width:${rect.width}px;opacity:.9;box-shadow:0 8px 32px rgba(0,0,0,.6);pointer-events:none`;
-
-    rowDrag = { sid, tr, ph, startY: e.clientY, origTop: rect.top };
-    document.body.style.cursor = 'grabbing';
-  }, true);
 
   document.addEventListener('mousemove', e=>{
-    if(!rowDrag) return;
-    const dy = e.clientY - rowDrag.startY;
-    rowDrag.tr.style.top = (rowDrag.origTop + dy) + 'px';
-
-    // Find which row we're hovering over
-    const rows = [...document.querySelectorAll('tr.g-row')].filter(r=>r!==rowDrag.tr);
-    const phEl = rowDrag.ph;
-    let inserted = false;
-    for(const row of rows){
-      const rect = row.getBoundingClientRect();
-      const mid  = rect.top + rect.height/2;
-      if(e.clientY < mid){
-        row.parentNode.insertBefore(phEl, row);
-        inserted = true;
-        break;
+    // Row reorder move
+    if(rowDrag){
+      const dy = e.clientY - rowDrag.startY;
+      rowDrag.tr.style.top = (rowDrag.origTop + dy) + 'px';
+      const rows = [...document.querySelectorAll('tr.g-row')].filter(r=>r!==rowDrag.tr);
+      const phEl = rowDrag.ph;
+      let inserted = false;
+      for(const row of rows){
+        const rect = row.getBoundingClientRect();
+        const mid  = rect.top + rect.height/2;
+        if(e.clientY < mid){
+          row.parentNode.insertBefore(phEl, row);
+          inserted = true;
+          break;
+        }
       }
+      if(!inserted && rows.length){
+        const lastRow = rows[rows.length-1];
+        lastRow.parentNode.insertBefore(phEl, lastRow.nextSibling);
+      }
+      return;
     }
-    if(!inserted && rows.length){
-      const lastRow = rows[rows.length-1];
-      lastRow.parentNode.insertBefore(phEl, lastRow.nextSibling);
-    }
-  });
+    // Bar drag / delivery drag
+    onMove(e);
+    onDelMove(e);
+  }, {passive:false});
 
   document.addEventListener('mouseup', e=>{
-    if(!rowDrag) return;
-    // Restore row style
-    rowDrag.tr.style.cssText = '';
-    document.body.style.cursor = '';
-
-    // Find new position from placeholder
-    const tbody = document.getElementById('ganttBody');
-    const allRows = [...tbody.querySelectorAll('tr')];
-    const phIdx = allRows.indexOf(rowDrag.ph);
-
-    // Reorder data.stages
-    const fromIdx = data.stages.findIndex(s=>s.id===rowDrag.sid);
-    if(fromIdx !== -1){
-      // Count g-rows before placeholder to find target index
-      let targetIdx = 0;
-      let gRowCount = 0;
-      for(let i=0; i<phIdx; i++){
-        if(allRows[i].classList.contains('g-row')) gRowCount++;
+    if(rowDrag){
+      // Row reorder end
+      rowDrag.tr.style.cssText = '';
+      document.body.style.cursor = '';
+      const tbody = document.getElementById('ganttBody');
+      const allRows = [...tbody.querySelectorAll('tr')];
+      const phIdx = allRows.indexOf(rowDrag.ph);
+      const fromIdx = data.stages.findIndex(s=>s.id===rowDrag.sid);
+      if(fromIdx !== -1){
+        let gRowCount = 0;
+        for(let i=0; i<phIdx; i++){
+          if(allRows[i].classList.contains('g-row')) gRowCount++;
+        }
+        const targetIdx = gRowCount;
+        if(targetIdx !== fromIdx){
+          const [moved] = data.stages.splice(fromIdx, 1);
+          data.stages.splice(targetIdx, 0, moved);
+          showToast('↕ Порядок этапов изменён');
+          const idMap = {};
+          data.stages.forEach((s,i)=>{ idMap[s.id] = i+1; });
+          data.deliveries.forEach(d=>{ if(idMap[d.relStage]) d.relStage = idMap[d.relStage]; });
+          data.stages.forEach((s,i)=>{ s.id = i+1; });
+          saveData();
+        }
       }
-      targetIdx = gRowCount;
-      if(targetIdx !== fromIdx){
-        const [moved] = data.stages.splice(fromIdx, 1);
-        data.stages.splice(targetIdx, 0, moved);
-        showToast('↕ Порядок этапов изменён');
-        // Build old→new id map before renumbering
-        const idMap = {};
-        data.stages.forEach((s,i)=>{ idMap[s.id] = i+1; });
-        // Update delivery relStage references
-        data.deliveries.forEach(d=>{ if(idMap[d.relStage]) d.relStage = idMap[d.relStage]; });
-        // Renumber stages
-        data.stages.forEach((s,i)=>{ s.id = i+1; });
-        saveData();
-      }
+      rowDrag.ph.remove();
+      rowDrag = null;
+      renderGantt();
+      return;
     }
-
-    // Remove placeholder and rerender
-    rowDrag.ph.remove();
-    rowDrag = null;
-    renderGantt();
+    // Bar drag / delivery drag end
+    endDrag();
+    endDelDrag();
   });
-  document.addEventListener('mouseup', ()=>{ if(!rowDrag){ endDrag(); endDelDrag(); } });
 
   // Touch
   document.addEventListener('touchstart', e=>{
@@ -2883,16 +5113,20 @@ function saveNewPassword(){
 // ═══════════════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════════════
-renderAll();
-updateEditorUI();
-syncDeliveriesBtn();
-// Load latest data from cloud
-cloudLoad();
+function appInit(){
+  renderAll();
+  updateEditorUI();
+  syncDeliveriesBtn();
+  cloudLoad();
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if(saved){ document.getElementById('lastSaved').textContent = 'Загружено из памяти'; }
+}
+if(document.readyState === 'loading'){
+  document.addEventListener('DOMContentLoaded', appInit);
+} else {
+  appInit();
+}
+</script><div class="bar-drag-tooltip" id="dragTooltip" style="display: none; left: 1155px; top: 531px;">📦 16 окт.</div><div class="bar-drag-tooltip" id="dragTooltip"></div><div class="bar-drag-tooltip" id="dragTooltip"></div><div class="bar-drag-tooltip" id="dragTooltip" style="display: none; left: 1157px; top: 542px;">17 окт. → 27 окт.</div>
 
 
-
-const saved = localStorage.getItem(STORAGE_KEY);
-if(saved){ document.getElementById('lastSaved').textContent = 'Загружено из памяти'; }
-</script>
-</body>
-</html>
+</body></html>
